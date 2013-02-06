@@ -167,8 +167,10 @@ Para controlar acceso del propietario del alojamiento
 *** Estilos
 Lo más semejante a las muestras.
 ** TODO Pasos
-*** TODO establecer control versiones
-*** TODO importación de estilos de bootstrap
+*** DONE establecer control versiones
+*** DONE importación de estilos de bootstrap
+   rails generate bootstrap:install static
+    rails g bootstrap:layout application fixed
 *** TODO creación del modelo
 **** TODO prueba de relaciones 
 ** TODO Cuestiones
