@@ -171,6 +171,10 @@ Lo más semejante a las muestras.
 *** DONE importación de estilos de bootstrap
    rails generate bootstrap:install static
     rails g bootstrap:layout application fixed
+*** DONE adaptacion del layout de aplicación
+**** DONE eliminar las barras sobrantes
+**** DONE eliminar iconos de apple
+que cascan en producción, en concreto el "images/apple-touch-icon-144x144-precomposed.png"
 *** TODO creación del modelo
 **** TODO prueba de relaciones 
 ** TODO Cuestiones

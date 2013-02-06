@@ -14,10 +14,6 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
     <!-- For iPhone with high-resolution Retina display: -->
     <!-- Size should be 114 x 114 pixels -->
     <%= favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
@@ -35,44 +31,12 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Proyecto</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
     <div class="container">
         <div class="row">
-          <div class="span9">
+          <div class="span12">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
         </div><!--/row-->
 
       <footer>
