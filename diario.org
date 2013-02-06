@@ -1,0 +1,196 @@
+* Proyecto Alojamientos
+** Requisitos
+*** 
+** Modulos
+*** Usuarios
+- Datos de usuario
+  creacion, modificacion...
+- Permisos = Grupos
+  Grupo Admin, Grupo Propietario, Grupo Visitante
+- Autentificacion y autorizacion
+  Luego las primitivas de autorizacion se usan desde los otros módulos
+  Recuperacion de clave
+  Formulario de contacto
+*** Alojamientos
+
+** Clases
+*** Usuario/User
+name:string
+surname:string
+email:string
+password:string
+
+has_many :accommodations
+belongs_to :role
+
+**** metodos
+***** initialize
+en el constructor asignar el Rol por defecto de "propietario"
+
+**** scopes
+***** admins
+retorna los usuarios administradores
+***** landlords
+retorna los usuarios propietarios
+
+*** Rol/Role
+name:string
+
+has_many :users
+
+*** Alojamiento/Accommodation
+## CONSTANTES
+PROVINCES = []
+  nombres de provincias, el "id" será la posición en el array ya que es para consumo interno
+
+name:string
+brief:text 
+  es una breve descripcion, tipo lema o slogan. Se puede ver un ejemplo en la   muestra "detalle-alojamiento.png" donde pone 'Un hotel comprometido con la naturaleza\nInstalaciones de placas solares...'
+description:text
+
+# MAPS
+latitude:
+longitude:
+
+#ADDRESS
+province: 
+city:string
+address:string
+
+# DESTACADOS
+prominent:boolean
+  marca binaria de alojamiento destacado
+
+#RELACIONES
+
+has_many :photos
+has_many :offers
+has_many :room_types
+belongs_to :category
+belongs_to :user
+
+*** TipoHabitacion/RoomType
+  No se trata de habitaciones individuales como sería necesario para gestión de reservas. En lugar de eso, son las tipologías que ofrece el alojamiento, independientemente de que luego hubiera varias unidades del mismo tipo de habitación
+
+name:string
+brief:text
+description:text
+
+has_many :photos, :as => :image_owner
+  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+
+*** Categoria/Category
+name:string
+description:text
+gmaps_icon:text 
+  imagen adjunta para poner un icono al marcador de google maps
+
+has_many :subcategories, 
+  :class_name => "Category", 
+  :foreign_key => :parent_id
+
+*** Oferta/Offer
+name:string
+summary:text
+description:text
+price:float
+
+belongs_to :accommodation
+
+*** Foto/Photo
+## created_at y modified_at
+description: text
+
+belongs_to :image_owner, :polymorphic => true
+  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+
+*** Comentario/Comment
+Proporcionado por la gema acts_as_commentable
+
+** Controladores
+*** application
+**** authorize_admin
+**** authorize_landlord
+**** admin? (helper method)
+**** landlord? (helper method)
+*** sessions
+**** new
+**** delete
+*** users
+Administracion de usuarios
+**** index_admins
+Vista de administradores para administrar a los administradores :D, ver [[#Q03]]
+**** index_landlords
+Vista de propietarios para administrar propietarios, ver [[#Q03]]
+**** new/create 
+Para registrarse como propietario, es público
+**** edit/update
+Los datos son editables por el propio usuario
+**** show
+El detalle propio es visible por el propio usuario
+**** delete
+**** authorize_owner
+Para que solo el usuario pueda tratar con sus propios datos, salvo admin
+*** accommodations
+**** index
+Se puede usar como portada o quizás convenga más crear un controlador específico
+**** new
+el formulario tendría atributos anidados para definir las habitaciones sobre la marcha
+**** create
+**** edit
+el formulario tendría atributos anidados para definir las habitaciones sobre la marcha
+**** update
+**** show
+**** authorize_owner
+Para permitir la edición solo al propietario
+*** roomtypes
+**** index
+**** new/create
+Estarían capados, se hace desde el formulario de accommodations
+**** edit/update
+En este caso se permitiría editar individualmente las habitaciones
+**** authorize_owner
+Para autorizar solo al propietario del alojamiento (salvo admin)
+*** categories
+**** index 
+**** new/create
+**** edit/update
+**** delete
+*** offers
+**** index
+**** new/create
+**** edit/update
+**** delete
+**** authorize_owner
+Para controlar acceso del propietario del alojamiento 
+** Notas
+*** Estilos
+Lo más semejante a las muestras.
+** TODO Pasos
+*** TODO establecer control versiones
+*** TODO importación de estilos de bootstrap
+*** TODO creación del modelo
+**** TODO prueba de relaciones 
+** TODO Cuestiones
+*** DONE Repensar si es justificable usar grupos
+:CUSTOM_ID: Q00
+Realmente para el problema parece 'overkill' usar grupos y permisos.
+Hay problemas: si un propietario es "degradado" a visitante hay que controlar que no tenga alojamientos vinculados para mantener la consistencia. Se puede hacer con callbacks si se sigue con el diseño usuarios-grupos en lugar de con un modelo específico de propietario
+
+**** SOLUCION
+Usar un modelo de roles. Existe una tabla de roles que tiene como unico campo el nombre del rol (y quizás una descripción). Cada usuario tiene un rol.
+Los roles del sistema son administrador y propietario. Estos dos roles se crearán en la tabla directamente mediante una migración.
+
+
+*** TODO Usar una gestión de provincias y ciudades
+No me parece justificable usar modelos individuales para ellas, ya que requiere un mantenimiento excesivo para poca utilidad. Por otro lado, los alojamientos rurales se situan en poblamientos con nombres populares y muchas veces barrios. No es razonable que estas poblaciones estén registradas y tabuladas en base de datos.
+Así, para provincias se usaría un cierto tipo de constante de modelo y para ciudad sería un texto libre, asumiendo los riesgos de que aparezcan ciudades que no existan.
+
+:CUSTOM_ID: Q01
+*** TODO mirar gema CanCan
+:CUSTOM_ID: Q02
+Para gestión de autorizacion, permisos y grupos
+
+*** TODO repensar en el controlador de users los dos index
+:CUSTOM_ID: Q03
+De momento he puesto dos index, uno para admins y otro para propietarios, pero quizas sería mejor un index 
