@@ -201,12 +201,12 @@ rails g scaffold Category name:string parent_id:integer
 rails g scaffold Accommodation name:string brief_description:text description:text province_id:integer city:string address:string postal_code:integer featured:boolean category_id:integer landlord_id:integer
 ***** DONE RoomType
 rails g scaffold RoomType name:string brief_description:text description:text
-***** TODO Offer
+***** DONE Offer
 rails g scaffold Offer name:string  summary:text description:text price:float accommodation_id:integer
-***** TODO Photo
+***** DONE Photo
 rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
-**** TODO crear controladores
 **** TODO prueba de relaciones 
+*** TODO crear controladores
 
 
 
