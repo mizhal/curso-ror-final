@@ -12,101 +12,6 @@
   Recuperacion de clave
   Formulario de contacto
 *** Alojamientos
-
-** Clases
-*** Usuario/User
-name:string
-surname:string
-email:string
-password:string
-
-has_many :accommodations
-belongs_to :role
-
-**** metodos
-***** initialize
-en el constructor asignar el Rol por defecto de "propietario"
-
-**** scopes
-***** admins
-retorna los usuarios administradores
-***** landlords
-retorna los usuarios propietarios
-
-*** Rol/Role
-name:string
-
-has_many :users
-
-*** Alojamiento/Accommodation
-## CONSTANTES
-PROVINCES = []
-  nombres de provincias, el "id" será la posición en el array ya que es para consumo interno
-
-name:string
-brief:text 
-  es una breve descripcion, tipo lema o slogan. Se puede ver un ejemplo en la   muestra "detalle-alojamiento.png" donde pone 'Un hotel comprometido con la naturaleza\nInstalaciones de placas solares...'
-description:text
-
-# MAPS
-latitude:
-longitude:
-
-#ADDRESS
-province: 
-city:string
-address:string
-
-# DESTACADOS
-prominent:boolean
-  marca binaria de alojamiento destacado
-
-#RELACIONES
-
-has_many :photos
-has_many :offers
-has_many :room_types
-belongs_to :category
-belongs_to :user
-
-*** TipoHabitacion/RoomType
-  No se trata de habitaciones individuales como sería necesario para gestión de reservas. En lugar de eso, son las tipologías que ofrece el alojamiento, independientemente de que luego hubiera varias unidades del mismo tipo de habitación
-
-name:string
-brief:text
-description:text
-
-has_many :photos, :as => :image_owner
-  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
-
-*** Categoria/Category
-name:string
-description:text
-gmaps_icon:text 
-  imagen adjunta para poner un icono al marcador de google maps
-
-has_many :subcategories, 
-  :class_name => "Category", 
-  :foreign_key => :parent_id
-
-*** Oferta/Offer
-name:string
-summary:text
-description:text
-price:float
-
-belongs_to :accommodation
-
-*** Foto/Photo
-## created_at y modified_at
-description: text
-
-belongs_to :image_owner, :polymorphic => true
-  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
-
-*** Comentario/Comment
-Proporcionado por la gema acts_as_commentable
-
 ** Controladores
 *** application
 **** authorize_admin
@@ -166,6 +71,109 @@ Para controlar acceso del propietario del alojamiento
 ** Notas
 *** Estilos
 Lo más semejante a las muestras.
+** Clases
+*** Usuario/User
+name:string
+surname:string
+email:string
+password:string
+
+has_many :accommodations
+belongs_to :role
+
+**** metodos
+***** initialize
+en el constructor asignar el Rol por defecto de "propietario"
+
+**** scopes
+***** admins
+retorna los usuarios administradores
+***** landlords
+retorna los usuarios propietarios
+
+*** Rol/Role
+name:string
+
+has_many :users
+
+*** Alojamiento/Accommodation
+name:string
+brief_description:text 
+  es una breve descripcion, tipo lema o slogan. Se puede ver un ejemplo en la   muestra "detalle-alojamiento.png" donde pone 'Un hotel comprometido con la naturaleza\nInstalaciones de placas solares...'
+description:text
+
+# MAPS: estos dos campos los añade la migracion de la gema de mapas
+latitude:float
+longitude:float
+
+#ADDRESS
+city:string
+address:string
+postal_code:int
+
+belongs_to :province
+
+# DESTACADOS
+featured:boolean
+  marca binaria de alojamiento destacado
+
+#RELACIONES
+
+has_many :photos
+has_many :offers
+has_many :room_types
+belongs_to :category
+belongs_to :landlord, :class_name => User, :foreign_key => :landlord_id
+
+*** TipoHabitacion/RoomType
+  No se trata de habitaciones individuales como sería necesario para gestión de reservas. En lugar de eso, son las tipologías que ofrece el alojamiento, independientemente de que luego hubiera varias unidades del mismo tipo de habitación
+
+name:string
+brief_description:text
+description:text
+
+has_many :photos, :as => :image_owner
+  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+
+*** Categoria/Category
+name:string
+description:text
+gmaps_icon:text 
+  imagen adjunta para poner un icono al marcador de google maps
+
+has_many :children, 
+  :class_name => "Category", 
+  :foreign_key => :parent_id
+belongs_to :parent,
+  :class_name => "Category",
+  :foreign_key => :parent_id
+
+*** Oferta/Offer
+name:string
+summary:text
+description:text
+price:float
+
+belongs_to :accommodation
+
+*** Foto/Photo
+## created_at y modified_at
+description: text
+
+belongs_to :image_owner, :polymorphic => true
+  Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+
+*** Comentario/Comment
+Proporcionado por la gema acts_as_commentable
+
+*** Province
+name:string
+
+belongs_to :country
+*** Country
+name:string
+
+has_many :provinces
 ** TODO Pasos
 *** DONE establecer control versiones
 *** DONE importación de estilos de bootstrap
@@ -175,8 +183,39 @@ Lo más semejante a las muestras.
 **** DONE eliminar las barras sobrantes
 **** DONE eliminar iconos de apple
 que cascan en producción, en concreto el "images/apple-touch-icon-144x144-precomposed.png"
+*** DONE establecimiento de sesiones en BD
+rake db:sessions:create
 *** TODO creación del modelo
+**** TODO crear scaffolds y models
+***** DONE Role
+rails g scaffold Role name:string
+***** DONE User
+rails g scaffold User name:string surname:string email:string password:string role_id:integer 
+***** DONE Country
+rails g model Country name:string
+***** DONE Province
+rails g model Province name:string country_id:integer
+***** DONE Category
+rails g scaffold Category name:string parent_id:integer
+***** DONE Accommodation
+rails g scaffold Accommodation name:string brief_description:text description:text province_id:integer city:string address:string postal_code:integer featured:boolean category_id:integer landlord_id:integer
+***** DONE RoomType
+rails g scaffold RoomType name:string brief_description:text description:text
+***** TODO Offer
+rails g scaffold Offer name:string  summary:text description:text price:float accommodation_id:integer
+***** TODO Photo
+rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
+**** TODO crear controladores
 **** TODO prueba de relaciones 
+
+
+
+
+
+
+
+
+
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00
@@ -187,12 +226,18 @@ Hay problemas: si un propietario es "degradado" a visitante hay que controlar qu
 Usar un modelo de roles. Existe una tabla de roles que tiene como unico campo el nombre del rol (y quizás una descripción). Cada usuario tiene un rol.
 Los roles del sistema son administrador y propietario. Estos dos roles se crearán en la tabla directamente mediante una migración.
 
-
 *** TODO Usar una gestión de provincias y ciudades
+:CUSTOM_ID: Q01
 No me parece justificable usar modelos individuales para ellas, ya que requiere un mantenimiento excesivo para poca utilidad. Por otro lado, los alojamientos rurales se situan en poblamientos con nombres populares y muchas veces barrios. No es razonable que estas poblaciones estén registradas y tabuladas en base de datos.
 Así, para provincias se usaría un cierto tipo de constante de modelo y para ciudad sería un texto libre, asumiendo los riesgos de que aparezcan ciudades que no existan.
+**** SOLUCION
+Usar unas tablas de:
+  pais
+  provincia
 
-:CUSTOM_ID: Q01
+que cargaremos con datos iniciales de españa y sus provincias. Por si fuera necesario ampliar a otros paises.
+A nivel de ciudad, como se comenta antes es excesivo por la gran cantidad de poblaciones 
+
 *** TODO mirar gema CanCan
 :CUSTOM_ID: Q02
 Para gestión de autorizacion, permisos y grupos
@@ -200,3 +245,4 @@ Para gestión de autorizacion, permisos y grupos
 *** TODO repensar en el controlador de users los dos index
 :CUSTOM_ID: Q03
 De momento he puesto dos index, uno para admins y otro para propietarios, pero quizas sería mejor un index 
+*** TODO plantear: cambiar brief_description por summary en todos

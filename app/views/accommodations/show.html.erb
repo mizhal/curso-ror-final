@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @accommodation.name %>
+</p>
+
+<p>
+  <b>Brief description:</b>
+  <%= @accommodation.brief_description %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @accommodation.description %>
+</p>
+
+<p>
+  <b>Province:</b>
+  <%= @accommodation.province_id %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @accommodation.city %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @accommodation.address %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @accommodation.postal_code %>
+</p>
+
+<p>
+  <b>Featured:</b>
+  <%= @accommodation.featured %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @accommodation.category_id %>
+</p>
+
+<p>
+  <b>Landlord:</b>
+  <%= @accommodation.landlord_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_accommodation_path(@accommodation) %> |
+<%= link_to 'Back', accommodations_path %>

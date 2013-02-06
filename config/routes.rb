@@ -1,4 +1,22 @@
 Proyecto::Application.routes.draw do
+  resources :offers
+
+
+  resources :room_types
+
+
+  resources :accommodations
+
+
+  resources :categories
+
+
+  resources :users
+
+
+  resources :roles
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
