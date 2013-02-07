@@ -1,20 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = RoomType -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @room_type.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @room_type.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:brief_description) %>:</strong></dt>
+  <dd><%= @room_type.brief_description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @room_type.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:accommodation_id) %>:</strong></dt>
+  <dd><%= @room_type.accommodation_id %></dd>
+</dl>
 
-<p>
-  <b>Brief description:</b>
-  <%= @room_type.brief_description %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @room_type.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_room_type_path(@room_type) %> |
-<%= link_to 'Back', room_types_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              room_types_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_room_type_path(@room_type), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              room_type_path(@room_type),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

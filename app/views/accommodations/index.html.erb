@@ -1,43 +1,56 @@
-<h1>Listing accommodations</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Brief description</th>
-    <th>Description</th>
-    <th>Province</th>
-    <th>City</th>
-    <th>Address</th>
-    <th>Postal code</th>
-    <th>Featured</th>
-    <th>Published</th>
-    <th>Category</th>
-    <th>Landlord</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @accommodations.each do |accommodation| %>
-  <tr>
-    <td><%= accommodation.name %></td>
-    <td><%= accommodation.brief_description %></td>
-    <td><%= accommodation.description %></td>
-    <td><%= accommodation.province_id %></td>
-    <td><%= accommodation.city %></td>
-    <td><%= accommodation.address %></td>
-    <td><%= accommodation.postal_code %></td>
-    <td><%= accommodation.featured %></td>
-    <td><%= accommodation.published %></td>
-    <td><%= accommodation.category_id %></td>
-    <td><%= accommodation.landlord_id %></td>
-    <td><%= link_to 'Show', accommodation %></td>
-    <td><%= link_to 'Edit', edit_accommodation_path(accommodation) %></td>
-    <td><%= link_to 'Destroy', accommodation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Accommodation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:brief_description) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:province_id) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:address) %></th>
+      <th><%= model_class.human_attribute_name(:postal_code) %></th>
+      <th><%= model_class.human_attribute_name(:featured) %></th>
+      <th><%= model_class.human_attribute_name(:published) %></th>
+      <th><%= model_class.human_attribute_name(:category_id) %></th>
+      <th><%= model_class.human_attribute_name(:landlord_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accommodations.each do |accommodation| %>
+      <tr>
+        <td><%= link_to accommodation.id, accommodation_path(accommodation) %></td>
+        <td><%= accommodation.name %></td>
+        <td><%= accommodation.brief_description %></td>
+        <td><%= accommodation.description %></td>
+        <td><%= accommodation.province_id %></td>
+        <td><%= accommodation.city %></td>
+        <td><%= accommodation.address %></td>
+        <td><%= accommodation.postal_code %></td>
+        <td><%= accommodation.featured %></td>
+        <td><%= accommodation.published %></td>
+        <td><%= accommodation.category_id %></td>
+        <td><%= accommodation.landlord_id %></td>
+        <td><%=l accommodation.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_accommodation_path(accommodation), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      accommodation_path(accommodation),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Accommodation', new_accommodation_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_accommodation_path,
+            :class => 'btn btn-primary' %>
