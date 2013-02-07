@@ -1,15 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  summary: MyText
-  description: MyText
-  price: 1.5
-  accommodation_id: 1
-
-two:
-  name: MyString
-  summary: MyText
-  description: MyText
-  price: 1.5
-  accommodation_id: 1
+semana_blanca:
+  name: Descuento especial semana blanca
+  summary: Descuento del 3% durante la semana del tal al tal
+  description: con motivo de...
+  price: 200.332
+  accommodation: el_rosal

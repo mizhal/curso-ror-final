@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
-  image_owner_id: 1
-  image_owner_type: MyString
+foto1:
+  name: Primera foto
+  description: La primera de las fotos
+  image_owner: el_rosal
 
-two:
-  name: MyString
-  description: MyString
-  image_owner_id: 1
-  image_owner_type: MyString
+foto2:
+  name: Segunda foto
+  description: La segunda foto
+  image_owner: pareja1_desayuno

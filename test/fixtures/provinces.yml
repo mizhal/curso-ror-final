@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  country_id: 1
+asturias:
+  name: Asturias
+  country: espanya
 
-two:
-  name: MyString
-  country_id: 1
+cantabria:
+  name: Cantabria
+  country: espanya
+  
+alenteixo:
+  name: Alenteixo
+  country: portugal
+  
+porto:
+  name: Porto
+  country: portugal

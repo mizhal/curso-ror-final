@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  brief_description: MyText
-  description: MyText
-
-two:
-  name: MyString
-  brief_description: MyText
-  description: MyText
+individual1_cena:
+  name: Individual con cena
+  brief_description: Individual con cena sabrosa
+  description: Habitación individual con cena
+  accommodation: el_rosal
+  
+pareja1_desayuno:
+  name: Pareja con desayuno
+  brief_description: Pareja con desayuno continental
+  description: Habitación para parejas con desayuno incluido
+  accommodation: el_rosal  

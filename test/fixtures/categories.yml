@@ -1,9 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  parent_id: 1
+hotel:
+  name: Hotel
+  parent_id: nil
 
-two:
-  name: MyString
-  parent_id: 1
+casa_rural:
+  name: Casa Rural
+  parent_id: nil
+  
+albergue:
+  name: Albergue
+  parent_id: nil
+  
+hotel_1_estrella:
+  name: "1 Estrella"
+  parent: hotel
+  
+hotel_2_estrellas:
+  name: "2 Estrellas" 
+  parent: hotel
+  
+hotel_3_estrellas:
+  name: "3 Estrellas"
+  parent: hotel
+  
+casa_rural_1_tenedor:
+  name: "1 Tenedor"
+  parent: casa_rural
+  
+casa_rural_2_tenedores:
+  name: "2 Tenedores"
+  parent: casa_rural
+  
+casa_rural_3_tenedores:
+  name: "3 Tenedores"
+  parent: casa_rural

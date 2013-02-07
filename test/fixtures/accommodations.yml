@@ -1,25 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  brief_description: MyText
-  description: MyText
-  province_id: 1
-  city: MyString
-  address: MyString
-  postal_code: 1
+el_rosal:
+  name: El Rosal
+  brief_description: Calidad en el servicio
+  description: La casa del rosal era de un conde que...
+  province: asturias
+  city: Tineo
+  address: Av la torre, 40
+  postal_code: 33111
   featured: false
-  category_id: 1
-  landlord_id: 1
-
-two:
-  name: MyString
-  brief_description: MyText
-  description: MyText
-  province_id: 1
-  city: MyString
-  address: MyString
-  postal_code: 1
+  published: false
+  category: casa_rural_3_tenedores
+  landlord: maria
+  
+casa_luisa:
+  name: Casa Luisa
+  brief_description: Como en su propia casa
+  description: Doña luisa es conocida en todo el valle...
+  province: asturias
+  city: Arriondas
+  address: Av del Sella, 1
+  postal_code: 33400
   featured: false
-  category_id: 1
-  landlord_id: 1
+  published: true
+  category: casa_rural_1_tenedor
+  landlord: gonzalo

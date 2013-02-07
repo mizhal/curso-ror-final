@@ -1,15 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  surname: MyString
-  email: MyString
-  password: MyString
-  role_id: 1
+luis:
+  name: Luis
+  surname: Pérez
+  email: lp@gmail.com
+  password: 123456
+  role: admin
 
-two:
-  name: MyString
-  surname: MyString
-  email: MyString
-  password: MyString
-  role_id: 1
+maria:
+  name: María
+  surname: López
+  email: ml@gmail.com
+  password: 123456
+  role: landlord
+  
+gonzalo:
+  name: Gonzalo
+  surname: García
+  email: gg@gmail.com
+  password: 123456
+  role: landlord
+
