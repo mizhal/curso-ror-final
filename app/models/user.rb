@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   ### VALIDACIONES
   #################################################
   validates :email,
-    :format => {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+    :format => {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i},
+    :uniqueness => true
   validates :name, :presence => true
   validates :password, :length => {minimum: 6, maximum: 64}
   validates :role_id, :presence => true

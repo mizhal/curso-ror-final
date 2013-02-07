@@ -5,7 +5,8 @@ class Country < ActiveRecord::Base
   
   ### VALIDACIONES
   ###################################
-  validates :name, :presence => true
+  validates :name, :presence => true,
+    :uniqueness => true
   ### Fin: VALIDACIONES
   ####################################
   

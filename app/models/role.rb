@@ -5,7 +5,8 @@ class Role < ActiveRecord::Base
   
     ### VALIDACIONES
   #################################################
-  validates :name, :presence => true
+  validates :name, :presence => true,
+    :uniqueness => true
   
   ### fin: VALIDACIONES
   #################################################

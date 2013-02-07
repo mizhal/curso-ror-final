@@ -34,6 +34,9 @@ class Accommodation < ActiveRecord::Base
   
   validates :landlord_id, :presence => true
   validates :name, :presence => true
+    ## no valido unicidad de nombre porque creo que a priori
+    ## no se puede asegurar que en distintas localidades no
+    ## haya dos establecimientos con el mismo nombre
   validates :postal_code, :presence => true
   validates :province_id, :presence => true
   

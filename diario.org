@@ -187,7 +187,7 @@ has_many :provinces
 que cascan en producción, en concreto el "images/apple-touch-icon-144x144-precomposed.png"
 *** DONE establecimiento de sesiones en BD
 rake db:sessions:create
-*** TODO creación del modelo
+*** DONE creación del modelo
 **** DONE crear scaffolds y models
 ***** DONE Role
 rails g scaffold Role name:string
@@ -208,26 +208,23 @@ rails g scaffold Offer name:string  summary:text description:text price:float ac
 ***** DONE Photo
 rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
 **** DONE establecer relaciones
-**** TODO prueba de relaciones 
+**** DONE prueba de relaciones (poco minuciosa)
+En este caso se hizo sin tests unitarios 
 ***** DONE crear y cargar fixtures
 para detectar relaciones que falten o errores
 
-**** TODO crear indices en relaciones
-**** TODO validaciones
+**** DONE crear indices en relaciones
+**** DONE validaciones (escritas, no probadas estrictamente, puede volver a entrar)
 *** TODO crear controladores adicionales
 Controlador de sesiones, el de la vista pública si es que es necesario...
-
-
-
-
-
-
-
+**** TODO controlador de sesiones
+rails g controller session new destroy
 *** TODO aplicar estilos de bootstrap a los scaffolds
 Solo los modelos que tienen vistas
 *** TODO integrar bcrypt y password encriptado en base de datos
 *** TODO retocar las vistas
 Poner combos, enlaces y eso
+**** TODO integrar el partial de errores de validacion en formularios
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00
@@ -258,3 +255,4 @@ Para gestión de autorizacion, permisos y grupos
 :CUSTOM_ID: Q03
 De momento he puesto dos index, uno para admins y otro para propietarios, pero quizas sería mejor un index 
 *** TODO plantear: cambiar brief_description por summary en todos
+

@@ -6,7 +6,8 @@ class Province < ActiveRecord::Base
   
   ### VALIDACIONES
   #################################################
-  validates :name, :presence => true
+  validates :name, :presence => true,
+    :uniqueness => true
   validates :country_id, :presence => true
   
   ### fin: VALIDACIONES

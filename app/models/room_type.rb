@@ -15,6 +15,9 @@ class RoomType < ActiveRecord::Base
   validates :name, :presence => true
   validates :accommodation_id, :presence => true
   
+  validates_uniqueness_of :name, :scope => :accommodation_id
+   ## nombre unico dentro del establecimiento
+  
   ### fin: VALIDACIONES
   #################################################
 end
