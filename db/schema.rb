@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207092121) do
+ActiveRecord::Schema.define(:version => 20130207082253) do
 
   create_table "accommodations", :force => true do |t|
     t.string   "name"
@@ -29,18 +29,12 @@ ActiveRecord::Schema.define(:version => 20130207092121) do
     t.datetime "updated_at",        :null => false
   end
 
-  add_index "accommodations", ["category_id"], :name => "index_accommodations_on_category_id"
-  add_index "accommodations", ["landlord_id"], :name => "index_accommodations_on_landlord_id"
-  add_index "accommodations", ["province_id"], :name => "index_accommodations_on_province_id"
-
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -58,8 +52,6 @@ ActiveRecord::Schema.define(:version => 20130207092121) do
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "offers", ["accommodation_id"], :name => "index_offers_on_accommodation_id"
-
   create_table "photos", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -69,16 +61,12 @@ ActiveRecord::Schema.define(:version => 20130207092121) do
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "photos", ["image_owner_id", "image_owner_type"], :name => "index_photos_on_image_owner_id_and_image_owner_type"
-
   create_table "provinces", :force => true do |t|
     t.string   "name"
     t.integer  "country_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "provinces", ["country_id"], :name => "index_provinces_on_country_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -94,8 +82,6 @@ ActiveRecord::Schema.define(:version => 20130207092121) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
-
-  add_index "room_types", ["accommodation_id"], :name => "index_room_types_on_accommodation_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -116,7 +102,5 @@ ActiveRecord::Schema.define(:version => 20130207092121) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "users", ["role_id"], :name => "index_users_on_role_id"
 
 end

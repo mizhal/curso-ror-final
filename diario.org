@@ -212,7 +212,7 @@ rails g model Photo name:string description:string image_owner_id:integer image_
 ***** DONE crear y cargar fixtures
 para detectar relaciones que falten o errores
 
-**** DONE crear indices en relaciones
+**** TODO crear indices en relaciones
 **** TODO validaciones
 *** TODO crear controladores adicionales
 Controlador de sesiones, el de la vista pública si es que es necesario...
