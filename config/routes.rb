@@ -1,11 +1,11 @@
 Proyecto::Application.routes.draw do
+  resources :accommodations
+
+
   resources :offers
 
 
   resources :room_types
-
-
-  resources :accommodations
 
 
   resources :categories

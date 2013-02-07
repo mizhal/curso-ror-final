@@ -9,6 +9,7 @@ class CreateAccommodations < ActiveRecord::Migration
       t.string :address
       t.integer :postal_code
       t.boolean :featured
+      t.boolean :published
       t.integer :category_id
       t.integer :landlord_id
 

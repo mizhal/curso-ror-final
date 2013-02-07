@@ -135,6 +135,8 @@ description:text
 has_many :photos, :as => :image_owner
   Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
 
+belongs_to :accommodation
+
 *** Categoria/Category
 name:string
 description:text
@@ -186,7 +188,7 @@ que cascan en producción, en concreto el "images/apple-touch-icon-144x144-preco
 *** DONE establecimiento de sesiones en BD
 rake db:sessions:create
 *** TODO creación del modelo
-**** TODO crear scaffolds y models
+**** DONE crear scaffolds y models
 ***** DONE Role
 rails g scaffold Role name:string
 ***** DONE User
@@ -198,14 +200,16 @@ rails g model Province name:string country_id:integer
 ***** DONE Category
 rails g scaffold Category name:string parent_id:integer
 ***** DONE Accommodation
-rails g scaffold Accommodation name:string brief_description:text description:text province_id:integer city:string address:string postal_code:integer featured:boolean category_id:integer landlord_id:integer
+rails g scaffold Accommodation name:string brief_description:text description:text province_id:integer city:string address:string postal_code:integer featured:boolean published:boolean category_id:integer landlord_id:integer
 ***** DONE RoomType
 rails g scaffold RoomType name:string brief_description:text description:text
 ***** DONE Offer
 rails g scaffold Offer name:string  summary:text description:text price:float accommodation_id:integer
 ***** DONE Photo
 rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
+**** DONE establecer relaciones
 **** TODO prueba de relaciones 
+**** TODO crear indices en relaciones
 *** TODO crear controladores
 
 
