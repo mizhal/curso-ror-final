@@ -209,8 +209,8 @@ rails g scaffold Offer name:string  summary:text description:text price:float ac
 rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
 **** DONE establecer relaciones
 **** TODO prueba de relaciones 
+***** DONE crear y cargar fixtures
 para detectar relaciones que falten o errores
-***** TODO crear y cargar fixtures
 
 **** TODO crear indices en relaciones
 **** TODO validaciones
@@ -223,7 +223,11 @@ Controlador de sesiones, el de la vista pública si es que es necesario...
 
 
 
-
+*** TODO aplicar estilos de bootstrap a los scaffolds
+Solo los modelos que tienen vistas
+*** TODO integrar bcrypt y password encriptado en base de datos
+*** TODO retocar las vistas
+Poner combos, enlaces y eso
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00

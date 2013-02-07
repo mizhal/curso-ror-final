@@ -3,9 +3,9 @@
 foto1:
   name: Primera foto
   description: La primera de las fotos
-  image_owner: el_rosal
+  image_owner: el_rosal (Accommodation)
 
 foto2:
   name: Segunda foto
   description: La segunda foto
-  image_owner: pareja1_desayuno
+  image_owner: pareja1_desayuno (RoomType)
