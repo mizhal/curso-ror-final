@@ -215,13 +215,17 @@ para detectar relaciones que falten o errores
 
 **** DONE crear indices en relaciones
 **** DONE validaciones (escritas, no probadas estrictamente, puede volver a entrar)
-*** TODO crear controladores adicionales
-Controlador de sesiones, el de la vista pública si es que es necesario...
-**** TODO controlador de sesiones
-rails g controller session new destroy
+**** TODO pruebas unitarias
 *** TODO aplicar estilos de bootstrap a los scaffolds
 Solo los modelos que tienen vistas
+
+rails g bootrap:themed Accommodations
+
 *** TODO integrar bcrypt y password encriptado en base de datos
+*** TODO controlador de sesiones
+rails g controller session new destroy
+*** TODO crear controladores adicionales
+...el de la vista pública si es que es necesario...
 *** TODO retocar las vistas
 Poner combos, enlaces y eso
 **** TODO integrar el partial de errores de validacion en formularios

@@ -5,6 +5,10 @@ class AccommodationTest < ActiveSupport::TestCase
   #   assert true
   # end
   
+  test "validaciones" do
+    
+  end
+  
   test "relaciones" do
     ## Accommodation -> RoomType
     

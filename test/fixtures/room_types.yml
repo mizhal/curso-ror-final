@@ -11,3 +11,15 @@ pareja1_desayuno:
   brief_description: Pareja con desayuno continental
   description: Habitación para parejas con desayuno incluido
   accommodation: el_rosal  
+  
+nombre_duplicado1:
+  name: Pareja con desayuno
+  brief_description: Pareja con desayuno continental
+  description: Habitación para parejas con desayuno incluido
+  accommodation: el_rosal    
+  
+nombre_NO_duplicado1:
+  name: Pareja con desayuno
+  brief_description: Pareja con desayuno continental
+  description: Habitación para parejas con desayuno incluido
+  accommodation: casa_luisa    

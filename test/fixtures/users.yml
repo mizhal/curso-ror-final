@@ -21,3 +21,9 @@ gonzalo:
   password: 123456
   role: landlord
 
+mail_duplicado1:
+  name: María
+  surname: López
+  email: ml@gmail.com
+  password: 123456
+  role: landlord  

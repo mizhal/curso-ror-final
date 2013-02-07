@@ -15,3 +15,11 @@ alenteixo:
 porto:
   name: Porto
   country: portugal
+  
+asturias_de_portugal:
+  name: Asturias
+  country: portugal
+  
+asturias2:
+  name: Asturias
+  country: espanya  
