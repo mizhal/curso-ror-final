@@ -29,4 +29,14 @@ class User < ActiveRecord::Base
   
   ### fin: VALIDACIONES
   #################################################
+  
+  ### METODOS
+  ###################################################
+  
+  def full_name
+    self.name + " " + self.surname
+  end
+  
+  ### FIN: METODOS
+  ###################################################
 end
