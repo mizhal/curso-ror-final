@@ -228,9 +228,16 @@ rails g bootstrap:themed Offers
 *** DONE integrar bcrypt y password encriptado en base de datos
 *** DONE añadir indice a email
 porque se busca mucho por ese campo (análogo al login)
-*** TODO controlador de sesiones
+*** DONE controlador de sesiones
 rails g controller sessions new destroy
 *** TODO añadir slugs
+a:
+ User
+ Accommodation
+ RoomType
+ Offer
+ Category
+*** TODO paginacion de vistas
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
 *** TODO retocar las vistas

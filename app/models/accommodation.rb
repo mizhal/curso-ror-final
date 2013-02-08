@@ -23,6 +23,10 @@ class Accommodation < ActiveRecord::Base
     :class_name => "User",
     :foreign_key => :landlord_id
     
+  ### slug
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+    
   ### VALIDACIONES
   #########################################################
   

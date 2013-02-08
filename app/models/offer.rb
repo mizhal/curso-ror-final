@@ -7,6 +7,10 @@ class Offer < ActiveRecord::Base
     
   belongs_to :accommodation
   
+  ### slug
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+  
   ### VALIDACIONES
   ###################################
   

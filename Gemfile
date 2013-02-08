@@ -42,3 +42,12 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+
+## servidor de desarrollo ligero 
+gem 'thin'
+
+## paginacion 
+gem 'kaminari'
+
+## para urls 'user-friendly'
+gem 'friendly_id'

@@ -6,6 +6,10 @@ class RoomType < ActiveRecord::Base
   
   belongs_to :accommodation
   has_many :photos, :as => :image_owner
+
+  ### slug
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
   
   ### VALIDACIONES
   #################################################

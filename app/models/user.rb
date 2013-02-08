@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   
   has_secure_password
   
+  ### slug
+  extend FriendlyId
+  friendly_id :email, :use => :slugged
+  
   ### VALIDACIONES
   #################################################
   validates :email,
