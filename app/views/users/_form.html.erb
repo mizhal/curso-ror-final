@@ -1,3 +1,5 @@
+<%= render :partial => "shared/validation_errors", :locals => {target: @user}%>
+
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
