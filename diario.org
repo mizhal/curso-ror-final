@@ -239,12 +239,12 @@ a:
  Category
 *** TODO ajuste de vistas
 Crear combos, etc
-**** TODO partial de errores de validación
-**** TODO ajuste de vistas, controlador y otras faltas en Category
-
-**** TODO combos, etc
-categorias
+**** DONE partial de errores de validación
+**** DONE ajuste de Category
+**** TODO crear helpers de permisos para poder mostrar u ocultar en funcion de ellos
+Intentar usar la gema CanCan con lo que tengo hasta ahora
 **** TODO paginacion de vistas
+Excepto categorías que es árbol
 **** TODO formulario de creacion de alojamientos
 ***** TODO combos,etc
 ***** TODO habitaciones anidadas
