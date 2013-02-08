@@ -1,11 +1,10 @@
 class AddAdminUser < ActiveRecord::Migration
   def up
-    admin = User.new :name => "admin",
+    User.create! :name => "admin",
       :password => "123456",
       :email => "admin@localhost.es",
       :surname => "administradorez",
       :role_id => Role.find_by_name("admin").id
-    admin.save!
   end
 
   def down
