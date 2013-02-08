@@ -1,16 +1,23 @@
+<%= render :partial => "shared/validation_errors", :locals => {target: @category}%>
+
 <%= form_for @category, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.hidden_field :parent_id%>
+  
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
+  
+  <% unless @category.parent_id.blank? %>
   <div class="control-group">
-    <%= f.label :parent_id, :class => 'control-label' %>
+    <%= f.label :parent, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :parent_id, :class => 'number_field' %>
+      <div class="uneditable-input"><%= @category.parent.name %></div>
     </div>
-  </div>
+  </div>  
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

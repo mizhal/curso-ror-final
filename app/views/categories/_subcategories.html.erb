@@ -1,0 +1,4 @@
+<% subcategories.each{ |category| %>
+	<%= render :partial => "categories/table_line",
+		:locals => {category: category} %>
+<% } %>

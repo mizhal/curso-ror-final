@@ -1,0 +1,19 @@
+  <tr>
+    <td><%= link_to category.name, category_path(category) %></td>
+    <td><%= link_to category.parent.name, 
+    	category_path(category.parent) unless category.is_toplevel? %></td>
+    <td><%=l category.created_at %></td>
+    <td>
+      <%= link_to t('.create_child'),
+                  new_category_path(:parent_id => category.id), 
+                  :class => 'btn btn-mini' if category.is_toplevel?
+      %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_category_path(category), :class => 'btn btn-mini' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  category_path(category),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-mini btn-danger' %>
+    </td>
+  </tr>

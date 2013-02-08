@@ -2,15 +2,12 @@
 
 hotel:
   name: Hotel
-  parent_id: nil
 
 casa_rural:
   name: Casa Rural
-  parent_id: nil
-  
+
 albergue:
   name: Albergue
-  parent_id: nil
   
 hotel_1_estrella:
   name: "1 Estrella"

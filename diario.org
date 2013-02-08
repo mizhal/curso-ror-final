@@ -230,14 +230,25 @@ rails g bootstrap:themed Offers
 porque se busca mucho por ese campo (análogo al login)
 *** DONE controlador de sesiones
 rails g controller sessions new destroy
-*** TODO añadir slugs
+*** DONE añadir slugs
 a:
  User
  Accommodation
  RoomType
  Offer
  Category
-*** TODO paginacion de vistas
+*** TODO ajuste de vistas
+Crear combos, etc
+**** TODO partial de errores de validación
+**** TODO ajuste de vistas, controlador y otras faltas en Category
+
+**** TODO combos, etc
+categorias
+**** TODO paginacion de vistas
+**** TODO formulario de creacion de alojamientos
+***** TODO combos,etc
+***** TODO habitaciones anidadas
+Con habitaciones anidadas
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
 *** TODO retocar las vistas
@@ -273,4 +284,5 @@ Para gestión de autorizacion, permisos y grupos
 :CUSTOM_ID: Q03
 De momento he puesto dos index, uno para admins y otro para propietarios, pero quizas sería mejor un index 
 *** TODO plantear: cambiar brief_description por summary en todos
-
+*** TODO no se paginan arboles de momento
+Mirar si hay alguna solucion no extremadamente complicada. Mientras, la vista de categorias queda sin paginar

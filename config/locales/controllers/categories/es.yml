@@ -1,0 +1,9 @@
+es:
+  controllers:
+    categories:
+      create_success: Éxito al crear la categoría
+      create_fail: No se ha podido crear la categoría
+      update_success: Éxito al actualizar la categoría
+      update_fail: No se ha podido actualizar la categoría
+      destroy_success: La categoría ha sido eliminada
+      destroy_fail: No se ha podido eliminar la categoría
