@@ -1,0 +1,6 @@
+es:
+  controllers:
+    sessions:
+      welcome_user: Bienvenido %{name}
+      wrong_password: Clave errónea
+      unknown_user: Usuario desconocido

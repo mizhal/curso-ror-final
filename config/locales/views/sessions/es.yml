@@ -1,0 +1,7 @@
+es:
+  sessions:
+    new:
+      login_form: Acceder
+      email: Dirección de correo electrónico
+      password: Clave
+      submit: Enviar

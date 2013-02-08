@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207122420) do
+ActiveRecord::Schema.define(:version => 20130208084715) do
 
   create_table "accommodations", :force => true do |t|
     t.string   "name"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20130207122420) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["role_id"], :name => "index_users_on_role_id"
 
 end
