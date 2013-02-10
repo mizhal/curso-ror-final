@@ -20,11 +20,11 @@ class Category < ActiveRecord::Base
     
   ### VALIDACIONES
   ###################################
-  validates :name, :presence => true,
-    :uniqueness => true
+  validates :name, :presence => true
+  validates_uniqueness_of :name, :scope => :parent_id
   validate :check_parent_id
   def check_parent_id
-    unless Category.exists? self.parent_id
+    unless Category.exists? self.parent_id or self.parent_id.blank?
       errors.add :parent_id, I18n.t(
         "activerecord.errors.category.parent_id_not_exists"
       )
@@ -43,7 +43,7 @@ class Category < ActiveRecord::Base
   
   def secure_set_parent_id parent_id
     ## establecer parent id si y solo si es correcto
-    @category.parent_id = parent_id if Category.exists? parent_id
+    self.parent_id = parent_id.to_i if Category.exists? parent_id.to_i
   end
   ### FIN: METODOS
   ###################################
