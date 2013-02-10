@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208093258) do
+ActiveRecord::Schema.define(:version => 20130210220939) do
 
   create_table "accommodations", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20130208093258) do
     t.boolean  "published"
     t.integer  "category_id"
     t.integer  "landlord_id"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "web"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "slug"
@@ -47,9 +50,7 @@ ActiveRecord::Schema.define(:version => 20130208093258) do
   add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
   create_table "countries", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "offers", :force => true do |t|
@@ -78,10 +79,8 @@ ActiveRecord::Schema.define(:version => 20130208093258) do
   add_index "photos", ["image_owner_id", "image_owner_type"], :name => "index_photos_on_image_owner_id_and_image_owner_type"
 
   create_table "provinces", :force => true do |t|
-    t.string   "name"
-    t.integer  "country_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string  "name"
+    t.integer "country_id"
   end
 
   add_index "provinces", ["country_id"], :name => "index_provinces_on_country_id"

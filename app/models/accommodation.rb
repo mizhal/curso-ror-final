@@ -9,7 +9,10 @@ class Accommodation < ActiveRecord::Base
     :name, 
     :postal_code, 
     :province_id, 
-    :published
+    :published,
+    :phone,
+    :email,
+    :web
     
   belongs_to :province
   has_many :photos
@@ -43,6 +46,13 @@ class Accommodation < ActiveRecord::Base
     ## haya dos establecimientos con el mismo nombre
   validates :postal_code, :presence => true
   validates :province_id, :presence => true
+  
+  validates :phone,
+    :format => {with: /[0-9 ]+/i}
+  validates :email,
+    :format => {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+  validates :web,
+    :format => {with: /^http(s)?:\/\/([a-z0-9\-_]+[.])+([a-z0-9\-_]+)(\/([^\/\s]+))+$/i}
   
   ### FIN: VALIDACIONES
   #########################################################

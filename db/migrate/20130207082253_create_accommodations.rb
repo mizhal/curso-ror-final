@@ -12,6 +12,9 @@ class CreateAccommodations < ActiveRecord::Migration
       t.boolean :published
       t.integer :category_id
       t.integer :landlord_id
+      t.string :phone
+      t.string :email
+      t.string :web
 
       t.timestamps
     end
