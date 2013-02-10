@@ -20,9 +20,28 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :phone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :web, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :web, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :province_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :province_id, :class => 'number_field' %>
+      <%= select nil, nil, @countries.map{|m|[m.name, m.id]}, :class => 'number_field' %>
+      <%= f.select :province_id, @provinces.map{|p|[p.name, p.id]}, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -58,13 +77,14 @@
   <div class="control-group">
     <%= f.label :category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :category_id, :class => 'number_field' %>
+      <%= select nil, nil, @top_categories.map{|c| [c.name, c.id]} %>
+      <%= f.select :category_id, [] %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :landlord_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :landlord_id, :class => 'number_field' %>
+      <%= f.select :landlord_id, @landlords.map{|l| [l.name, l.id]}, :class => 'number_field' %>
     </div>
   </div>
 
