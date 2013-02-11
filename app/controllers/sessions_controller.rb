@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
         if user.authenticate params[:password]
           session[:user] = {
             id: user.id,
-            name: user.name,
-            role: user.role
+            name: user.name
           }
           flash[:notice] = t("controllers.sessions.welcome_user", 
             :name => user.name
