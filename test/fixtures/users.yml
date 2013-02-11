@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+admin:
+  name: admin
+  surname: Pérez
+  email: admin@localhost.es
+  role: admin 
+  password_digest: "<%= BCrypt::Password.create('123456') %>" 
+
 luis:
   name: Luis
   surname: Pérez
