@@ -12,21 +12,25 @@ luis:
   surname: Pérez
   email: lp@gmail.com
   role: admin
+  password_digest: "<%= BCrypt::Password.create('123456') %>" 
 
 maria:
   name: María
   surname: López
   email: ml@gmail.com
   role: landlord
+  password_digest: "<%= BCrypt::Password.create('123456') %>" 
   
 gonzalo:
   name: Gonzalo
   surname: García
   email: gg@gmail.com
   role: landlord
+  password_digest: "<%= BCrypt::Password.create('123456') %>" 
 
 mail_duplicado1:
   name: María
   surname: López
   email: ml@gmail.com
   role: landlord  
+  password_digest: "<%= BCrypt::Password.create('123456') %>" 
