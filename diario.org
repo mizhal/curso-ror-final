@@ -226,7 +226,7 @@ rails g bootstrap:themed Categories
 rails g bootstrap:themed Offers
 
 *** DONE integrar bcrypt y password encriptado en base de datos
-*** DONE añadir indice a email
+*** DONE añadir indice a email de User
 porque se busca mucho por ese campo (análogo al login)
 *** DONE controlador de sesiones
 rails g controller sessions new destroy
@@ -237,11 +237,10 @@ a:
  RoomType
  Offer
  Category
-*** TODO ajuste de vistas
-Crear combos, etc
-**** DONE partial de errores de validación
-**** DONE ajuste de Category
-**** DONE crear helpers de permisos para poder mostrar u ocultar en funcion de ellos
+*** DONE partial de errores de validación
+*** DONE funcionalidad completa de Category
+Categorías anidadas etc
+*** DONE crear helpers de permisos para poder mostrar u ocultar en funcion de ellos
 Intentar usar la gema CanCan con lo que tengo hasta ahora
 ***** DONE Integrar gema CanCan
 ****** DONE crear clase Ability
@@ -255,19 +254,19 @@ He probado el acceso "público" a editar Accommodation y veta adecuadamente la e
 Se autoriza solo con el objeto padre
 ****** DONE probar a ocultar mediante "can?"
 funciona bien
-**** TODO formulario de creacion de alojamientos
-***** DONE combos,etc
+*** DONE barra de navegación del layout de administración
+*** TODO formulario de creacion de alojamientos
+***** DONE poner combos y otras entradas correctamente
 ***** TODO habitaciones anidadas
 Con habitaciones anidadas
-**** TODO formulario de habitacion
-Crear para subir fotos anidadas
-**** TODO paginacion de vistas
+*** TODO indices en campos de búsqueda
+Analizar si queda alguno
+*** TODO paginacion de vistas
 Excepto categorías que es árbol
+*** TODO layout público
+Barras laterales, content_for...
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
-*** TODO retocar las vistas
-Poner combos, enlaces y eso
-**** TODO integrar el partial de errores de validacion en formularios
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00

@@ -1,0 +1,20 @@
+<nav>
+	<ul class="nav nav-pills">
+		<li class="<%= 'active' if params[:controller] == 'accommodations' %>">
+			<%= link_to t(".accommodations"), accommodations_path %>
+		</li>
+		<li class="<%= 'active' if params[:controller] == 'users' %>">
+			<%= link_to t(".users"), users_path %>
+		</li>
+		<li class="<%= 'active' if params[:controller] == 'categories' %>">
+			<%= link_to t(".categories"), categories_path %>
+		</li>
+		<li class="<%= 'active' if params[:controller] == 'sessions'%>">
+			<% if in_session? %>
+				<%= link_to t(".logout"), logout_path %>
+			<% else %>
+				<%= link_to t(".login"), login_path %>
+			<% end %>
+		</li>
+	</ul>
+</nav>
