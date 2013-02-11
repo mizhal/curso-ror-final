@@ -251,8 +251,8 @@ Implementando la clase Ability
 ****** TODO probar las restricciones en el acceso
 Cargar autorizaciones en los controladores y probar el acceso.
 He probado el acceso "público" a editar Accommodation y veta adecuadamente la entrada.
-******* TODO probar restricciones de acceso en habitaciones anidadas
-
+******* TODO probar restricciones de acceso en habitaciones anidadadas
+Se autoriza solo con el objeto padre
 **** TODO paginacion de vistas
 Excepto categorías que es árbol
 **** TODO formulario de creacion de alojamientos
