@@ -3,16 +3,17 @@ class Ability
 
   def initialize(user)
     unless user.blank?
+      Rails.logger.debug ">>> User.id #{user.name}"
       if user.has_role? :admin
         can :manage, :all
       elsif user.has_role? :landlord
         can :create, Accommodation
-        can [:update, :destroy], Accommodation, :landlord_id => user.id
+        can [:update, :destroy], Accommodation, 
+          :landlord_id => user.id
         ## los objetos dependientes de Accommodation se autorizan anidados
         can :read, :all
       end
-      
-      can [:update, :destroy], User, :id => user.id
+      can [:edit, :update, :destroy], User, :id => user.id
     else
       can :read, :all
       can :create, User
