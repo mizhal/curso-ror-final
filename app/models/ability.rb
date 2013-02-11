@@ -2,17 +2,20 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    if user.has_role? :admin
-      can :manage, :all
-    elsif user.has_role? :landlord
-      can :create, Accommodation
-      can :update, Accommodation, :landlord_id => user.id
-      can :destroy, Accommodation, :landlord_id => user.id
-      ## los objetos dependientes de Accommodation se autorizan anidados
-      can :read, :all
+    unless user.blank?
+      if user.has_role? :admin
+        can :manage, :all
+      elsif user.has_role? :landlord
+        can :create, Accommodation
+        can [:update, :destroy], Accommodation, :landlord_id => user.id
+        ## los objetos dependientes de Accommodation se autorizan anidados
+        can :read, :all
+      end
+      
+      can [:update, :destroy], User, :id => user.id
     else
       can :read, :all
+      can :create, User
     end
     
     
