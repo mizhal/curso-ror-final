@@ -241,24 +241,28 @@ a:
 Crear combos, etc
 **** DONE partial de errores de validación
 **** DONE ajuste de Category
-**** TODO crear helpers de permisos para poder mostrar u ocultar en funcion de ellos
+**** DONE crear helpers de permisos para poder mostrar u ocultar en funcion de ellos
 Intentar usar la gema CanCan con lo que tengo hasta ahora
-***** TODO Integrar gema CanCan
-****** TODO crear clase Ability
+***** DONE Integrar gema CanCan
+****** DONE crear clase Ability
 rails g cancan:ability
-****** TODO definir habilidades
+****** DONE definir habilidades
 Implementando la clase Ability
-****** TODO probar las restricciones en el acceso
+****** DONE probar las restricciones en el acceso
 Cargar autorizaciones en los controladores y probar el acceso.
 He probado el acceso "público" a editar Accommodation y veta adecuadamente la entrada.
-******* TODO probar restricciones de acceso en habitaciones anidadadas
+******* DONE probar restricciones de acceso en habitaciones anidadadas
 Se autoriza solo con el objeto padre
-**** TODO paginacion de vistas
-Excepto categorías que es árbol
+****** DONE probar a ocultar mediante "can?"
+funciona bien
 **** TODO formulario de creacion de alojamientos
-***** TODO combos,etc
+***** DONE combos,etc
 ***** TODO habitaciones anidadas
 Con habitaciones anidadas
+**** TODO formulario de habitacion
+Crear para subir fotos anidadas
+**** TODO paginacion de vistas
+Excepto categorías que es árbol
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
 *** TODO retocar las vistas
