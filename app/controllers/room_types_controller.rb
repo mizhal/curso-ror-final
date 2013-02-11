@@ -1,4 +1,6 @@
 class RoomTypesController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /room_types
   # GET /room_types.json
   def index

@@ -1,4 +1,6 @@
 class OffersController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /offers
   # GET /offers.json
   def index
