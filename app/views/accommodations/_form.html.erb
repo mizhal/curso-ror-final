@@ -62,6 +62,7 @@
       <%= f.number_field :postal_code, :class => 'number_field' %>
     </div>
   </div>
+  <% if can? :manage, Accommodation %>
   <div class="control-group">
     <%= f.label :featured, :class => 'control-label' %>
     <div class="controls">
@@ -74,6 +75,7 @@
       <%= f.check_box :published, :class => 'check_box' %>
     </div>
   </div>
+  <% end %>
   <div class="control-group">
     <%= f.label :category_id, :class => 'control-label' %>
     <div class="controls">
@@ -81,12 +83,14 @@
       <%= f.select :category_id, @subcategories.map{|c| [c.name, c.id]} %>
     </div>
   </div>
+  <% if can? :manage, Accommodation %>
   <div class="control-group">
     <%= f.label :landlord_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :landlord_id, @landlords.map{|l| [l.name, l.id]}, :class => 'number_field' %>
+      <%= f.select :landlord_id, @landlords.map{|l| [l.full_name, l.id]}, :class => 'number_field' %>
     </div>
   </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
