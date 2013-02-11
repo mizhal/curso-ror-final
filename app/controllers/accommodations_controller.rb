@@ -45,6 +45,7 @@ class AccommodationsController < ApplicationController
   # POST /accommodations.json
   def create
     @accommodation = Accommodation.new(params[:accommodation])
+    @accommodation.landlord = current_user
 
     respond_to do |format|
       if @accommodation.save
