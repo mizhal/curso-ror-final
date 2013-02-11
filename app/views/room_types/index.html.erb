@@ -21,19 +21,26 @@
         <td><%= room_type.description %></td>
         <td><%=l room_type.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_accommodation_room_type_path(@accommodation, room_type), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to( t('.edit', :default => t("helpers.links.edit")),
+                      edit_accommodation_room_type_path(@accommodation, room_type), 
+                      :class => 'btn btn-mini' 
+              ) if can? :update, @accommodation 
+          %>
+          <%= link_to( t('.destroy', :default => t("helpers.links.destroy")),
                       accommodation_room_type_path(@accommodation, room_type),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger' 
+              ) if can? :update, @accommodation        
+          %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to( t('.new', :default => t("helpers.links.new")),
             new_accommodation_room_type_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary'
+            ) if can? :update, @accommodation 
+%>
