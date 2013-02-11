@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   ### VALIDACIONES
   #################################################
   validates :email,
-    #:uniqueness => true,
+    :uniqueness => true,
     :format => {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
     
   validates :name, :presence => true
@@ -37,6 +37,17 @@ class User < ActiveRecord::Base
     self.name + " " + self.surname
   end
   
+  def has_role? role_name
+    self.role.name == role_name unless self.role_id.blank?
+    return false
+  end
+  
   ### FIN: METODOS
+  ###################################################
+  
+  ### SCOPES
+  ###################################################
+  scope :landlords, joins(:role).where("roles.name = ?", "landlord")
+  ### FIN: SCOPES
   ###################################################
 end
