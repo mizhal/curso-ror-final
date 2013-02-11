@@ -1,15 +1,10 @@
 class OffersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :accommodation
   
   # GET /offers
   # GET /offers.json
   def index
     @offers = Offer.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @offers }
-    end
   end
 
   # GET /offers/1
