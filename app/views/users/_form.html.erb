@@ -22,15 +22,23 @@
   <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :password, :class => 'text_field' %>
+      <%= f.password_field :password, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :role_id, :class => 'control-label' %>
+    <%= f.label :password_confirmation, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :role_id, :class => 'number_field' %>
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
     </div>
   </div>
+  <% if can? :update, User %>
+  <div class="control-group">
+    <%= f.label :role_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :role_id, @roles.map{|r| [r.name, r.id]} %>
+    </div>
+  </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
