@@ -20,14 +20,12 @@
     </div>
   </div>
 
-  <% unless @room_type.accommodation_id.blank? %>
   <div class="control-group">
     <%= f.label :accommodation, :class => 'control-label' %>
     <div class="controls">
       <div class="uneditable-input"><%= @room_type.accommodation.name %></div>
     </div>
-  </div>  
-  <% end %>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
