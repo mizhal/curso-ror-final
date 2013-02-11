@@ -1,6 +1,5 @@
 <%= render :partial => "shared/validation_errors", :locals => {target: @room_type}%>
-
-<%= form_for @room_type, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [@accommodation, @room_type], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -29,6 +28,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                room_types_path, :class => 'btn' %>
+                accommodation_room_types_path, :class => 'btn' %>
   </div>
 <% end %>

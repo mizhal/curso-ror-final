@@ -2,7 +2,8 @@ class RoomTypesController < ApplicationController
   # GET /room_types
   # GET /room_types.json
   def index
-    @room_types = RoomType.all
+    @accommodation = Accommodation.find params[:accommodation_id]
+    @room_types = @accommodation.room_types
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class RoomTypesController < ApplicationController
   # GET /room_types/1.json
   def show
     @room_type = RoomType.find(params[:id])
+    @accommodation = Accommodation.find params[:accommodation_id]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,8 @@ class RoomTypesController < ApplicationController
   # GET /room_types/new
   # GET /room_types/new.json
   def new
-    @room_type = RoomType.new
+    @accommodation = Accommodation.find params[:accommodation_id]
+    @room_type = RoomType.new :accommodation_id => @accommodation.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,21 +38,20 @@ class RoomTypesController < ApplicationController
   # GET /room_types/1/edit
   def edit
     @room_type = RoomType.find(params[:id])
+    @accommodation = Accommodation.find params[:accommodation_id]
   end
 
   # POST /room_types
   # POST /room_types.json
   def create
     @room_type = RoomType.new(params[:room_type])
+    @accommodation = Accommodation.find params[:accommodation_id]
 
-    respond_to do |format|
-      if @room_type.save
-        format.html { redirect_to @room_type, notice: 'Room type was successfully created.' }
-        format.json { render json: @room_type, status: :created, location: @room_type }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @room_type.errors, status: :unprocessable_entity }
-      end
+    if @room_type.save
+      redirect_to accommodation_room_type_path(@accommodation, @room_type), 
+        notice: 'Room type was successfully created.'
+    else
+      render action: "new" 
     end
   end
 
@@ -57,15 +59,13 @@ class RoomTypesController < ApplicationController
   # PUT /room_types/1.json
   def update
     @room_type = RoomType.find(params[:id])
+    @accommodation = Accommodation.find params[:accommodation_id]
 
-    respond_to do |format|
-      if @room_type.update_attributes(params[:room_type])
-        format.html { redirect_to @room_type, notice: 'Room type was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @room_type.errors, status: :unprocessable_entity }
-      end
+    if @room_type.update_attributes(params[:room_type])
+      redirect_to accommodation_room_type_path(@accommodation, @room_type),
+        notice: 'Room type was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
@@ -75,9 +75,8 @@ class RoomTypesController < ApplicationController
     @room_type = RoomType.find(params[:id])
     @room_type.destroy
 
-    respond_to do |format|
-      format.html { redirect_to room_types_url }
-      format.json { head :no_content }
-    end
+    @accommodation = Accommodation.find params[:accommodation_id]
+    redirect_to accommodation_room_types_url(@accommodation)
+
   end
 end
