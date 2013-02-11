@@ -12,6 +12,9 @@ el_rosal:
   published: false
   category: casa_rural_3_tenedores
   landlord: maria
+  email: elrosal@hotmail.com
+  web: https://astursites.com/show?user=marialo
+  phone: 985 40 02 01
   
 casa_luisa:
   name: Casa Luisa
@@ -25,3 +28,6 @@ casa_luisa:
   published: true
   category: casa_rural_1_tenedor
   landlord: gonzalo
+  email: casaluisa@gmail.com
+  web: https://nextbox.groups.com/profile?u=234232&qq=ixo
+  phone: 985 21 02 01
