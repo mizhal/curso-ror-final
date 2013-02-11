@@ -10,8 +10,14 @@
   <dd><%= @accommodation.brief_description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @accommodation.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:province_id) %>:</strong></dt>
-  <dd><%= @accommodation.province_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
+  <dd><%= @accommodation.phone %></dd>  
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= link_to @accommodation.email, "mailto://#{@accommodation.email}" %></dd> 
+  <dt><strong><%= model_class.human_attribute_name(:web) %>:</strong></dt>
+  <dd><%= link_to @accommodation.web, @accommodation.web %></dd>  
+  <dt><strong><%= model_class.human_attribute_name(:province) %>:</strong></dt>
+  <dd><%= @accommodation.province.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
   <dd><%= @accommodation.city %></dd>
   <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
@@ -22,10 +28,12 @@
   <dd><%= @accommodation.featured %></dd>
   <dt><strong><%= model_class.human_attribute_name(:published) %>:</strong></dt>
   <dd><%= @accommodation.published %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category_id) %>:</strong></dt>
-  <dd><%= @accommodation.category_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:landlord_id) %>:</strong></dt>
-  <dd><%= @accommodation.landlord_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dd><%= link_to @accommodation.category.name, category_path(@accommodation.category_id) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:landlord) %>:</strong></dt>
+  <dd><%= link_to @accommodation.landlord.full_name, user_path(@accommodation.landlord_id) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rooms) %>:</strong></dt>
+  <dd><%= link_to t(".see"), accommodation_room_types_path(@accommodation) %></dd>
 </dl>
 
 <div class="form-actions">
