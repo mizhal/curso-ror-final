@@ -3,7 +3,7 @@ class AddAdminUser < ActiveRecord::Migration
     User.create! :name => "admin",
       :password => "123456",
       :email => "admin@localhost.es",
-      :surname => "administradorez",
+      :surname => "?",
       :role_id => Role.find_by_name("admin").id
   end
 
