@@ -33,12 +33,17 @@ class User < ActiveRecord::Base
   ### METODOS
   ###################################################
   
+  def initialize(*params)
+    super(*params)
+    self.role_id = Role.find_by_name("landlord").id if self.role_id.blank?
+  end
+  
   def full_name
     self.name + " " + self.surname
   end
   
   def has_role? role_name
-    self.role.name == role_name unless self.role_id.blank?
+    return self.role.name == role_name.to_s unless self.role_id.blank?
     return false
   end
   
