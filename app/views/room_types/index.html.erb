@@ -1,15 +1,14 @@
 <%- model_class = RoomType -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> (<%= link_to @accommodation.name, accommodation_path(@accommodation) %>)</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:brief_description) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:accommodation_id) %></th>
+      <th><%= model_class.human_attribute_name(:accommodation) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -17,11 +16,9 @@
   <tbody>
     <% @room_types.each do |room_type| %>
       <tr>
-        <td><%= link_to room_type.id, accommodation_room_type_path(@accommodation, room_type) %></td>
-        <td><%= room_type.name %></td>
+        <td><%= link_to room_type.name, accommodation_room_type_path(@accommodation, room_type) %></td>
         <td><%= room_type.brief_description %></td>
         <td><%= room_type.description %></td>
-        <td><%= room_type.accommodation_id %></td>
         <td><%=l room_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
