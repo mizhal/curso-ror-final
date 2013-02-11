@@ -25,6 +25,7 @@ class AccommodationsController < ApplicationController
   # GET /accommodations/new.json
   def new
     @accommodation = Accommodation.new
+    load_combo_data
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class AccommodationsController < ApplicationController
   # GET /accommodations/1/edit
   def edit
     @accommodation = Accommodation.find(params[:id])
+    load_combo_data
   end
 
   # POST /accommodations
@@ -47,7 +49,9 @@ class AccommodationsController < ApplicationController
         format.html { redirect_to @accommodation, notice: 'Accommodation was successfully created.' }
         format.json { render json: @accommodation, status: :created, location: @accommodation }
       else
-        format.html { render action: "new" }
+        format.html { 
+          load_combo_data
+          render action: "new" }
         format.json { render json: @accommodation.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +67,9 @@ class AccommodationsController < ApplicationController
         format.html { redirect_to @accommodation, notice: 'Accommodation was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { 
+          load_combo_data
+          render action: "edit" }
         format.json { render json: @accommodation.errors, status: :unprocessable_entity }
       end
     end
@@ -79,5 +85,14 @@ class AccommodationsController < ApplicationController
       format.html { redirect_to accommodations_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def load_combo_data
+    @countries = Country.order("name asc")
+    @provinces = Province.all
+    @top_categories = Category.toplevel
+    @subcategories = Category.where("parent_id is not NULL")
+    @landlords = User.landlords
   end
 end
