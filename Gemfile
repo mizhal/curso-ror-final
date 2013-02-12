@@ -54,3 +54,6 @@ gem 'friendly_id'
 
 ## autorizacion
 gem 'cancan'
+
+## archivos adjuntos
+gem 'paperclip'

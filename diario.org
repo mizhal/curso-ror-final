@@ -262,13 +262,25 @@ Se autoriza solo con el objeto padre
 funciona bien
 *** DONE barra de navegación del layout de administración
 *** TODO formulario de creacion de alojamientos
-***** DONE poner combos y otras entradas correctamente
-***** DONE agrupar los campos en fieldsets
-***** DONE hacer los fieldsets desplegables
+**** DONE poner combos y otras entradas correctamente
+**** DONE agrupar los campos en fieldsets
+**** DONE hacer los fieldsets desplegables
 Cuando haga click ocultar los campos del fieldset para no tener que escrolear abajo tanto.
 
-***** DONE habitaciones anidadas (solo funcionalidad)
+**** DONE habitaciones anidadas (solo funcionalidad)
 Con habitaciones anidadas
+**** TODO subir fotos
+***** DONE decidir donde poner el subformulario de subida de fotos
+Se puede poner un formulario ESTATICO anidado en el formulario de Accommodation.
+Otro con AJAX en la vista show de Accommodation, para añadir fotos desde ahí (en el ejemplo anterior no hay ajax que valga porque si el formulario viene de la acción "new", todavía no hay un ID de accommodation para vincular con el la foto hasta que se haga submit)
+Luego otro en la vista de detalle de la habitación.
+***** TODO añadir gema paperclip
+***** TODO rehacer scaffold de photo
+Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo modelo
+***** TODO crear migraciones y attachment de paperclip en modelo de photo
+***** TODO colocar subformulario estático en Accommodation#_form
+***** TODO colocar subformulario AJAX en Accommodation#show
+***** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno
 *** TODO paginacion de vistas
