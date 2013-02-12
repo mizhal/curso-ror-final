@@ -1,0 +1,34 @@
+<div class="room-type">
+	<fieldset>
+	<legend class="foldable"><%=t ".room_type"%></legend>
+	  <div class="control-group">
+	    <%= f.label :name, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :name, :class => 'text_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :brief_description, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_area :brief_description, 
+	      	:class => 'text_area', :rows => 3 %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :description, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_area :description, 
+	      	:class => 'text_area',
+	      	:rows => 10 %>
+	    </div>
+	  </div>
+	  
+	  <div class="control-group">	  
+	  	<%= f.label :_destroy, t(".remove_room_type") %>  
+	    <div class="controls">
+	    	<%= f.check_box :_destroy %>
+	    </div>
+	  </div>
+	  
+	</fieldset>
+</div>

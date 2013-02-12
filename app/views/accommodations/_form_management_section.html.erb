@@ -1,0 +1,23 @@
+<div class="management-section">
+	<fieldset>
+		<legend class="foldable"><%=t ".management_fields"%></legend>		  
+		  <div class="control-group">
+		    <%= f.label :featured, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.check_box :featured, :class => 'check_box' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :published, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.check_box :published, :class => 'check_box' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :landlord_id, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.select :landlord_id, @landlords.map{|l| [l.full_name, l.id]}, :class => 'number_field' %>
+		    </div>
+		  </div>
+	</fieldset>
+</div>

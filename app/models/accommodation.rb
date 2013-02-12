@@ -12,7 +12,9 @@ class Accommodation < ActiveRecord::Base
     :published,
     :phone,
     :email,
-    :web
+    :web,
+    :room_types_attributes,
+    :offers_attributes
     
   belongs_to :province
   has_many :photos
@@ -25,6 +27,21 @@ class Accommodation < ActiveRecord::Base
   belongs_to :landlord, 
     :class_name => "User",
     :foreign_key => :landlord_id
+    
+    
+  ### atributos anidados
+  accepts_nested_attributes_for :room_types,
+    :allow_destroy => true,
+    :reject_if => lambda { |attrs| 
+      attrs.select{|k,v| k != '_destroy'}.
+        values.reduce(true){ |acc, a|  acc && a.blank?} 
+     }  
+  accepts_nested_attributes_for :offers,
+    :allow_destroy => true,
+    :reject_if => lambda { |attrs| 
+      attrs.select{|k,v| k != '_destroy'}.
+        values.reduce(true){ |acc, a|  acc && a.blank?} 
+    }  
     
   ### slug
   extend FriendlyId

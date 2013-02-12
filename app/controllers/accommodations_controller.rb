@@ -28,6 +28,10 @@ class AccommodationsController < ApplicationController
   def new
     @accommodation = Accommodation.new
     load_combo_data
+    
+    2.times do 
+      @accommodation.room_types.build
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,13 +43,17 @@ class AccommodationsController < ApplicationController
   def edit
     @accommodation = Accommodation.find(params[:id])
     load_combo_data
+    
+    if @accommodation.room_types.empty?
+      @accommodation.room_types.build
+    end
   end
 
   # POST /accommodations
   # POST /accommodations.json
   def create
     @accommodation = Accommodation.new(params[:accommodation])
-    @accommodation.landlord = current_user
+    @accommodation.landlord = current_user unless can? :manage, Accommodation
 
     respond_to do |format|
       if @accommodation.save

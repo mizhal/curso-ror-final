@@ -11,3 +11,13 @@
  *= require_self
  *= require_tree .
  */
+
+/* mixin para indentar/tab un div */
+div.inner-indentation {
+	padding-left: 4em;
+}
+
+/* plantillas para sub-formularios */
+div.nested-template {
+	display: none;
+}

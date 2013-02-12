@@ -14,3 +14,46 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+function render_template(template_div /* :NodoJQuery */, 
+	variables /* :Dict{String -> String} */)
+{
+	var text = template_div.html();
+	for(var key in variables){
+		text = text.replace(new RegExp("{{"+ key +"}}", "igm"), variables[key]);
+	}
+	return text
+}
+
+$(document).ready(function(){
+
+	//fieldsets replegables
+	$("legend.foldable").on("click", function(){
+		var siblings = $(this).siblings()
+		siblings.toggle();
+		var dots = $(this).find("span.dots");
+		if (dots.length < 1){ 
+			$(this).append('<span class="dots">...</span>');
+			dots = $(this).find("span.dots");
+			dots.hide();
+		}
+		if (!siblings.is(":visible"))
+			dots.show();
+		else
+			dots.hide();
+	});
+
+	// funcionalidad de instanciar una plantilla de subformulario
+	$("div.nested-room-section a.add-nested-room-type-form").on("click", function(){
+		var section = $(this).closest("div.nested-room-section")
+		var template = section.find("div.nested-template").first();
+		
+		var list = section.find("div.room-types")
+		list.append(
+			render_template(template, {pos: list.find("div.room-type").length})
+		);
+		
+		return false;
+	});
+	
+});

@@ -1,100 +1,34 @@
 <%= render :partial => "shared/validation_errors", :locals => {target: @accommodation}%>
 
-<%= form_for @accommodation, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :brief_description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :brief_description, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :phone, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :phone, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :web, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :web, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :province_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= select nil, nil, @countries.map{|m|[m.name, m.id]}, :class => 'number_field' %>
-      <%= f.select :province_id, @provinces.map{|p|[p.name, p.id]}, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :city, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :address, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :postal_code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :postal_code, :class => 'number_field' %>
-    </div>
-  </div>
-  <% if can? :manage, Accommodation %>
-  <div class="control-group">
-    <%= f.label :featured, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :featured, :class => 'check_box' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :published, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :published, :class => 'check_box' %>
-    </div>
-  </div>
-  <% end %>
-  <div class="control-group">
-    <%= f.label :category_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= select nil, nil, @top_categories.map{|c| [c.name, c.id]} %>
-      <%= f.select :category_id, @subcategories.map{|c| [c.name, c.id]} %>
-    </div>
-  </div>
-  <% if can? :manage, Accommodation %>
-  <div class="control-group">
-    <%= f.label :landlord_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :landlord_id, @landlords.map{|l| [l.full_name, l.id]}, :class => 'number_field' %>
-    </div>
-  </div>
-  <% end %>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                accommodations_path, :class => 'btn' %>
-  </div>
+<%= form_for @accommodation, 
+	:html => { :class => 'form-horizontal' } do |f| 
+%>
+	<%= render :partial => "form_name_section", 
+	  	:locals => {f:f}
+	%>
+	<%= render :partial => "form_description_section", 
+	  	:locals => {f:f}
+	%>
+	<%= render :partial => "form_contact_section", 
+	  	:locals => {f:f}
+	%>
+	<%= render :partial => "form_location_section", 
+	  	:locals => {f:f}
+	%>
+	
+	<% if can? :manage, Accommodation %>
+		<%= render :partial => "form_management_section", 
+		  	:locals => {f:f}
+		%>
+	<% end %>
+	
+	<%= render :partial => "nested_rooms_section", 
+	  	:locals => {f:f}
+	%>
+  
+	<div class="form-actions">
+		<%= f.submit nil, :class => 'btn btn-primary' %>
+		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	        accommodations_path, :class => 'btn' %>
+	</div>
 <% end %>

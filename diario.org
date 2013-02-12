@@ -106,12 +106,18 @@ description:text
 latitude:float
 longitude:float
 
-#ADDRESS
+#ADDRESS/CONTACT
 city:string
 address:string
 postal_code:int
+web:string
+phone:string
+email:string
 
 belongs_to :province
+
+# ESTADO DE PUBLICACION
+published:boolean
 
 # DESTACADOS
 featured:boolean
@@ -257,7 +263,11 @@ funciona bien
 *** DONE barra de navegación del layout de administración
 *** TODO formulario de creacion de alojamientos
 ***** DONE poner combos y otras entradas correctamente
-***** TODO habitaciones anidadas
+***** DONE agrupar los campos en fieldsets
+***** DONE hacer los fieldsets desplegables
+Cuando haga click ocultar los campos del fieldset para no tener que escrolear abajo tanto.
+
+***** DONE habitaciones anidadas (solo funcionalidad)
 Con habitaciones anidadas
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno

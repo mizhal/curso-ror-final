@@ -1,0 +1,27 @@
+<div class="nested-room-section">
+	<fieldset>
+		<legend class="foldable"><%=t ".room_types"%></legend>
+		<div class="room-types inner-indentation">
+			<%= f.fields_for :room_types do |builder| %>
+				<%= render :partial => "nested_room_type_fields",
+					:locals => {f: builder} 
+				%>
+			<% end %>
+		</div>
+		
+		<%= link_to t(".add_room_type"), "#", 
+			:class => "btn btn-success add-nested-room-type-form" %>
+
+	</fieldset>
+	
+	<div class="nested-template">
+		<%= f.fields_for :room_types_attributes do |templater| %>
+			<%= templater.fields_for "{{pos}}" do |subtemplater| %>
+				<%= render :partial => "nested_room_type_fields",
+					:locals => {f: subtemplater} 
+				%>
+			<% end %>
+		<% end %>
+	</div>
+
+</div>
