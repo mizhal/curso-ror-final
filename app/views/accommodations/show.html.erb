@@ -36,6 +36,10 @@
   <dd><%= link_to t(".see"), accommodation_room_types_path(@accommodation) %></dd>
 </dl>
 
+
+<%= render :partial => "show_ajax_image_upload_section", 
+	:locals => {image_owner: @accommodation} %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               accommodations_path, :class => 'btn'  %>
