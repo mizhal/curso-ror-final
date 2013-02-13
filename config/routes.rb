@@ -1,4 +1,7 @@
 Proyecto::Application.routes.draw do
+  resources :photos
+
+
   match 'login' => "sessions#new"
   match 'logout' => "sessions#destroy"
 

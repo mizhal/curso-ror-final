@@ -20,13 +20,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   
   ## DEPENDENCIAS DE BOOTSTRAP
-  gem "libv8", "3.11.8.10" 
-  gem "therubyracer", '0.11.1'
+  gem "libv8", "3.11.8" 
+  gem "therubyracer", '0.11.0'
   gem "less-rails"
-  gem "twitter-bootstrap-rails"
 end
 
 gem 'jquery-rails'
+
+## Bootstrap
+gem "twitter-bootstrap-rails"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

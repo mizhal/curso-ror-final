@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-foto1:
-  name: Primera foto
-  description: La primera de las fotos
+one:
+  name: MyString
+  description: MyString
   image_owner: el_rosal (Accommodation)
 
-foto2:
-  name: Segunda foto
-  description: La segunda foto
-  image_owner: pareja1_desayuno (RoomType)
+two:
+  name: MyString
+  description: MyString
+  image_owner: individual1_cena (RoomType)
