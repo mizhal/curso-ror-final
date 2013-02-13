@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210220939) do
+ActiveRecord::Schema.define(:version => 20130213081656) do
 
   create_table "accommodations", :force => true do |t|
     t.string   "name"
@@ -72,8 +72,12 @@ ActiveRecord::Schema.define(:version => 20130210220939) do
     t.string   "description"
     t.integer  "image_owner_id"
     t.string   "image_owner_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "photos", ["image_owner_id", "image_owner_type"], :name => "index_photos_on_image_owner_id_and_image_owner_type"
