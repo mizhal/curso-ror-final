@@ -42,7 +42,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    params[:user].delete(:role_id) unless can? :manage, User 
     @user = User.new(params[:user])
+    
 
     respond_to do |format|
       if @user.save
@@ -58,6 +60,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    params[:user].delete(:role_id) unless can? :manage, User 
     @user = User.find(params[:id])
 
     respond_to do |format|
