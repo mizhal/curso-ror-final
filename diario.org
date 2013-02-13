@@ -280,8 +280,10 @@ Luego otro en la vista de detalle de la habitación.
 Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo modelo
 ***** DONE crear migraciones y attachment de paperclip en modelo de photo
 ***** DONE colocar subformulario estático en Accommodation#_form
-***** TODO colocar subformulario AJAX en Accommodation#show
-***** TODO colocar subformulario AJAX en RoomType#show
+*** TODO gestion de ofertas
+*** TODO subformulario AJAX para fotos
+**** TODO colocar subformulario AJAX en Accommodation#show
+**** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno
 *** TODO paginacion de vistas
