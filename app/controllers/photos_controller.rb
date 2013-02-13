@@ -1,8 +1,11 @@
 class PhotosController < ApplicationController
+  load_and_authorize_resource :accommodation
+  
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @accommodation = Accommodation.find params[:accommodation_id]
+    @photos = @accommodation.photos
 
     respond_to do |format|
       format.html # index.html.erb

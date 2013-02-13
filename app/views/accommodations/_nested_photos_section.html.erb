@@ -1,0 +1,26 @@
+<div class="nested-photos-section">
+	<fieldset>
+	  <legend class="foldable"><%=t ".photos_fields" %></legend>
+	  <div class="photos inner-indentation">
+	  	<%= f.fields_for :photos do |builder| %>
+	  		<%= render :partial => "nested_photo_fields",
+	  			:locals => {f:builder}
+	  		%>
+	  	<% end %>	  
+	  </div>
+	  
+	  <%= link_to t(".add_photo"), "#", 
+			:class => "btn btn-success add-nested-photo-form" %>
+	  
+	</fieldset>
+	
+	<div class="nested-template">
+		<%= f.fields_for :photos_attributes do |templater| %>
+			<%= templater.fields_for "{{pos}}" do |subtemplater| %>
+				<%= render :partial => "nested_photo_fields",
+					:locals => {f: subtemplater} 
+				%>
+			<% end %>
+		<% end %>
+	</div>
+</div>

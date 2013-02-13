@@ -44,13 +44,28 @@ $(document).ready(function(){
 	});
 
 	// funcionalidad de instanciar una plantilla de subformulario
-	$("div.nested-room-section a.add-nested-room-type-form").on("click", function(){
-		var section = $(this).closest("div.nested-room-section")
+	
+	//// para room-types
+	$("div.nested-rooms-section a.add-nested-room-type-form").on("click", function(){
+		var section = $(this).closest("div.nested-rooms-section")
 		var template = section.find("div.nested-template").first();
 		
 		var list = section.find("div.room-types")
 		list.append(
 			render_template(template, {pos: list.find("div.room-type").length})
+		);
+		
+		return false;
+	});
+	
+	//// para photos
+	$("div.nested-photos-section a.add-nested-photo-form").on("click", function(){
+		var section = $(this).closest("div.nested-photos-section")
+		var template = section.find("div.nested-template").first();
+		
+		var list = section.find("div.photos")
+		list.append(
+			render_template(template, {pos: list.find("div.photo").length})
 		);
 		
 		return false;

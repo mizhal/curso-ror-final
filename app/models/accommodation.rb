@@ -14,10 +14,11 @@ class Accommodation < ActiveRecord::Base
     :email,
     :web,
     :room_types_attributes,
-    :offers_attributes
+    :offers_attributes,
+    :photos_attributes
     
   belongs_to :province
-  has_many :photos
+  has_many :photos, :as => :image_owner
   has_many :offers
   has_many :room_types
   belongs_to :category
@@ -42,6 +43,13 @@ class Accommodation < ActiveRecord::Base
       attrs.select{|k,v| k != '_destroy'}.
         values.reduce(true){ |acc, a|  acc && a.blank?} 
     }  
+  accepts_nested_attributes_for :photos,
+    :allow_destroy => true,
+    :reject_if => lambda { |attrs| 
+      attrs.select{|k,v| k != '_destroy'}.
+        values.reduce(true){ |acc, a|  acc && a.blank?} 
+    }  
+
     
   ### slug
   extend FriendlyId

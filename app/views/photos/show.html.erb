@@ -1,25 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Photo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @photo.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @photo.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @photo.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_owner_id) %>:</strong></dt>
+  <dd><%= @photo.image_owner_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_owner_type) %>:</strong></dt>
+  <dd><%= @photo.image_owner_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_file_name) %>:</strong></dt>
+  <dd><%= @photo.image_file_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_content_type) %>:</strong></dt>
+  <dd><%= @photo.image_content_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_file_size) %>:</strong></dt>
+  <dd><%= @photo.image_file_size %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_updated_at) %>:</strong></dt>
+  <dd><%= @photo.image_updated_at %></dd>
+</dl>
 
-<p>
-  <b>Description:</b>
-  <%= @photo.description %>
-</p>
-
-<p>
-  <b>Image owner:</b>
-  <%= @photo.image_owner_id %>
-</p>
-
-<p>
-  <b>Image owner type:</b>
-  <%= @photo.image_owner_type %>
-</p>
-
-
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              photos_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_photo_path(@photo), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              photo_path(@photo),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

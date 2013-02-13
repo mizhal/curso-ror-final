@@ -1,13 +1,11 @@
 Proyecto::Application.routes.draw do
-  resources :photos
-
-
   match 'login' => "sessions#new"
   match 'logout' => "sessions#destroy"
 
   resources :accommodations do
     resources :offers
     resources :room_types
+    resources :photos
   end
 
   resources :categories

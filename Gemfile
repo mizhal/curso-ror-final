@@ -28,7 +28,8 @@ end
 gem 'jquery-rails'
 
 ## Bootstrap
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", 
+  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

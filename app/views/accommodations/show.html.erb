@@ -34,6 +34,8 @@
   <dd><%= link_to @accommodation.landlord.full_name, user_path(@accommodation.landlord_id) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:rooms) %>:</strong></dt>
   <dd><%= link_to t(".see"), accommodation_room_types_path(@accommodation) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:photos) %>:</strong></dt>
+  <dd><%= link_to t(".see"), accommodation_photos_path(@accommodation) %></dd>
 </dl>
 
 
