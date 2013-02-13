@@ -1,0 +1,26 @@
+<%- model_class = Offer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:summary) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @offers.each do |offer| %>
+      <tr>
+        <td><%= link_to offer.name, accommodation_offer_path(offer.accommodation, offer) %></td>
+        <td><%= offer.summary %></td>
+        <td><%= offer.description %></td>
+        <td><%= offer.price %></td>
+        <td><%=l offer.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
