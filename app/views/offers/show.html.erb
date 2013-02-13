@@ -13,17 +13,23 @@
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
   <dd><%= @offer.price %></dd>
   <dt><strong><%= model_class.human_attribute_name(:accommodation_id) %>:</strong></dt>
-  <dd><%= @offer.accommodation_id %></dd>
+  <dd><%= link_to @offer.accommodation.name, accommodation_path(@offer.accommodation_id) %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              offers_path, :class => 'btn'  %>
+              accommodation_offers_path(:accommodation_id => params[:accommodation_id]), 
+              :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_offer_path(@offer), :class => 'btn' %>
+              edit_accommodation_offer_path(@offer.accommodation, @offer), 
+              :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              offer_path(@offer),
+              accommodation_offer_path(@offer.accommodation, @offer),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => { 
+              	:confirm => t('.confirm', 
+              		:default => t("helpers.links.confirm", :default => 'Are you sure?')
+              	) 
+              },
               :class => 'btn btn-danger' %>
 </div>

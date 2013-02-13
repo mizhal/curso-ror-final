@@ -7,6 +7,15 @@ Proyecto::Application.routes.draw do
     resources :room_types
   end
   
+  ## only => [] no generar rutas de nivel 1 para las acciones comunes
+  ## esas acciones ya estan anidadas con accommodation
+  resources :offers, 
+    :only => []  do
+    collection do
+      get :public_index
+    end
+  end
+  
   resources :photos
 
   resources :categories

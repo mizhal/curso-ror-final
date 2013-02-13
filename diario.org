@@ -262,7 +262,7 @@ Se autoriza solo con el objeto padre
 ****** DONE probar a ocultar mediante "can?"
 funciona bien
 *** DONE barra de navegación del layout de administración
-*** TODO formulario de creacion de alojamientos
+*** DONE formulario de creacion de alojamientos
 **** DONE poner combos y otras entradas correctamente
 **** DONE agrupar los campos en fieldsets
 **** DONE hacer los fieldsets desplegables
@@ -270,7 +270,7 @@ Cuando haga click ocultar los campos del fieldset para no tener que escrolear ab
 
 **** DONE habitaciones anidadas (solo funcionalidad)
 Con habitaciones anidadas
-**** TODO subir fotos
+**** DONE subir fotos
 ***** DONE decidir donde poner el subformulario de subida de fotos
 Se puede poner un formulario ESTATICO anidado en el formulario de Accommodation.
 Otro con AJAX en la vista show de Accommodation, para añadir fotos desde ahí (en el ejemplo anterior no hay ajax que valga porque si el formulario viene de la acción "new", todavía no hay un ID de accommodation para vincular con el la foto hasta que se haga submit)
@@ -281,17 +281,35 @@ Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo
 ***** DONE crear migraciones y attachment de paperclip en modelo de photo
 ***** DONE colocar subformulario estático en Accommodation#_form
 *** TODO gestion de ofertas
-*** TODO subformulario AJAX para fotos
+**** TODO acciones anidadas
+ index, new, create, edit, update, destroy
+**** TODO accion publica
+Listado general paginado y filtrado por el buscador de ofertas.
+*** TODO paginacion de vistas
+Excepto categorías que es árbol
+*** TODO pagina de contacto
+*** TODO crear categorías y subcategorías mediante nested forms
+*** TODO *opcional* subformulario AJAX para fotos
 **** TODO colocar subformulario AJAX en Accommodation#show
 **** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno
-*** TODO paginacion de vistas
-Excepto categorías que es árbol
+*** TODO buscador de alojamientos
+Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
+*** TODO navegador de tipologías
+Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
+*** TODO mapa de todos los alojamientos
+*** TODO buscador de ofertas
 *** TODO layout público
-Barras laterales, content_for...
+Barras laterales, content_for, pie de página...
+
+*** TODO poner todas las inputs como block-level
+Poner la clase/mixin de bootstrap 'input-block-level' a todas las inputs para mejor aspecto
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
+*** TODO *opcional* carrusel
+Ver [[http://www.w3resource.com/twitter-bootstrap/carousel-tutorial.php][Tutorial W3C del Carrusel de Bootstrap]]
+
 *** TODO *opcional* subir varias fotos de un golpe en un archivo ZIP
 Además de los formularios para subir las fotos una a una (empotrados en el form de Accommodation y RoomType o los de ajax que hubiera), se debe crear un campo/subformulario de subida de archivo que admita un ZIP con varias imágenes (ignorar archivos que no sean de imagen).
 

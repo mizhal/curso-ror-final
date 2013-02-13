@@ -3,6 +3,9 @@
 		<li class="<%= 'active' if params[:controller] == 'accommodations' %>">
 			<%= link_to t(".accommodations"), accommodations_path %>
 		</li>
+		<li class="<%= 'active' if params[:controller] == 'offers' %>">
+			<%= link_to t(".offers"), public_index_offers_path %>
+		</li>
 		<li class="<%= 'active' if params[:controller] == 'users' %>">
 			<%= link_to t(".users"), users_path %>
 		</li>
