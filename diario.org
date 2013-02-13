@@ -166,7 +166,8 @@ belongs_to :accommodation
 
 *** Foto/Photo
 ## created_at y modified_at
-description: text
+name:string
+description:text
 
 belongs_to :image_owner, :polymorphic => true
   Relacion polimorfica, ver http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
@@ -212,7 +213,7 @@ rails g scaffold RoomType name:string brief_description:text description:text
 ***** DONE Offer
 rails g scaffold Offer name:string  summary:text description:text price:float accommodation_id:integer
 ***** DONE Photo
-rails g model Photo name:string description:string image_owner_id:integer image_owner_type:string
+rails g scaffold Photo name:string description:string image_owner_id:integer image_owner_type:string
 **** DONE establecer relaciones
 **** DONE prueba de relaciones (poco minuciosa)
 En este caso se hizo sin tests unitarios 
@@ -274,11 +275,11 @@ Con habitaciones anidadas
 Se puede poner un formulario ESTATICO anidado en el formulario de Accommodation.
 Otro con AJAX en la vista show de Accommodation, para añadir fotos desde ahí (en el ejemplo anterior no hay ajax que valga porque si el formulario viene de la acción "new", todavía no hay un ID de accommodation para vincular con el la foto hasta que se haga submit)
 Luego otro en la vista de detalle de la habitación.
-***** TODO añadir gema paperclip
-***** TODO rehacer scaffold de photo
+***** DONE añadir gema paperclip
+***** DONE rehacer scaffold de photo
 Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo modelo
-***** TODO crear migraciones y attachment de paperclip en modelo de photo
-***** TODO colocar subformulario estático en Accommodation#_form
+***** DONE crear migraciones y attachment de paperclip en modelo de photo
+***** DONE colocar subformulario estático en Accommodation#_form
 ***** TODO colocar subformulario AJAX en Accommodation#show
 ***** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
@@ -289,6 +290,14 @@ Excepto categorías que es árbol
 Barras laterales, content_for...
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
+*** TODO *opcional* subir varias fotos de un golpe en un archivo ZIP
+Además de los formularios para subir las fotos una a una (empotrados en el form de Accommodation y RoomType o los de ajax que hubiera), se debe crear un campo/subformulario de subida de archivo que admita un ZIP con varias imágenes (ignorar archivos que no sean de imagen).
+
+Una vez subido, debe descomprimirse (en un directorio temporal conocido) y para cada archivo de imagen en el zip crear un objeto Photo, con la propiedad image asignada al archivo presente en el temporal (cargado con el objeto de Ruby File). Al asignar la propiedad Photo.image, paperclip ya se encargará de generar los cortes.
+
+Esta acción se realizará en el controlador de "Photo", en una nueva acción para subida masiva.
+Allí hay que ocuparse también de borrar los archivos que sean innecesarios después de crear los objetos Photo. Esto hay que verlo sobre la marcha, pero seguro es que el archivo ZIP debe borrarse.
+
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00

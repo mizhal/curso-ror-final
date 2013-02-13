@@ -2,7 +2,8 @@
 <div class="page-header">
   <h1><%=t '.title', 
   	:default => model_class.model_name.human.pluralize %> 
-  	(<%= link_to @accommodation.name, accommodation_path(@accommodation) %>)</h1>
+  	<%= t(".from") unless @host.nil? %>
+  	<%= link_to(@host.name, @host) unless @host.nil? %></h1>
 </div>
 <table class="table table-striped">
   <thead>

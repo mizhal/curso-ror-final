@@ -2,18 +2,11 @@
 	<h1><%=t '.upload_photos' %></h1>
 	<div class="uploaded-images">
 	</div>
-	<%= form_for :photo, 
-		:url => new_photo_path(:image_owner_id => image_owner.id, :format => :js), 
-		:html => {
-			:multipart => true
-		}  do |f| %>
-	  <div class="control-group">
-	    <%= f.label :file, :class => 'control-label' %>
-	    <div class="controls">
-	      <%= f.file_field :photo %>
-	    </div>
-	  </div>
-	
-	<% end %>
-
+	<div class="upload-forms">
+		<%= render :partial => "show_ajax_image_upload_form",
+			:locals => {image_owner: image_owner} %>
+	</div>
+	<%= link_to t('.more_images'), '#',
+		:class => "btn btn-success"
+	%>
 </div>

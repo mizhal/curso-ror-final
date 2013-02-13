@@ -5,11 +5,11 @@ Proyecto::Application.routes.draw do
   resources :accommodations do
     resources :offers
     resources :room_types
-    resources :photos
   end
+  
+  resources :photos
 
   resources :categories
-
 
   resources :users
 

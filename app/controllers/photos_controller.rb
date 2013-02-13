@@ -4,8 +4,18 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @accommodation = Accommodation.find params[:accommodation_id]
-    @photos = @accommodation.photos
+    @photos = Photo.order("created_at desc")
+    @host = nil 
+    
+    if !params[:accommodation_id].blank?
+      @host = Accommodation.find params[:accommodation_id] 
+      @photos = @host.photos
+    end
+    
+    if !params[:room_type_id].blank?
+      @host = RoomType.find params[:room_type_id] 
+      @photos = @host.photos      
+    end
 
     respond_to do |format|
       format.html # index.html.erb
