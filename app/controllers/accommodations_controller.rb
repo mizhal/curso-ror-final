@@ -98,6 +98,14 @@ class AccommodationsController < ApplicationController
     end
   end
   
+  def global_map
+    @gmaps_json = Accommodation.all.to_gmaps4rails do |accommodation, marker|
+      marker.infowindow render_to_string :partial => "accommodations/gmaps_infobox",
+        :locals => accommodation.gmaps_custom_infobox_data
+    end
+    
+  end
+  
   private
   def load_combo_data
     @countries = Country.order("name asc")

@@ -15,6 +15,9 @@
 //= require twitter/bootstrap
 //= require_tree .
 
+/***
+ * 
+ */
 function render_template(template_div /* :NodoJQuery */, 
 	variables /* :Dict{String -> String} */)
 {
@@ -25,6 +28,62 @@ function render_template(template_div /* :NodoJQuery */,
 	return text
 }
 
+/****
+ * 
+ * Descripcion:
+ * 
+ * Cuando el usuario mueve el marcador a mano, se recalculan
+ * los campos "latitude" y "longitude" y se establecen a los
+ * valores correctos, consistentes con la posicion del marcador
+ * 
+ * Cuando cambian los campos "city" o "address" el marker se ubica
+ * de nuevo en el lugar apropiado
+ * 
+ * Cuando cambian los campos "latitude" y "longitude" también el
+ * marker se reubica
+ * 
+ */
+function setup_gmaps_inputs_feedback(){
+	
+	/* es necesario esperar a que carge el mapa, tiempo despues de cargada
+	 la pagina */
+	Gmaps.map.callback = function(){
+		
+		var section = $('div.location-section');
+		var marker = Gmaps.map.markers[0].serviceObject;
+		
+		// sincroniza el marker con las entradas
+		google.maps.event.addListener(
+			marker, 
+			'dragend', 
+			function(pos) {
+				var section = $('div.location-section');
+				section.find('input[name="accommodation[latitude]"]')
+					.val(pos.latLng.lat());
+				section.find('input[name="accommodation[longitude]"]')
+					.val(pos.latLng.lng());
+			}
+		);
+		
+		// sincroniza las entradas con el marker
+		section.find('input[name="accommodation[longitude]"]')
+			.on("change",function(){
+				var position = marker.getPosition();
+				var new_position = new google.maps.LatLng(position.lat(), $(this).val(), false);
+				marker.setPosition(new_position);
+			});
+		section.find('input[name="accommodation[latitude]"]')
+			.on("change",function(){
+				var position = marker.getPosition();
+				var new_position = new google.maps.LatLng($(this).val(), position.lng(), false);
+				marker.setPosition(new_position);
+			});			
+	}
+}
+
+/***
+ * 
+ */
 $(document).ready(function(){
 
 	//fieldsets replegables
@@ -71,4 +130,10 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	// funcionalidad de gmaps
+	
+	//// feedback de latitud, longitud y direccion en el formulario de Accommodation
+	if($('div.gmaps-location-form-feedback').length > 0) { //test: existe el div asociado a la funcionalidad
+		setup_gmaps_inputs_feedback();
+	}
 });

@@ -5,6 +5,10 @@ Proyecto::Application.routes.draw do
   resources :accommodations do
     resources :offers
     resources :room_types
+    
+    collection do
+      get :global_map
+    end
   end
   
   ## only => [] no generar rutas de nivel 1 para las acciones comunes

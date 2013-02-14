@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213081656) do
+ActiveRecord::Schema.define(:version => 20130214083827) do
 
   create_table "accommodations", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20130213081656) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "slug"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   add_index "accommodations", ["category_id"], :name => "index_accommodations_on_category_id"
@@ -41,9 +44,13 @@ ActiveRecord::Schema.define(:version => 20130213081656) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "slug"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"

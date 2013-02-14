@@ -280,11 +280,29 @@ Luego otro en la vista de detalle de la habitación.
 Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo modelo
 ***** DONE crear migraciones y attachment de paperclip en modelo de photo
 ***** DONE colocar subformulario estático en Accommodation#_form
-*** TODO gestion de ofertas
+*** DONE gestion de ofertas
 **** DONE acciones anidadas
  index, new, create, edit, update, destroy
 **** DONE accion publica
 Listado general paginado y filtrado por el buscador de ofertas.
+*** TODO mapas
+**** DONE instalar gema
+rails generate gmaps4rails:install
+**** DONE preparar modelos
+Escribir acts_as_gmappable en Accommodation
+**** DONE migracion para añadir campos de mapas
+**** DONE mapa global
+**** DONE cambiar icono de los markers
+***** DONE añadir icono a la categoría
+**** DONE infobox
+**** DONE respetar latitud y longitud si se introducen a mano
+En el modelo
+**** TODO permitir seleccionar moviendo el marker
+Y mantener las coherencias entre campos y mapa:
+***** DONE si se cambian lat y lon, mover el marker
+***** DONE si se mueve el marker, cambiar lat y lon
+***** TODO  si se cambia el address, mover el marker
+
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
 *** TODO pagina de contacto

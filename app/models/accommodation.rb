@@ -15,7 +15,9 @@ class Accommodation < ActiveRecord::Base
     :web,
     :room_types_attributes,
     :offers_attributes,
-    :photos_attributes
+    :photos_attributes,
+    :latitude,
+    :longitude
     
   belongs_to :province
   has_many :photos, :as => :image_owner
@@ -33,27 +35,41 @@ class Accommodation < ActiveRecord::Base
   ### atributos anidados
   accepts_nested_attributes_for :room_types,
     :allow_destroy => true,
-    :reject_if => lambda { |attrs| 
-      attrs.select{|k,v| k != '_destroy'}.
-        values.reduce(true){ |acc, a|  acc && a.blank?} 
-     }  
+    :reject_if => :all_blank
   accepts_nested_attributes_for :offers,
     :allow_destroy => true,
-    :reject_if => lambda { |attrs| 
-      attrs.select{|k,v| k != '_destroy'}.
-        values.reduce(true){ |acc, a|  acc && a.blank?} 
-    }  
+    :reject_if => :all_blank
   accepts_nested_attributes_for :photos,
     :allow_destroy => true,
-    :reject_if => lambda { |attrs| 
-      attrs.select{|k,v| k != '_destroy'}.
-        values.reduce(true){ |acc, a|  acc && a.blank?} 
-    }  
+    :reject_if => :all_blank
 
     
   ### slug
   extend FriendlyId
   friendly_id :name, :use => :slugged
+  
+  ### mapas
+  acts_as_gmappable :process_geocoding => 
+    lambda{ |accommodation| accommodation.latitude.nil? or accommodation.longitude.nil? }
+  
+  def gmaps4rails_address
+    "#{self.address}, #{self.city}, #{self.province.country.name}" 
+  end
+  
+  def gmaps4rails_marker_picture
+      { "picture" => self.category.icon.url(:icon),
+        "width" => 32, 
+        "height" => 32
+      }
+  end
+  
+  def gmaps_custom_infobox_data
+    {
+      title: self.name,
+      content: self.brief_description,
+      accommodation_id: self.id
+    }
+  end
     
   ### VALIDACIONES
   #########################################################
