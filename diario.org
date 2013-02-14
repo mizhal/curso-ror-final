@@ -306,6 +306,7 @@ Y mantener las coherencias entre campos y mapa:
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
 *** TODO pagina de contacto
+*** TODO controlador de contacto
 *** TODO crear categorías y subcategorías mediante nested forms
 *** TODO *opcional* subformulario AJAX para fotos
 **** TODO colocar subformulario AJAX en Accommodation#show
@@ -316,7 +317,6 @@ Analizar si queda alguno
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
 *** TODO navegador de tipologías
 Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
-*** TODO mapa de todos los alojamientos
 *** TODO buscador de ofertas
 *** TODO layout público
 Barras laterales, content_for, pie de página...
