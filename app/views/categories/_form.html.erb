@@ -10,6 +10,31 @@
     </div>
   </div>
   
+  <% unless f.object.icon.nil? %>
+  <div class="control-group">
+    <%= f.label :icon, :class => 'control-label' %>
+    <div class="controls">
+    	<%= image_tag f.object.icon.url(:icon)  %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :icon, 
+    	t(".change_icon"),
+    	:class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :icon %>
+    </div>
+  </div>
+  <% else %>
+  <div class="control-group">
+    <%= f.label :icon, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :icon %>
+    </div>
+  </div>
+  <% end %>
+  
   <% unless @category.parent_id.blank? %>
   <div class="control-group">
     <%= f.label :parent, :class => 'control-label' %>

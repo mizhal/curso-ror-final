@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :parent_id
+  attr_accessible :name, :parent_id, :icon
   
   has_many :children,
     :class_name => "Category",
@@ -9,6 +9,11 @@ class Category < ActiveRecord::Base
     :foreign_key => :parent_id
     
   has_many :accommodations
+  
+  has_attached_file :icon,
+    :styles => {
+      :icon => "32x32"
+    }
   
   ### slug
   extend FriendlyId

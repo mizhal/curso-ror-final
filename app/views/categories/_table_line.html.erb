@@ -1,4 +1,5 @@
   <tr>
+	<td><%= image_tag category.icon.url(:icon) %></td>
     <td><%= link_to category.name, category_path(category) %></td>
     <td><%= link_to category.parent.name, 
     	category_path(category.parent) unless category.is_toplevel? %></td>
