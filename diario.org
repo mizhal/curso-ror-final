@@ -283,7 +283,7 @@ Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo
 *** TODO gestion de ofertas
 **** DONE acciones anidadas
  index, new, create, edit, update, destroy
-**** TODO accion publica
+**** DONE accion publica
 Listado general paginado y filtrado por el buscador de ofertas.
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
