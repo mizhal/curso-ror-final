@@ -28,6 +28,29 @@ function render_template(template_div /* :NodoJQuery */,
 	return text
 }
 
+/***
+ * 
+ */
+function get_full_address(section){
+	return section.find('input[name="accommodation[city]"]').val() + " " +
+		section.find('input[name="accommodation[address]"]').val();
+}
+
+/***
+ * 
+ * Cambia el valor de los campos de entrada latitud y longitud
+ * a una posicion obtenida de la API de google maps.
+ * Permite sincronizar el marker con estos campos si es que 
+ * cambia el marker
+ * 
+ */
+function update_lat_lng_fields(section, position){
+	section.find('input[name="accommodation[latitude]"]')
+		.val(position.lat());
+	section.find('input[name="accommodation[longitude]"]')
+		.val(position.lng());	
+}
+
 /****
  * 
  * Descripcion:
@@ -50,18 +73,19 @@ function setup_gmaps_inputs_feedback(){
 	Gmaps.map.callback = function(){
 		
 		var section = $('div.location-section');
-		var marker = Gmaps.map.markers[0].serviceObject;
+		var map = Gmaps.map.serviceObject;
+		var marker = null;
+		if(Gmaps.map.markers.length > 0)
+			var marker = Gmaps.map.markers[0].serviceObject;
+		else
+			var marker = new google.maps.Marker({map: map});
 		
 		// sincroniza el marker con las entradas
 		google.maps.event.addListener(
 			marker, 
 			'dragend', 
 			function(pos) {
-				var section = $('div.location-section');
-				section.find('input[name="accommodation[latitude]"]')
-					.val(pos.latLng.lat());
-				section.find('input[name="accommodation[longitude]"]')
-					.val(pos.latLng.lng());
+				update_lat_lng_fields(section, pos.latLng);
 			}
 		);
 		
@@ -70,6 +94,7 @@ function setup_gmaps_inputs_feedback(){
 			.on("change",function(){
 				var position = marker.getPosition();
 				var new_position = new google.maps.LatLng(position.lat(), $(this).val(), false);
+				
 				marker.setPosition(new_position);
 			});
 		section.find('input[name="accommodation[latitude]"]')
@@ -77,6 +102,25 @@ function setup_gmaps_inputs_feedback(){
 				var position = marker.getPosition();
 				var new_position = new google.maps.LatLng($(this).val(), position.lng(), false);
 				marker.setPosition(new_position);
+			});
+		section.find('input[name="accommodation[address]"]')
+			.on("change",function(){
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode(
+					{'address': get_full_address(section) }, 
+					/** onFinish Callback */
+					function(results, status) {
+	      				if (status == google.maps.GeocoderStatus.OK) {
+	      					var pos = results[0].geometry.location;
+	        				map.setCenter(pos);
+	        				marker.setPosition(pos);
+	        				map.setZoom(16);
+	        				update_lat_lng_fields(section, pos);
+	      				} else {
+	        				alert("Geocode was not successful for the following reason: " + status);
+	      				}
+	      			}
+	      		);
 			});			
 	}
 }
