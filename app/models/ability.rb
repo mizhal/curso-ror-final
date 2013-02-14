@@ -17,6 +17,7 @@ class Ability
     else
       can :read, :all
       can :create, User
+      can :global_map, Accommodation
     end
     
     
