@@ -20,8 +20,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   
   ## DEPENDENCIAS DE BOOTSTRAP
-  gem "libv8", "3.11.8.10" 
-  gem "therubyracer", '0.11.1'
+  gem "libv8", "3.11.8" 
+  gem "therubyracer", '0.11.0'
   gem "less-rails"
 end
 
@@ -60,3 +60,6 @@ gem 'cancan'
 
 ## archivos adjuntos
 gem 'paperclip'
+
+## mapas
+gem 'gmaps4rails'
