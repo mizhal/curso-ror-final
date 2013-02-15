@@ -183,6 +183,16 @@ belongs_to :country
 name:string
 
 has_many :provinces
+*** ContactRequest
+Almacena los campos del formulario de contacto para manejo más sencillo y validación
+
+name:string
+company:string
+email:string
+phone:string
+comments:text
+privacy_policy:boolean
+
 ** TODO Pasos
 *** DONE establecer control versiones
 *** DONE importación de estilos de bootstrap
@@ -285,7 +295,7 @@ Copiar el contenido del modelo y rehacerlo todo y luego volver a copiar al nuevo
  index, new, create, edit, update, destroy
 **** DONE accion publica
 Listado general paginado y filtrado por el buscador de ofertas.
-*** TODO mapas
+*** DONE mapas
 **** DONE instalar gema
 rails generate gmaps4rails:install
 **** DONE preparar modelos
@@ -302,11 +312,21 @@ Y mantener las coherencias entre campos y mapa:
 ***** DONE si se cambian lat y lon, mover el marker
 ***** DONE si se mueve el marker, cambiar lat y lon
 ***** DONE si se cambia el address, mover el marker
+*** TODO pagina de contacto
+**** DONE controlador con operaciones REST
 
+      rails g scaffold_controller contact_requests 
+
+**** DONE crear un modelo a mano en contact_request.rb 
+incluir modulos con funcionalidad de validación y de asignación masiva. Esto último creando directamente el constructor
+**** TODO  Envía correo a los administradores (en la operación create)
+*** TODO controlador de contacto
+*** TODO permisos de las fotos
+En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
+Ver lo que conviene. 
+En principio, anidar las fotos con el alojamiento (independientemente de si sean de la)
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
-*** TODO pagina de contacto
-*** TODO controlador de contacto
 *** TODO crear categorías y subcategorías mediante nested forms
 *** TODO *opcional* subformulario AJAX para fotos
 **** TODO colocar subformulario AJAX en Accommodation#show
@@ -325,6 +345,8 @@ Barras laterales, content_for, pie de página...
 Poner la clase/mixin de bootstrap 'input-block-level' a todas las inputs para mejor aspecto
 *** TODO crear controladores adicionales
 ...el de la vista pública si es que es necesario...
+*** TODO reformar vistas
+De tabla al formato especifico
 *** TODO *opcional* carrusel
 Ver [[http://www.w3resource.com/twitter-bootstrap/carousel-tutorial.php][Tutorial W3C del Carrusel de Bootstrap]]
 

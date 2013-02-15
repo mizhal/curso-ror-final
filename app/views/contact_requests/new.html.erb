@@ -1,0 +1,20 @@
+<h1>New contact_request</h1>
+
+<%= render 'form' %>
+
+<%= content_for :bar do %>
+	<div class="host-contact-data">
+		<h1><%= t '.contact_data' %></h1>
+		<p><%= t '.if_you_have_any_request' %></p>
+		<p>
+			<label><%=t '.phone' %></label>
+			<span class="value"><%= @host_phone %></span>
+		</p>
+		<p>
+			<label><%=t '.email' %></label>
+			<span class="value"><%= @host_email %></span>
+		</p>
+	</div>
+<% end %>
+
+

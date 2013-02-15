@@ -25,6 +25,9 @@ Proyecto::Application.routes.draw do
   resources :categories
 
   resources :users
+  
+  resources :contact_requests, 
+    :only => [:new, :create]
 
 
   # The priority is based upon order of creation:
