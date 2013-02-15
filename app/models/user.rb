@@ -23,7 +23,11 @@ class User < ActiveRecord::Base
     
   validates :name, :presence => true
   validates :password, 
-    :length => {minimum: 6, maximum: 64}
+    :length => {minimum: 6, maximum: 64},
+    :if => :password_changed?
+  def password_changed?
+    self.password.nil?
+  end 
   validates :role_id, :presence => true
   validates :surname, :presence => true
   
@@ -53,6 +57,7 @@ class User < ActiveRecord::Base
   ### SCOPES
   ###################################################
   scope :landlords, joins(:role).where("roles.name = ?", "landlord")
+  scope :administrators, joins(:role).where("roles.name = ?", "admin")
   ### FIN: SCOPES
   ###################################################
 end
