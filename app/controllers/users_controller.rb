@@ -27,16 +27,13 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
+    @roles = Role.all
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @roles = Role.all
   end
 
   # POST /users
@@ -45,13 +42,15 @@ class UsersController < ApplicationController
     params[:user].delete(:role_id) unless can? :manage, User 
     @user = User.new(params[:user])
     
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        format.html { 
+          @roles = Role.all
+          render action: "new" 
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -68,7 +67,10 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { 
+          @roles = Role.all
+          render action: "edit" 
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
