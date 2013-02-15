@@ -12,7 +12,7 @@
 		</p>
 		<p>
 			<label><%=t '.email' %></label>
-			<span class="value"><%= @host_email %></span>
+			<span class="value"><%= link_to @host_email, "mailto://#{@host_email}" %></span>
 		</p>
 	</div>
 <% end %>
