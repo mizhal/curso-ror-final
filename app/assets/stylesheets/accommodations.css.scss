@@ -5,3 +5,6 @@
 /* Evitar distorsión en las barras de gmaps */
 #map label { width: auto; display:inline; }
 #map img { max-width: none; }
+div.location-section div.gmaps-error-output {
+  color: red;
+}

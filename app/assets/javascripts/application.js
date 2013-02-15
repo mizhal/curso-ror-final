@@ -111,12 +111,14 @@ function setup_gmaps_inputs_feedback(){
 				var new_position = new google.maps.LatLng(position.lat(), $(this).val(), false);
 				
 				marker.setPosition(new_position);
+				map.setCenter(new_position);
 			});
 		section.find('input[name="accommodation[latitude]"]')
 			.on("change",function(){
 				var position = marker.getPosition();
 				var new_position = new google.maps.LatLng($(this).val(), position.lng(), false);
 				marker.setPosition(new_position);
+				map.setCenter(new_position);
 			});
 		section.find('input[name="accommodation[address]"]')
 			.on("change",function(){
@@ -132,7 +134,8 @@ function setup_gmaps_inputs_feedback(){
 	        				map.setZoom(16);
 	        				update_lat_lng_fields(section, pos);
 	      				} else {
-	        				alert("Geocode was not successful for the following reason: " + status);
+	        				section.find("gmaps-errors-output")
+	        					.html("Geocoding failed (status: "+ status +")");
 	      				}
 	      			}
 	      		);
