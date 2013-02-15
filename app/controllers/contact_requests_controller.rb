@@ -15,7 +15,10 @@ class ContactRequestsController < ApplicationController
   def create
     @contact_request = ContactRequest.new(params[:contact_request])
     if @contact_request.valid?
-      redirect_to @contact_request, notice: 'Contact request was successfully sent.'
+      User.administrators.each { |user|
+        ContactMailer.send_contact_request(@contact_request, user).deliver
+      }
+      redirect_to new_contact_request_path, notice: 'Contact request was successfully sent.'
     else
       render action: "new"
     end

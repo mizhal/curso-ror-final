@@ -29,7 +29,7 @@ class ContactRequest
     :format => {with: /[0-9 ]+/i}
   validates :comments, :presence => true
   validates :accept_privacy_policy,
-    :acceptance => {:accept => true}
+    :acceptance => true
   ### Fin: VALIDACIONES
   ####################################################  
   
