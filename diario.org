@@ -319,8 +319,12 @@ Y mantener las coherencias entre campos y mapa:
 
 **** DONE crear un modelo a mano en contact_request.rb 
 incluir modulos con funcionalidad de validación y de asignación masiva. Esto último creando directamente el constructor
-**** TODO  Envía correo a los administradores (en la operación create)
-*** TODO controlador de contacto
+**** DONE controlador de contacto
+**** DONE Envía correo a los administradores (en la operación create)
+*** TODO fotos en ofertas
+**** DONE crear relacion y aceptar nested attributes
+**** TODO adaptar el formulario de oferta para aceptar imagenes
+Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodations
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
 Ver lo que conviene. 

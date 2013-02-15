@@ -6,6 +6,11 @@ class Offer < ActiveRecord::Base
     :summary
     
   belongs_to :accommodation
+  has_many :photos, :as => :image_owner
+  
+  accepts_nested_attributes_for :photos,
+    :allow_destroy => true,
+    :reject_if => lambda {|attrs| attrs[:image].nil?}
   
   ### slug
   extend FriendlyId
