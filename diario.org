@@ -297,11 +297,11 @@ Escribir acts_as_gmappable en Accommodation
 **** DONE infobox
 **** DONE respetar latitud y longitud si se introducen a mano
 En el modelo
-**** TODO permitir seleccionar moviendo el marker
+**** DONE permitir seleccionar moviendo el marker
 Y mantener las coherencias entre campos y mapa:
 ***** DONE si se cambian lat y lon, mover el marker
 ***** DONE si se mueve el marker, cambiar lat y lon
-***** TODO  si se cambia el address, mover el marker
+***** DONE si se cambia el address, mover el marker
 
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
