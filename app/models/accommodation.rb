@@ -57,10 +57,17 @@ class Accommodation < ActiveRecord::Base
   end
   
   def gmaps4rails_marker_picture
-      { "picture" => self.category.icon.url(:icon),
-        "width" => 32, 
-        "height" => 32
-      }
+    if self.category.icon.nil?
+      icon = self.category.icon.url(:icon)
+    else
+      icon = "http://maps.google.com/mapfiles/ms/micons/purple.png"
+    end
+    
+    return { 
+      "picture" => icon ,
+      "width" => 32, 
+      "height" => 32
+    }
   end
   
   def gmaps_custom_infobox_data

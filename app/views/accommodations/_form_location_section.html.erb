@@ -51,11 +51,12 @@
 
 	  <div class="gmaps-location-form-feedback">
 	    <%= gmaps(
-	    	:markers => {
-	    		data: @accommodation.to_gmaps4rails, 
-	    		:options => {draggable: true}
-	    		} 
-	    	) 
+		    	:markers => {
+		    		:data => @accommodation.to_gmaps4rails, 
+		    		:options => {draggable: true}
+		    		},
+		    	:map_options => { :auto_zoom => false, :zoom => 16}
+	    	)
 	    %>
 	  </div>
 	</fieldset>

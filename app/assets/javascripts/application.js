@@ -17,6 +17,21 @@
 
 /***
  * 
+ * Evitar que se envie el un formulario al pulsar enter
+ * en una entrada
+ */
+function avoid_enter_in_forms(){
+	$('form input').keydown(function(event){
+		if(event.keyCode == 13) {
+	    	event.preventDefault();
+	    	$(this).change();
+	    	return false;
+		}
+	});
+}
+
+/***
+ * 
  */
 function render_template(template_div /* :NodoJQuery */, 
 	variables /* :Dict{String -> String} */)
@@ -71,14 +86,14 @@ function setup_gmaps_inputs_feedback(){
 	/* es necesario esperar a que carge el mapa, tiempo despues de cargada
 	 la pagina */
 	Gmaps.map.callback = function(){
-		
+
 		var section = $('div.location-section');
 		var map = Gmaps.map.serviceObject;
 		var marker = null;
 		if(Gmaps.map.markers.length > 0)
-			var marker = Gmaps.map.markers[0].serviceObject;
+			marker = Gmaps.map.markers[0].serviceObject;
 		else
-			var marker = new google.maps.Marker({map: map});
+			marker = new google.maps.Marker({map: map});
 		
 		// sincroniza el marker con las entradas
 		google.maps.event.addListener(
@@ -129,6 +144,7 @@ function setup_gmaps_inputs_feedback(){
  * 
  */
 $(document).ready(function(){
+	avoid_enter_in_forms();
 
 	//fieldsets replegables
 	$("legend.foldable").on("click", function(){
