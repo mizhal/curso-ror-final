@@ -1,7 +1,7 @@
 <%= render :partial => "shared/validation_errors", :locals => {target: @room_type}%>
 <%= form_for [@accommodation, @room_type], 
 	:html => { :class => 'form-horizontal', :multipart => true } do |f| %>
-  <%= f.hidden_field :accommodation_id,  :class => 'number_field' %>
+  <%= f.hidden_field :accommodation_id %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
