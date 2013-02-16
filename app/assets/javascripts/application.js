@@ -20,7 +20,7 @@
  * Evitar que se envie el un formulario al pulsar enter
  * en una entrada
  */
-function avoid_enter_in_forms(){
+function avoid_enter_key_in_forms(){
 	$('form input').keydown(function(event){
 		if(event.keyCode == 13) {
 	    	event.preventDefault();
@@ -47,8 +47,9 @@ function render_template(template_div /* :NodoJQuery */,
  * 
  */
 function get_full_address(section){
-	return section.find('input[name="accommodation[city]"]').val() + " " +
-		section.find('input[name="accommodation[address]"]').val();
+	return section.find('input[name="accommodation[address]"]').val() + ", " + 
+		section.find('input[name="accommodation[city]"]').val() + ", " +
+		section.find('select[name="accommodation[province_id]"]').children('option:selected').text()
 }
 
 /***
@@ -146,10 +147,40 @@ function setup_gmaps_inputs_feedback(){
 /***
  * 
  */
-$(document).ready(function(){
-	avoid_enter_in_forms();
+function update_subcategories_combo(){
+	$.ajax(
+		{		
+			url: '/categories/subcategories',
+			type: 'GET',
+			data: {
+				parent_id: $(this).val()
+		}
+	}).done(function(response){
+		var select = $('form div.name-section select[name="accommodation[category_id]"]');
+		select.html("");
+		for(var i = 0; i < response.length; i++){
+			select.append(
+				'<option value="'+ response[i].id + '">' + response[i].name + "</option>"
+			);
+		}
+	}).fail(function(){
+		alert("Error requesting sub-categories");
+	});
+}
 
-	//fieldsets replegables
+/***
+ * 
+ */
+function setup_update_subcategories_combo(){
+	$("form div.name-section select#toplevel-categories").on("change", 
+		update_subcategories_combo);
+}
+
+
+/***
+ * Fieldsets replegables
+ */
+function setup_foldable_fieldsets(){
 	$("legend.foldable").on("click", function(){
 		var siblings = $(this).siblings()
 		siblings.toggle();
@@ -163,40 +194,78 @@ $(document).ready(function(){
 			dots.show();
 		else
 			dots.hide();
+	});	
+}
+
+
+/******
+ * 
+ */
+function setup_add_more_nested_fields(
+		section_selector, 
+		button_selector, 
+		template_selector,
+		nested_forms_list_selector,
+		nested_form_unit_selector
+	){
+	$( section_selector + " " + button_selector).on("click", function(){
+		var section = $(this).closest(section_selector)
+		var template = section.find(template_selector).first();
+		
+		var list = section.find(nested_forms_list_selector);
+		list.append(
+			render_template(template, {pos: list.find(nested_form_unit_selector).length})
+		);
+		
+		return false;
 	});
+}
+
+/***
+ * 
+ */
+$(document).ready(function(){
+	avoid_enter_key_in_forms();
+
+	//fieldsets replegables
+	setup_foldable_fieldsets();
 
 	// funcionalidad de instanciar una plantilla de subformulario
 	
-	//// para room-types
-	$("div.nested-rooms-section a.add-nested-room-type-form").on("click", function(){
-		var section = $(this).closest("div.nested-rooms-section")
-		var template = section.find("div.nested-template").first();
-		
-		var list = section.find("div.room-types")
-		list.append(
-			render_template(template, {pos: list.find("div.room-type").length})
-		);
-		
-		return false;
-	});
+	//// para room-types (en accommodations/_form)
+	setup_add_more_nested_fields(
+		"div.nested-rooms-section",
+		"a.add-nested-room-type-form",
+		"div.nested-template",
+		"div.room-types",
+		"div.room-type"
+	);
 	
-	//// para photos
-	$("div.nested-photos-section a.add-nested-photo-form").on("click", function(){
-		var section = $(this).closest("div.nested-photos-section")
-		var template = section.find("div.nested-template").first();
-		
-		var list = section.find("div.photos")
-		list.append(
-			render_template(template, {pos: list.find("div.photo").length})
-		);
-		
-		return false;
-	});
+	//// para photos (en accommodations/_form y en room_types/_form)
+	setup_add_more_nested_fields(
+		"div.nested-photos-section",
+		"a.add-nested-photo-form",
+		"div.nested-template",
+		"div.photos",
+		"div.photo"
+	);
 	
 	// funcionalidad de gmaps
 	
 	//// feedback de latitud, longitud y direccion en el formulario de Accommodation
-	if($('div.gmaps-location-form-feedback').length > 0) { //test: existe el div asociado a la funcionalidad
+	if($('div.location-section div.location-map').length > 0) { //test: existe el div asociado a la funcionalidad
 		setup_gmaps_inputs_feedback();
+	}
+	
+	// combo de categorias
+	if($("div.name-section select#toplevel-categories").length > 0){
+		setup_update_subcategories_combo();
+		/* se invoca por primera vez debido a que los navegadores
+		 * conservan los valores de los campos al recargar, por lo que
+		 * no es esperable que se quede en el primer valor del combo
+		 * de categorías padres
+		 */
+		if(! $('form div.name-section select[name="accommodation[category_id]"]').val())
+			$("div.name-section select#toplevel-categories").change();
 	}
 });
