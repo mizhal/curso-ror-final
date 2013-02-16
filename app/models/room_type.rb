@@ -2,10 +2,14 @@ class RoomType < ActiveRecord::Base
   attr_accessible :brief_description, 
     :description, 
     :name,
-    :accommodation_id
+    :accommodation_id,
+    :photos_attributes
   
   belongs_to :accommodation
   has_many :photos, :as => :image_owner
+  accepts_nested_attributes_for :photos,
+    :allow_destroy => true,
+    :reject_if => lambda {|attrs| attrs[:image].nil?}
 
   ### slug
   extend FriendlyId

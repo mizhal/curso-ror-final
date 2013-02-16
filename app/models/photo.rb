@@ -12,4 +12,11 @@ class Photo < ActiveRecord::Base
     }
   
   belongs_to :image_owner, :polymorphic => true
+  
+  ### VALIDACIONES
+  #################################################
+  validates :image, :presence => true
+  ### fin: VALIDACIONES
+  #################################################
+  
 end

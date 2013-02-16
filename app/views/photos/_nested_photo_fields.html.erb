@@ -1,0 +1,52 @@
+<div class="photo">
+	<fieldset>
+	<legend class="foldable"><%=t '.photo_fields' %></legend>
+
+	  <div class="control-group">
+	    <%= f.label :name, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :name %>
+	    </div>
+	  </div>
+	  
+	  <div class="control-group">
+	    <%= f.label :description, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_area :description, :rows => 3 %>
+	    </div>
+	  </div>
+	  
+	  <% unless f.object.nil? %>
+	  <div class="control-group">
+	    <%= f.label :image, :class => 'control-label' %>
+	    <div class="controls">
+	    	<%= image_tag f.object.image.url(:thumbnail)  %>
+	    </div>
+	  </div>
+	  
+	  <div class="control-group">
+	    <%= f.label :image, 
+	    	t(".change_image"),
+	    	:class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.file_field :image %>
+	    </div>
+	  </div>
+	  <% else %>
+	  <div class="control-group">
+	    <%= f.label :image, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.file_field :image %>
+	    </div>
+	  </div>
+	  <% end %>
+	  
+	  <div class="control-group">	  
+	  	<%= f.label :_destroy, t(".remove_photo") %>  
+	    <div class="controls">
+	    	<%= f.check_box :_destroy %>
+	    </div>
+	  </div>
+	  
+	</fieldset>
+</div>

@@ -3,7 +3,8 @@ class Offer < ActiveRecord::Base
     :description, 
     :name, 
     :price, 
-    :summary
+    :summary,
+    :photos_attributes
     
   belongs_to :accommodation
   has_many :photos, :as => :image_owner

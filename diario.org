@@ -312,7 +312,7 @@ Y mantener las coherencias entre campos y mapa:
 ***** DONE si se cambian lat y lon, mover el marker
 ***** DONE si se mueve el marker, cambiar lat y lon
 ***** DONE si se cambia el address, mover el marker
-*** TODO pagina de contacto
+*** TODO [4/5] pagina de contacto
 **** DONE controlador con operaciones REST
 
       rails g scaffold_controller contact_requests 
@@ -321,14 +321,18 @@ Y mantener las coherencias entre campos y mapa:
 incluir modulos con funcionalidad de validación y de asignación masiva. Esto último creando directamente el constructor
 **** DONE controlador de contacto
 **** DONE Envía correo a los administradores (en la operación create)
-*** TODO fotos en ofertas
+**** TODO estilos
+Adaptar el formulario a los estilos dados en las muestras
+*** TODO [1/2] fotos en ofertas
 **** DONE crear relacion y aceptar nested attributes
 **** TODO adaptar el formulario de oferta para aceptar imagenes
 Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodations
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
 Ver lo que conviene. 
-En principio, anidar las fotos con el alojamiento (independientemente de si sean de la)
+En principio, anidar las fotos con el alojamiento (independientemente de si sean de la habitacion, de una oferta o del propio alojamiento)
+*** TODO revisar dependent => destroys
+Todos los objetos que tienen composición fuerte deben tener esta cláusula.
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
 *** TODO crear categorías y subcategorías mediante nested forms
@@ -351,6 +355,10 @@ Poner la clase/mixin de bootstrap 'input-block-level' a todas las inputs para me
 ...el de la vista pública si es que es necesario...
 *** TODO reformar vistas
 De tabla al formato especifico
+*** TODO *opcional* lightbox para imágenes
+Incorporar esta librería de JS:
+   Ligthbox2
+       web: http://lokeshdhakar.com/projects/lightbox2/
 *** TODO *opcional* carrusel
 Ver [[http://www.w3resource.com/twitter-bootstrap/carousel-tutorial.php][Tutorial W3C del Carrusel de Bootstrap]]
 

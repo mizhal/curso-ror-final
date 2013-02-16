@@ -36,6 +36,10 @@
       <%= f.number_field :accommodation_id, :class => 'number_field' %>
     </div>
   </div>
+  
+  <%= render :partial => "photos/nested_photos_section", 
+    :locals => {f:f}
+  %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
