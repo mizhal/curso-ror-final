@@ -21,3 +21,7 @@ div.inner-indentation {
 div.nested-template {
 	display: none;
 }
+
+div.bar {
+	background-color: red;
+}

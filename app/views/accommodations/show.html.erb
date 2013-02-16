@@ -41,14 +41,17 @@
 		  <dt><strong><%= model_class.human_attribute_name(:offers) %>:</strong></dt>
 		  <dd><%= link_to t(".see"), accommodation_offers_path(:accommodation_id => @accommodation.id) %></dd>
 		  <dt><strong><%= model_class.human_attribute_name(:map) %>:</strong></dt>
-		  <dd><%= gmaps(
-			    	:markers => {
-			    		:data => @accommodation.to_gmaps4rails, 
-			    		:options => {draggable: false}
-			    		},
-			    	:map_options => { :auto_zoom => false, :zoom => 16}
-	    		  )
-	    	%>
+		  <dd>
+		  	<div class="location-map">
+			  	<%= gmaps(
+				    	:markers => {
+				    		:data => @accommodation.to_gmaps4rails, 
+				    		:options => {draggable: false}
+				    		},
+				    	:map_options => { :auto_zoom => false, :zoom => 16}
+		    		  )
+		    	%>
+	    	</div>
 	      </dd>
 		</dl>
 	</div>

@@ -5,6 +5,16 @@
 /* Evitar distorsión en las barras de gmaps */
 #map label { width: auto; display:inline; }
 #map img { max-width: none; }
+
+// ajuste del ancho del mapa de gmaps
+// se usa un selector mas especifico para
+// sobreescribir el ancho por defecto
+// de 800px
+div.location-map div#map, div.location-map div.map_container{
+  width:100%;
+  overflow: hidden;
+}
+
 div.location-section div.gmaps-error-output {
   color: red;
 }
