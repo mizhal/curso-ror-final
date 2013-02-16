@@ -1,6 +1,8 @@
 class OffersController < ApplicationController
   load_and_authorize_resource :accommodation
   
+  layout 'public'
+  
   # GET /offers
   # GET /offers.json
   def index
@@ -12,24 +14,17 @@ class OffersController < ApplicationController
   # GET /offers/1.json
   def show
     @offer = Offer.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @offer }
-    end
   end
 
   # GET /offers/new
   # GET /offers/new.json
   def new
-    @accommodation = Accommodation.find params[:accommodation_id]
-    @offer = @accommodation.offers.build
+    @offer = Offer.new :accommodation_id => params[:accommodation_id]
   end
 
   # GET /offers/1/edit
   def edit
     @offer = Offer.find(params[:id])
-    @accommodation = @offer.accommodation
   end
 
   # POST /offers
@@ -55,7 +50,7 @@ class OffersController < ApplicationController
         notice: 'Offer was successfully updated.'
     else
       @accommodation = @offer.accommodation
-      render action: "edit" 
+      render action: "edit"
     end
   end
 
@@ -70,6 +65,6 @@ class OffersController < ApplicationController
   
   ## GET /offers/public_index(.:format) 
   def public_index
-    @offers = Offer.order("created_at desc")    
+    @offers = Offer.order("created_at desc")
   end
 end

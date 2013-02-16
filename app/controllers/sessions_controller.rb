@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  layout 'public'
+  
   def new
     if request.post?
       user = User.find_by_email params[:email]
@@ -23,6 +26,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user] = nil
+    flash[:notice] = t "controllers.sessions.user_left_session"
     redirect_to root_path
   end
 end

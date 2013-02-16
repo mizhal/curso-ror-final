@@ -1,6 +1,8 @@
 class AccommodationsController < ApplicationController
   load_and_authorize_resource
   
+  layout 'public'
+  
   # GET /accommodations
   # GET /accommodations.json
   def index
