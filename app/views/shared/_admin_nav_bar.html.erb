@@ -1,7 +1,12 @@
 <nav>
 	<ul class="nav nav-pills">
-		<li class="<%= 'active' if params[:controller] == 'accommodations' %>">
+		<li class="<%= 'active' if (params[:controller] == 'accommodations' and
+			params['action'] != 'global_map') %>">
 			<%= link_to t(".accommodations"), accommodations_path %>
+		</li>
+		<li class="<%= 'active' if (params[:controller] == 'accommodations' and 
+			params['action'] == 'global_map') %>">
+			<%= link_to t(".map"), global_map_accommodations_path %>
 		</li>
 		<li class="<%= 'active' if params[:controller] == 'offers' %>">
 			<%= link_to t(".offers"), public_index_offers_path %>
