@@ -323,9 +323,9 @@ incluir modulos con funcionalidad de validación y de asignación masiva. Esto �
 **** DONE Envía correo a los administradores (en la operación create)
 **** TODO estilos
 Adaptar el formulario a los estilos dados en las muestras
-*** TODO [1/2] fotos en ofertas
+*** DONE [2/2] fotos en ofertas
 **** DONE crear relacion y aceptar nested attributes
-**** TODO adaptar el formulario de oferta para aceptar imagenes
+**** DONE adaptar el formulario de oferta para aceptar imagenes
 Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodations
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
@@ -333,6 +333,7 @@ Ver lo que conviene.
 En principio, anidar las fotos con el alojamiento (independientemente de si sean de la habitacion, de una oferta o del propio alojamiento)
 *** TODO revisar dependent => destroys
 Todos los objetos que tienen composición fuerte deben tener esta cláusula.
+*** TODO revisar multipart en formularios con fotos
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
 *** TODO crear categorías y subcategorías mediante nested forms
