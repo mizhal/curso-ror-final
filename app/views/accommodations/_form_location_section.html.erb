@@ -4,15 +4,17 @@
 	  <div class="control-group">
 	    <%= f.label :province_id, :class => 'control-label' %>
 	    <div class="controls">
-	        <%= select nil, nil, 
+	        <%= f.select :country_id, 
 	        	@countries.map{|m|[m.name, m.id]}, 
 	        	{}, 
-	        	:class => 'input-block-level combo-gmaps-feedback-country' 
+	        	:class => 'input-block-level combo-gmaps-feedback-country',
+	        	:id => "country-combo"
 	        %>
 	        <%= f.select :province_id, 
 	        	@provinces.map{|p|[p.name, p.id]}, 
 	        	{},
-	        	:class => 'input-block-level combo-gmaps-feedback-administrative-unit' %>
+	        	:class => 'input-block-level combo-gmaps-feedback-administrative-unit' 
+	        %>
 	    </div>
 	  </div>
 	 

@@ -68,6 +68,10 @@ class AccommodationsController < ApplicationController
   def destroy
     @accommodation = Accommodation.find(params[:id])
     @accommodation.destroy
+    
+    flash[:notice] = t("controllers.accommodations.destroy_successful")
+    
+    redirect_to accommodations_path
   end
   
   def global_map
@@ -78,15 +82,21 @@ class AccommodationsController < ApplicationController
     render layout: 'application'
   end
   
+  ##
+  ## Accion para llamada AJAX que actualiza el combo de provincias
+  def provinces
+    render json: Province.with_country_id(params[:country_id])
+  end
+  
   private
   def load_combo_data
     @countries = Country.order("name asc")
-    @provinces = Province.order("name asc")
+    @provinces = Province.siblings_including_self(@accommodation.province_id)
     @top_categories = Category.toplevel
     @landlords = User.landlords
     unless @accommodation.category_id.nil?
       @sibling_categories = Category.
-        siblings_including_self_of(@accommodation.category) 
+        siblings_including_self_of(@accommodation.category_id) 
     else
       @sibling_categories = []
     end

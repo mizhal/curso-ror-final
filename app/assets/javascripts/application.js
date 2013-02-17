@@ -288,7 +288,8 @@ BoundCombos.prototype = {
 		/* se invoca por primera vez debido a que los navegadores
 		 * conservan los valores de los campos al recargar, por lo que
 		 * no es esperable que se quede en el primer valor del combo
-		 * de categorías padres
+		 * padre.
+		 * Pero solo en el caso de que el combo hijo no tenga valor.
 		 */
 		if(! $(this.options.child).val())
 			$(this.options.parent).change();
@@ -404,23 +405,23 @@ $(document).ready(function(){
 	
 	// combo de categorias
 	if($("div.name-section select#toplevel-categories").length > 0){
-		var bound_combos = new BoundCombos({
+		var bound_combos_categories = new BoundCombos({
 			parent: "div.name-section select#toplevel-categories",
-			child: 'form div.name-section select[name="accommodation[category_id]"]',
+			child: 'div.name-section select[name="accommodation[category_id]"]',
 			param_name: "parent_id",
 			server_action: "/categories/subcategories"
 		});
-		bound_combos.setup();
+		bound_combos_categories.setup();
 	}
 	
 	// combo de provincias
-	if($("div.name-section select#toplevel-categories").length > 0){
-		var bound_combos = new BoundCombos({
-			parent: "div.name-section select#toplevel-categories",
-			child: 'form div.name-section select[name="accommodation[category_id]"]',
-			param_name: "parent_id",
-			server_action: "/categories/subcategories"
+	if($("div.location-section select#country-combo").length > 0){
+		var bound_combos_provinces = new BoundCombos({
+			parent: "div.location-section select#country-combo",
+			child: 'div.location-section select[name="accommodation[province_id]"]',
+			param_name: "country_id",
+			server_action: "/accommodations/provinces"
 		});
-		bound_combos.setup();
+		bound_combos_provinces.setup();
 	}
 });

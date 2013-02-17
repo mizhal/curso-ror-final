@@ -17,7 +17,9 @@ class Accommodation < ActiveRecord::Base
     :offers_attributes,
     :photos_attributes,
     :latitude,
-    :longitude
+    :longitude,
+    :country_id,
+    :parent_category_id
     
   belongs_to :province
   has_many :photos, :as => :image_owner
@@ -42,7 +44,24 @@ class Accommodation < ActiveRecord::Base
   accepts_nested_attributes_for :photos,
     :allow_destroy => true,
     :reject_if => :all_blank
-
+    
+    
+  ### atributos virtuales
+  def country_id
+    return self.province.country_id unless self.province_id.nil?
+    return nil
+  end
+  
+  def country_id= country_id
+  end
+  
+  def parent_category_id
+    return self.category.parent_id unless self.category_id.nil?
+    return nil
+  end
+  
+  def parent_category_id= p_cat_id
+  end
     
   ### slug
   extend FriendlyId
@@ -111,5 +130,7 @@ class Accommodation < ActiveRecord::Base
   end
   ### fin: mapas
   ####################################################
+  
+  
 
 end

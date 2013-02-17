@@ -12,4 +12,16 @@ class Province < ActiveRecord::Base
   
   ### fin: VALIDACIONES
   #################################################
+  
+  ### SCOPES
+  ##################################################
+  default_scope order("name asc")
+  scope :with_country_id, lambda {|country_id| where(:country_id => country_id)}
+  scope :siblings_including_self, lambda {|province_id| 
+    with_country_id(find(province_id).country_id) unless 
+      province_id.nil? or not exists? province_id
+  }
+  ### Fin: SCOPES
+  ##################################################
+  
 end

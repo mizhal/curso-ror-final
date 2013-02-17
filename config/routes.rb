@@ -8,6 +8,7 @@ Proyecto::Application.routes.draw do
     
     collection do
       get :global_map
+      get :provinces
     end
   end
   
