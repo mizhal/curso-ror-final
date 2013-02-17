@@ -63,4 +63,9 @@ class CategoriesController < ApplicationController
 
     redirect_to categories_url
   end
+  
+  def subcategories
+    categories = Category.subcategories_of(params[:parent_id]).select("id, name")
+    render json: categories
+  end
 end
