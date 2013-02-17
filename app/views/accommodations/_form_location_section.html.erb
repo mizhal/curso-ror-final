@@ -7,13 +7,15 @@
 	        <%= f.select :country_id, 
 	        	@countries.map{|m|[m.name, m.id]}, 
 	        	{}, 
-	        	:class => 'input-block-level combo-gmaps-feedback-country',
-	        	:id => "country-combo"
+	        	:class => 'input-block-level gmaps-feedback-input',
+	        	:id => "country-combo",
+	       		:data => { :gmapsfield => 'country'}
 	        %>
 	        <%= f.select :province_id, 
 	        	@provinces.map{|p|[p.name, p.id]}, 
 	        	{},
-	        	:class => 'input-block-level combo-gmaps-feedback-administrative-unit' 
+	        	:class => 'input-block-level gmaps-feedback-input',
+	        	:data => { :gmapsfield => 'administrative-unit'}
 	        %>
 	    </div>
 	  </div>
@@ -21,14 +23,20 @@
 	  <div class="control-group">
 	    <%= f.label :city, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_field :city, :class => 'text_field input-gmaps-feedback-city' %>
+	      <%= f.text_field :city, 
+	      	:class => 'text_field gmaps-feedback-input',
+	      	:data => { :gmapsfield => 'city'}
+	      	 %>
 	    </div>
 	  </div>
 	  
 	  <div class="control-group">
 	    <%= f.label :address, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_field :address, :class => 'text_field input-gmaps-feedback-address' %>
+	      <%= f.text_field :address, 
+	      	:class => 'text_field gmaps-feedback-input',
+	      	:data => { :gmapsfield => 'address'}
+	      	%>
 	    </div>
 	  </div>
 	  
@@ -42,14 +50,20 @@
 	  <div class="control-group">
 	    <%= f.label :latitude, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :latitude, :class => 'number_field input-gmaps-feedback-latitude' %>
+	      <%= f.number_field :latitude, 
+	      	:class => 'number_field gmaps-feedback-input',
+	      	:data => { :gmapsfield => 'latitude'} 
+	      %>
 	    </div>
 	  </div>
 	
 	  <div class="control-group">
 	    <%= f.label :longitude, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :longitude, :class => 'number_field input-gmaps-feedback-longitude' %>
+	      <%= f.number_field :longitude, 
+	      	:class => 'number_field gmaps-feedback-input',
+	      	:data => { :gmapsfield => 'longitude'} 
+	      %>
 	    </div>
 	  </div>
 

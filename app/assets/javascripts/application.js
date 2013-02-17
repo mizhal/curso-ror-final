@@ -21,7 +21,7 @@
  * en una entrada
  */
 function avoid_enter_key_in_forms(){
-	$('form input').keydown(function(event){
+	$('form *').keydown(function(event){
 		if(event.keyCode == 13) {
 	    	event.preventDefault();
 	    	$(this).change();
@@ -42,210 +42,6 @@ function render_template(template_div /* :NodoJQuery */,
 	}
 	return text
 }
-
-/***
- * 
- */
-function get_full_address(section /* :jQueryNode*/){
-	return section.find('.input-gmaps-feedback-address').val() + " " + 
-		section.find('.input-gmaps-feedback-city').val() + " " +
-		section.find('.combo-gmaps-feedback-administrative-unit').children('option:selected').text() + " " +
-		section.find('.combo-gmaps-feedback-country').children('option:selected').text()
-}
-
-/***
- * 
- */
-function GMapsSyncedFields(){
-	this.section = null;	
-}
-
-GMapsSyncedFields.prototype = {
-	
-	update_lat_lng_fields: function(position){
-		this.section.find('.input-gmaps-feedback-latitude')
-			.val(position.lat());
-		this.section.find('.input-gmaps-feedback-longitude')
-			.val(position.lng());	
-		
-	},
-	
-	setup: function(){
-		this.section = $('div.location-section');
-		this.marker = this.get_current_marker();
-		
-		// sincroniza marcador con las inputs de latitud y longitud
-		this.bind_marker_to_inputs();
-		
-		var self = this;
-		// sincroniza la input de longitud con el marcador
-		this.section.
-			find('.input-gmaps-feedback-longitude').
-			on("change",function(){
-				self.update_marker_lng($(this).val());	
-			});
-		// sincroniza la input de latitud con el marcador
-		this.section.
-			find('.input-gmaps-feedback-latitude').
-			on("change",function(){
-				self.update_marker_lat($(this).val());	
-			});
-	},
-	
-	get_current_marker: function(){
-		if(Gmaps.map.markers.length > 0)
-			return Gmaps.map.markers[0].serviceObject;
-		else
-			return new google.maps.Marker({map: map});
-	},
-	
-	update_marker_lng: function(new_lng){
-		var position = this.marker.getPosition();
-		var new_position = new google.maps.LatLng(position.lat(), new_lng, false);
-		
-		marker.setPosition(new_position);
-		map.setCenter(new_position);
-	},
-	
-	update_marker_lat: function(new_lat){
-		var position = this.marker.getPosition();
-		var new_position = new google.maps.LatLng(new_lat, position.lng(), false);
-		
-		marker.setPosition(new_position);
-		map.setCenter(new_position);
-	},
-	
-	bind_marker_to_inputs: function(){
-		// sincroniza el marker con las entradas
-		var self = this;
-		google.maps.event.addListener(
-			this.marker, 
-			'dragend', 
-			function(pos) {
-				self.update_lat_lng_fields(pos.latLng);
-			}
-		);
-	},
-	
-	geocode: function(){
-		var self = this;
-		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode(
-			{'address': this.get_full_address() }, 
-			/** onFinish Callback */
-			function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var pos = results[0].geometry.location;
-					map.setCenter(pos);
-					marker.setPosition(pos);
-					map.setZoom(16);
-					self.update_lat_lng_fields(section, pos);
-				} else {
-					self.section.find("gmaps-errors-output")
-						.html("Geocoding failed (status: "+ status +")");
-				}
-			});
-	},
-	
-	get_full_address: function(){
-		return this.section.find('.input-gmaps-feedback-address').val() + ", " + 
-			this.section.find('.input-gmaps-feedback-city').val() + ", " +
-			this.section.find('.combo-gmaps-feedback-administrative-unit').children('option:selected').text() + " region=es"
-	}
-}
-
-/***
- * 
- * Cambia el valor de los campos de entrada latitud y longitud
- * a una posicion obtenida de la API de google maps.
- * Permite sincronizar el marker con estos campos si es que 
- * cambia el marker
- * 
- */
-function update_lat_lng_fields(section /* :jQueryNode */, position /* :google.maps.LatLng */){
-	section.find('.input-gmaps-feedback-latitude')
-		.val(position.lat());
-	section.find('.input-gmaps-feedback-longitude')
-		.val(position.lng());	
-}
-
-/****
- * 
- * Descripcion:
- * 
- * Cuando el usuario mueve el marcador a mano, se recalculan
- * los campos "latitude" y "longitude" y se establecen a los
- * valores correctos, consistentes con la posicion del marcador
- * 
- * Cuando cambian los campos "city" o "address" el marker se ubica
- * de nuevo en el lugar apropiado
- * 
- * Cuando cambian los campos "latitude" y "longitude" también el
- * marker se reubica
- * 
- */
-function setup_gmaps_inputs_feedback(){
-	
-	/* es necesario esperar a que carge el mapa, tiempo despues de cargada
-	 la pagina */
-	Gmaps.map.callback = function(){
-
-		var section = $('div.location-section');
-		var map = Gmaps.map.serviceObject;
-		var marker = null;
-		if(Gmaps.map.markers.length > 0)
-			marker = Gmaps.map.markers[0].serviceObject;
-		else
-			marker = new google.maps.Marker({map: map});
-		
-		// sincroniza el marker con las entradas
-		google.maps.event.addListener(
-			marker, 
-			'dragend', 
-			function(pos) {
-				update_lat_lng_fields(section, pos.latLng);
-			}
-		);
-		
-		// sincroniza las entradas con el marker
-		section.find('.input-gmaps-feedback-longitude')
-			.on("change",function(){
-				var position = marker.getPosition();
-				var new_position = new google.maps.LatLng(position.lat(), $(this).val(), false);
-				
-				marker.setPosition(new_position);
-				map.setCenter(new_position);
-			});
-		section.find('.input-gmaps-feedback-latitude')
-			.on("change",function(){
-				var position = marker.getPosition();
-				var new_position = new google.maps.LatLng($(this).val(), position.lng(), false);
-				marker.setPosition(new_position);
-				map.setCenter(new_position);
-			});
-		section.find('.input-gmaps-feedback-address')
-			.on("change",function(){
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode(
-					{'address': get_full_address(section) }, 
-					/** onFinish Callback */
-					function(results, status) {
-	      				if (status == google.maps.GeocoderStatus.OK) {
-	      					var pos = results[0].geometry.location;
-	        				map.setCenter(pos);
-	        				marker.setPosition(pos);
-	        				map.setZoom(16);
-	        				update_lat_lng_fields(section, pos);
-	      				} else {
-	        				section.find("gmaps-errors-output")
-	        					.html("Geocoding failed (status: "+ status +")");
-	      				}
-	      			}
-	      		);
-			});			
-	}
-}
-
 
 /**
  * Clase BoundCombos
@@ -400,7 +196,9 @@ $(document).ready(function(){
 	
 	//// feedback de latitud, longitud y direccion en el formulario de Accommodation
 	if($('div.location-section div.location-map').length > 0) { //test: existe el div asociado a la funcionalidad
-		setup_gmaps_inputs_feedback();
+		//setup_gmaps_inputs_feedback();
+		var gmaps_sync = new GMapsSyncedFields();
+		gmaps_sync.setup();
 	}
 	
 	// combo de categorias

@@ -331,11 +331,16 @@ Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodati
 *** DONE layout de 12 para el mapa general
 *** TODO configurar el marcador y la sombra de gmaps
 En el modelo accommodation.rb 
-*** TODO agrupar la funcionalidad de feedback con gmaps en una clase JS
+*** FOCUS agrupar la funcionalidad de feedback con gmaps en una clase JS
 en application.js
 Por el momento hay una parte escrita como clase, pero falta portar otra parte de código. Para que siga funcionando he mantenido lo que tenía escrito como funciones independientes.
+
+Rediseño:
+
+Las inputs/select que tienen feedback con el mapa tendrán la clase 'gmaps-feedback-input', y un atributo "data-gmapsfield" que indicará que campo de datos realmente contienen.
+Se asignará a todos ellos el evento onChange que desencadene la modificación del marker en el mapa (asimismo se actualizarán cuando se mueva el marker si es posible)
 *** DONE combo de categorias en accommodation#_form
-*** TODO combo de paises y provincias en accommodation#_form
+*** DONE combo de paises y provincias en accommodation#_form
 *** TODO buscador de alojamientos
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
 *** TODO navegador de tipologías
