@@ -7,22 +7,12 @@ class AccommodationsController < ApplicationController
   # GET /accommodations.json
   def index
     @accommodations = Accommodation.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @accommodations }
-    end
   end
 
   # GET /accommodations/1
   # GET /accommodations/1.json
   def show
     @accommodation = Accommodation.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @accommodation }
-    end
   end
 
   # GET /accommodations/new
@@ -33,11 +23,6 @@ class AccommodationsController < ApplicationController
     
     2.times do 
       @accommodation.room_types.build
-    end
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @accommodation }
     end
   end
 
@@ -57,16 +42,11 @@ class AccommodationsController < ApplicationController
     @accommodation = Accommodation.new(params[:accommodation])
     @accommodation.landlord = current_user unless can? :manage, Accommodation
 
-    respond_to do |format|
-      if @accommodation.save
-        format.html { redirect_to @accommodation, notice: 'Accommodation was successfully created.' }
-        format.json { render json: @accommodation, status: :created, location: @accommodation }
-      else
-        format.html { 
-          load_combo_data
-          render action: "new" }
-        format.json { render json: @accommodation.errors, status: :unprocessable_entity }
-      end
+    if @accommodation.save
+      redirect_to @accommodation, notice: 'Accommodation was successfully created.'
+    else
+      load_combo_data
+      render action: "new" 
     end
   end
 
@@ -75,16 +55,11 @@ class AccommodationsController < ApplicationController
   def update
     @accommodation = Accommodation.find(params[:id])
 
-    respond_to do |format|
-      if @accommodation.update_attributes(params[:accommodation])
-        format.html { redirect_to @accommodation, notice: 'Accommodation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { 
-          load_combo_data
-          render action: "edit" }
-        format.json { render json: @accommodation.errors, status: :unprocessable_entity }
-      end
+    if @accommodation.update_attributes(params[:accommodation])
+      redirect_to @accommodation, notice: 'Accommodation was successfully updated.'
+    else
+      load_combo_data
+      render action: "edit" 
     end
   end
 
@@ -93,11 +68,6 @@ class AccommodationsController < ApplicationController
   def destroy
     @accommodation = Accommodation.find(params[:id])
     @accommodation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to accommodations_url }
-      format.json { head :no_content }
-    end
   end
   
   def global_map
@@ -105,15 +75,20 @@ class AccommodationsController < ApplicationController
       marker.infowindow render_to_string :partial => "accommodations/gmaps_infobox",
         :locals => accommodation.gmaps_custom_infobox_data
     end
-    
+    render layout: 'application'
   end
   
   private
   def load_combo_data
     @countries = Country.order("name asc")
-    @provinces = Province.all
+    @provinces = Province.order("name asc")
     @top_categories = Category.toplevel
-    @subcategories = Category.where("parent_id is not NULL")
     @landlords = User.landlords
+    unless @accommodation.category_id.nil?
+      @sibling_categories = Category.
+        siblings_including_self_of(@accommodation.category) 
+    else
+      @sibling_categories = []
+    end
   end
 end
