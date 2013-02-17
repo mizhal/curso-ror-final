@@ -22,6 +22,11 @@ class Category < ActiveRecord::Base
   
   ### scopes
   scope :toplevel, where(:parent_id => nil)
+  scope :subcategories_of, lambda{|parent_id| where(:parent_id => parent_id) unless parent_id.blank?}
+  scope :siblings_including_self_of, lambda{|subcategory| 
+      where(:parent_id => subcategory.parent_id)
+      .where("parent_id is not NULL")
+    }
     
   ### VALIDACIONES
   ###################################
@@ -45,6 +50,9 @@ class Category < ActiveRecord::Base
     self.parent_id.blank?
   end
   
+  def is_subcategory?
+    !self.parent_id.blank?
+  end
   
   def secure_set_parent_id parent_id
     ## establecer parent id si y solo si es correcto
