@@ -46,7 +46,7 @@ function render_template(template_div /* :NodoJQuery */,
 /***
  * 
  */
-function get_full_address(section){
+function get_full_address(section /* :jQueryNode*/){
 	return section.find('.input-gmaps-feedback-address').val() + " " + 
 		section.find('.input-gmaps-feedback-city').val() + " " +
 		section.find('.combo-gmaps-feedback-administrative-unit').children('option:selected').text() + " " +
@@ -162,7 +162,7 @@ GMapsSyncedFields.prototype = {
  * cambia el marker
  * 
  */
-function update_lat_lng_fields(section, position){
+function update_lat_lng_fields(section /* :jQueryNode */, position /* :google.maps.LatLng */){
 	section.find('.input-gmaps-feedback-latitude')
 		.val(position.lat());
 	section.find('.input-gmaps-feedback-longitude')
@@ -246,36 +246,79 @@ function setup_gmaps_inputs_feedback(){
 	}
 }
 
-/***
+
+/**
+ * Clase BoundCombos
+ * 
+ * Permite vincular dos combos y una llamada AJAX de tal manera
+ * que al cambiar el valor del primer combo las opciones del segundo
+ * se modifican con el resultado de la llamada AJAX parametrizada por
+ * el valor del primer combo.
+ * 
+ * Se espera como resultado de la llamada AJAX un array de objetos de
+ * tipo "{id:?, name:?}" formateado en JSON.
+ * 
+ * 
+ * Estructuras de datos de parametros:
+ *  options: BoundComboDict:
+ * 		- parent :String
+ * 			Selector del combo padre, del que se toma el valor de referencia
+ * 		- param_name :String
+ * 			Nombre del parametro con el que se le envia el valor de referencia 
+ * 				al servidor mediante AJAX
+ * 		- child :String
+ * 			Selector del combo hijo
+ * 		- server_action: String
+ * 			Path de la accion del servidor que se llamara mediante ajax (siempre GET)
  * 
  */
-function update_subcategories_combo(){
-	$.ajax(
-		{		
-			url: '/categories/subcategories',
-			type: 'GET',
-			data: {
-				parent_id: $(this).val()
-		}
-	}).done(function(response){
-		var select = $('form div.name-section select[name="accommodation[category_id]"]');
-		select.html("");
-		for(var i = 0; i < response.length; i++){
-			select.append(
-				'<option value="'+ response[i].id + '">' + response[i].name + "</option>"
-			);
-		}
-	}).fail(function(){
-		alert("Error requesting sub-categories");
-	});
+function BoundCombos(options /* :BoundComboDict */){
+	this.options = options	
 }
 
-/***
- * 
- */
-function setup_update_subcategories_combo(){
-	$("form div.name-section select#toplevel-categories").on("change", 
-		update_subcategories_combo);
+BoundCombos.prototype = {
+	setup: function(){
+		var self = this;
+		$(this.options.parent).on(
+			"change", 
+			function(){	
+				self.update($(this).val());
+			}
+		);
+		/* se invoca por primera vez debido a que los navegadores
+		 * conservan los valores de los campos al recargar, por lo que
+		 * no es esperable que se quede en el primer valor del combo
+		 * de categorías padres
+		 */
+		if(! $(this.options.child).val())
+			$(this.options.parent).change();
+	},
+	update: function(reference_value /* :String U Integer U Float */){
+		var self = this;
+		
+		data = {}
+		data[this.options.param_name] = reference_value
+		
+		var request_params = {
+			url: this.options.server_action,
+			type: 'GET',
+			data: data			
+		}
+		
+		$.ajax(request_params).
+			done(function(response){
+				var child_combo = $(self.options.child);
+				child_combo.html("");
+				for(var i = 0; i < response.length; i++){
+					child_combo.append(
+						'<option value="'+ response[i].id + '">' + response[i].name + "</option>"
+					);
+				}
+			}).
+			fail(function(){
+				alert("Error requesting sub-combo data");
+			});
+	}
 }
 
 
@@ -304,11 +347,11 @@ function setup_foldable_fieldsets(){
  * 
  */
 function setup_add_more_nested_fields(
-		section_selector, 
-		button_selector, 
-		template_selector,
-		nested_forms_list_selector,
-		nested_form_unit_selector
+		section_selector /* :String */, 
+		button_selector /* :String */, 
+		template_selector /* :String */,
+		nested_forms_list_selector /* :String */,
+		nested_form_unit_selector /* :String */
 	){
 	$( section_selector + " " + button_selector).on("click", function(){
 		var section = $(this).closest(section_selector)
@@ -361,13 +404,23 @@ $(document).ready(function(){
 	
 	// combo de categorias
 	if($("div.name-section select#toplevel-categories").length > 0){
-		setup_update_subcategories_combo();
-		/* se invoca por primera vez debido a que los navegadores
-		 * conservan los valores de los campos al recargar, por lo que
-		 * no es esperable que se quede en el primer valor del combo
-		 * de categorías padres
-		 */
-		if(! $('form div.name-section select[name="accommodation[category_id]"]').val())
-			$("div.name-section select#toplevel-categories").change();
+		var bound_combos = new BoundCombos({
+			parent: "div.name-section select#toplevel-categories",
+			child: 'form div.name-section select[name="accommodation[category_id]"]',
+			param_name: "parent_id",
+			server_action: "/categories/subcategories"
+		});
+		bound_combos.setup();
+	}
+	
+	// combo de provincias
+	if($("div.name-section select#toplevel-categories").length > 0){
+		var bound_combos = new BoundCombos({
+			parent: "div.name-section select#toplevel-categories",
+			child: 'form div.name-section select[name="accommodation[category_id]"]',
+			param_name: "parent_id",
+			server_action: "/categories/subcategories"
+		});
+		bound_combos.setup();
 	}
 });
