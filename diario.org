@@ -327,6 +327,21 @@ Adaptar el formulario a los estilos dados en las muestras
 **** DONE crear relacion y aceptar nested attributes
 **** DONE adaptar el formulario de oferta para aceptar imagenes
 Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodations
+*** DONE ajustar mapas al 100% del contenedor
+*** DONE layout de 12 para el mapa general
+*** TODO configurar el marcador y la sombra de gmaps
+En el modelo accommodation.rb 
+*** TODO agrupar la funcionalidad de feedback con gmaps en una clase JS
+en application.js
+Por el momento hay una parte escrita como clase, pero falta portar otra parte de código. Para que siga funcionando he mantenido lo que tenía escrito como funciones independientes.
+*** DONE combo de categorias en accommodation#_form
+*** TODO combo de paises y provincias en accommodation#_form
+*** TODO buscador de alojamientos
+Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
+*** TODO navegador de tipologías
+Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
+*** TODO buscador de ofertas
+*** TODO página principal
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
 Ver lo que conviene. 
@@ -342,11 +357,6 @@ Excepto categorías que es árbol
 **** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno
-*** TODO buscador de alojamientos
-Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
-*** TODO navegador de tipologías
-Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
-*** TODO buscador de ofertas
 *** TODO layout público
 Barras laterales, content_for, pie de página...
 
