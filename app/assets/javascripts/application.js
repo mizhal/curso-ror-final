@@ -47,9 +47,111 @@ function render_template(template_div /* :NodoJQuery */,
  * 
  */
 function get_full_address(section){
-	return section.find('input[name="accommodation[address]"]').val() + ", " + 
-		section.find('input[name="accommodation[city]"]').val() + ", " +
-		section.find('select[name="accommodation[province_id]"]').children('option:selected').text()
+	return section.find('.input-gmaps-feedback-address').val() + " " + 
+		section.find('.input-gmaps-feedback-city').val() + " " +
+		section.find('.combo-gmaps-feedback-administrative-unit').children('option:selected').text() + " " +
+		section.find('.combo-gmaps-feedback-country').children('option:selected').text()
+}
+
+/***
+ * 
+ */
+function GMapsSyncedFields(){
+	this.section = null;	
+}
+
+GMapsSyncedFields.prototype = {
+	
+	update_lat_lng_fields: function(position){
+		this.section.find('.input-gmaps-feedback-latitude')
+			.val(position.lat());
+		this.section.find('.input-gmaps-feedback-longitude')
+			.val(position.lng());	
+		
+	},
+	
+	setup: function(){
+		this.section = $('div.location-section');
+		this.marker = this.get_current_marker();
+		
+		// sincroniza marcador con las inputs de latitud y longitud
+		this.bind_marker_to_inputs();
+		
+		var self = this;
+		// sincroniza la input de longitud con el marcador
+		this.section.
+			find('.input-gmaps-feedback-longitude').
+			on("change",function(){
+				self.update_marker_lng($(this).val());	
+			});
+		// sincroniza la input de latitud con el marcador
+		this.section.
+			find('.input-gmaps-feedback-latitude').
+			on("change",function(){
+				self.update_marker_lat($(this).val());	
+			});
+	},
+	
+	get_current_marker: function(){
+		if(Gmaps.map.markers.length > 0)
+			return Gmaps.map.markers[0].serviceObject;
+		else
+			return new google.maps.Marker({map: map});
+	},
+	
+	update_marker_lng: function(new_lng){
+		var position = this.marker.getPosition();
+		var new_position = new google.maps.LatLng(position.lat(), new_lng, false);
+		
+		marker.setPosition(new_position);
+		map.setCenter(new_position);
+	},
+	
+	update_marker_lat: function(new_lat){
+		var position = this.marker.getPosition();
+		var new_position = new google.maps.LatLng(new_lat, position.lng(), false);
+		
+		marker.setPosition(new_position);
+		map.setCenter(new_position);
+	},
+	
+	bind_marker_to_inputs: function(){
+		// sincroniza el marker con las entradas
+		var self = this;
+		google.maps.event.addListener(
+			this.marker, 
+			'dragend', 
+			function(pos) {
+				self.update_lat_lng_fields(pos.latLng);
+			}
+		);
+	},
+	
+	geocode: function(){
+		var self = this;
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode(
+			{'address': this.get_full_address() }, 
+			/** onFinish Callback */
+			function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var pos = results[0].geometry.location;
+					map.setCenter(pos);
+					marker.setPosition(pos);
+					map.setZoom(16);
+					self.update_lat_lng_fields(section, pos);
+				} else {
+					self.section.find("gmaps-errors-output")
+						.html("Geocoding failed (status: "+ status +")");
+				}
+			});
+	},
+	
+	get_full_address: function(){
+		return this.section.find('.input-gmaps-feedback-address').val() + ", " + 
+			this.section.find('.input-gmaps-feedback-city').val() + ", " +
+			this.section.find('.combo-gmaps-feedback-administrative-unit').children('option:selected').text() + " region=es"
+	}
 }
 
 /***
@@ -61,9 +163,9 @@ function get_full_address(section){
  * 
  */
 function update_lat_lng_fields(section, position){
-	section.find('input[name="accommodation[latitude]"]')
+	section.find('.input-gmaps-feedback-latitude')
 		.val(position.lat());
-	section.find('input[name="accommodation[longitude]"]')
+	section.find('.input-gmaps-feedback-longitude')
 		.val(position.lng());	
 }
 
@@ -106,7 +208,7 @@ function setup_gmaps_inputs_feedback(){
 		);
 		
 		// sincroniza las entradas con el marker
-		section.find('input[name="accommodation[longitude]"]')
+		section.find('.input-gmaps-feedback-longitude')
 			.on("change",function(){
 				var position = marker.getPosition();
 				var new_position = new google.maps.LatLng(position.lat(), $(this).val(), false);
@@ -114,14 +216,14 @@ function setup_gmaps_inputs_feedback(){
 				marker.setPosition(new_position);
 				map.setCenter(new_position);
 			});
-		section.find('input[name="accommodation[latitude]"]')
+		section.find('.input-gmaps-feedback-latitude')
 			.on("change",function(){
 				var position = marker.getPosition();
 				var new_position = new google.maps.LatLng($(this).val(), position.lng(), false);
 				marker.setPosition(new_position);
 				map.setCenter(new_position);
 			});
-		section.find('input[name="accommodation[address]"]')
+		section.find('.input-gmaps-feedback-address')
 			.on("change",function(){
 				var geocoder = new google.maps.Geocoder();
 				geocoder.geocode(
