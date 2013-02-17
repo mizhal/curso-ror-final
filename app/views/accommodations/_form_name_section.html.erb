@@ -4,7 +4,7 @@
 	  <div class="control-group">
 	    <%= f.label :name, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_field :name, :class => 'text_field' %>
+	      <%= f.text_field :name, :class => 'text_field input-block-level' %>
 	    </div>
 	  </div>
 	
@@ -14,8 +14,12 @@
 	      <%= f.select :parent_category_id, 
 	      	@top_categories.map{|c| [c.name, c.id]},
 	      	{}, 
-	      	:id => "toplevel-categories" %>
-	      <%= f.select :category_id, @sibling_categories.map{|c| [c.name, c.id]} %>
+	      	:id => "toplevel-categories",
+	      	:class => "input-block-level" %>
+	      <%= f.select :category_id, 
+	      	@sibling_categories.map{|c| [c.name, c.id]},
+	      	{},
+	      	:class => "input-block-level" %>
 	    </div>
 	  </div>
 	</fieldset>

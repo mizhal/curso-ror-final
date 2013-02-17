@@ -331,7 +331,7 @@ Extraer el partial de imagenes a otra carpeta de vistas diferente de accommodati
 *** DONE layout de 12 para el mapa general
 *** TODO configurar el marcador y la sombra de gmaps
 En el modelo accommodation.rb 
-*** FOCUS agrupar la funcionalidad de feedback con gmaps en una clase JS
+*** DONE agrupar la funcionalidad de feedback con gmaps en una clase JS
 en application.js
 Por el momento hay una parte escrita como clase, pero falta portar otra parte de código. Para que siga funcionando he mantenido lo que tenía escrito como funciones independientes.
 

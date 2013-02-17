@@ -5,14 +5,17 @@
 	  <div class="control-group">
 	    <%= f.label :name, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_field :name %>
+	      <%= f.text_field :name, 
+	      	:class => "input-block-level" %>
 	    </div>
 	  </div>
 	  
 	  <div class="control-group">
 	    <%= f.label :description, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_area :description, :rows => 3 %>
+	      <%= f.text_area :description, 
+	      	:rows => 3,
+	      	:class => "input-block-level" %>
 	    </div>
 	  </div>
 	  
@@ -29,14 +32,16 @@
 	    	t(".change_image"),
 	    	:class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.file_field :image %>
+	      <%= f.file_field :image,
+	      	:class => "input-block-level" %>
 	    </div>
 	  </div>
 	  <% else %>
 	  <div class="control-group">
 	    <%= f.label :image, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.file_field :image %>
+	      <%= f.file_field :image,
+	      	:class => "input-block-level" %>
 	    </div>
 	  </div>
 	  <% end %>

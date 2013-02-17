@@ -24,7 +24,7 @@
 	    <%= f.label :city, :class => 'control-label' %>
 	    <div class="controls">
 	      <%= f.text_field :city, 
-	      	:class => 'text_field gmaps-feedback-input',
+	      	:class => 'text_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'city'}
 	      	 %>
 	    </div>
@@ -34,7 +34,7 @@
 	    <%= f.label :address, :class => 'control-label' %>
 	    <div class="controls">
 	      <%= f.text_field :address, 
-	      	:class => 'text_field gmaps-feedback-input',
+	      	:class => 'text_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'address'}
 	      	%>
 	    </div>
@@ -43,7 +43,8 @@
 	  <div class="control-group">
 	    <%= f.label :postal_code, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :postal_code, :class => 'number_field' %>
+	      <%= f.number_field :postal_code, 
+	      	:class => 'number_field input-block-level' %>
 	    </div>
 	  </div>
 	  
@@ -51,7 +52,7 @@
 	    <%= f.label :latitude, :class => 'control-label' %>
 	    <div class="controls">
 	      <%= f.number_field :latitude, 
-	      	:class => 'number_field gmaps-feedback-input',
+	      	:class => 'number_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'latitude'} 
 	      %>
 	    </div>
@@ -61,7 +62,7 @@
 	    <%= f.label :longitude, :class => 'control-label' %>
 	    <div class="controls">
 	      <%= f.number_field :longitude, 
-	      	:class => 'number_field gmaps-feedback-input',
+	      	:class => 'number_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'longitude'} 
 	      %>
 	    </div>
