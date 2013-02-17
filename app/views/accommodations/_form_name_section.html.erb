@@ -11,8 +11,14 @@
 	  <div class="control-group">
 	    <%= f.label :category_id, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= select nil, nil, @top_categories.map{|c| [c.name, c.id]} %>
-	      <%= f.select :category_id, @subcategories.map{|c| [c.name, c.id]} %>
+	      <%
+	      	parent_category = nil 
+	      	parent_category = @accommodation.category.parent_id unless @accommodation.category_id.nil? 
+	      %>
+	      <%= select_tag nil, 
+	      	options_for_select(@top_categories.map{|c| [c.name, c.id]}, parent_category), 
+	      	:id => "toplevel-categories" %>
+	      <%= f.select :category_id, @sibling_categories.map{|c| [c.name, c.id]} %>
 	    </div>
 	  </div>
 	</fieldset>
