@@ -22,7 +22,11 @@ Proyecto::Application.routes.draw do
   
   resources :photos
 
-  resources :categories
+  resources :categories do
+    collection do
+      get :subcategories
+    end
+  end
 
   resources :users
   
