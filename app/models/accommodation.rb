@@ -85,16 +85,20 @@ class Accommodation < ActiveRecord::Base
   end
   
   def gmaps4rails_marker_picture
-    if self.category.icon.nil?
+    if self.category.icon.file?
       icon = self.category.icon.url(:icon)
     else
       icon = "http://maps.google.com/mapfiles/ms/micons/purple.png"
     end
     
     return { 
-      "picture" => icon ,
+      "picture" => icon,
       "width" => 32, 
-      "height" => 32
+      "height" => 32,
+      "marker_anchor" => [16, 32 + 12],
+      "shadow_picture" => "http://maps.google.com/mapfiles/ms/micons/purple.png",
+      "shadow_width" => 32, 
+      "shadow_height" => 32
     }
   end
   
