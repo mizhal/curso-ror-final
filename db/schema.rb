@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(:version => 20130214083827) do
   create_table "accommodations", :force => true do |t|
     t.string   "name"
     t.text     "brief_description"
+    t.text     "rooms_description"
+    t.string   "lemma"
     t.text     "description"
     t.integer  "province_id"
     t.string   "city"

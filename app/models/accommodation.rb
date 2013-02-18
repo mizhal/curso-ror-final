@@ -1,5 +1,7 @@
 class Accommodation < ActiveRecord::Base
   attr_accessible :address, 
+    :lemma,
+    :rooms_description,
     :brief_description, 
     :category_id, 
     :city, 
@@ -72,6 +74,8 @@ class Accommodation < ActiveRecord::Base
   
   validates :address, :presence => true
   validates :brief_description, :presence => true
+  validates :lemma, :presence => true
+  validates :rooms_description, :presence => true
   validates :category_id, :presence => true
   validates :city, :presence => true
   validates :description, :presence => true
@@ -131,6 +135,18 @@ class Accommodation < ActiveRecord::Base
   
   def full_address
     """#{self.address} #{self.postal_code} #{self.city} #{self.province.name}"""
+  end
+  
+  def parent_category
+    self.category.parent
+  end
+  
+  def summary_first_line
+    self.summary.split(/\n+/, 2).first
+  end
+  
+  def summary_rest
+    self.summary.split(/\n+/, 2).second    
   end
 
   ### Fin: METODOS

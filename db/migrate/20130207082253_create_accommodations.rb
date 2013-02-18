@@ -3,6 +3,8 @@ class CreateAccommodations < ActiveRecord::Migration
     create_table :accommodations do |t|
       t.string :name
       t.text :brief_description
+      t.text :rooms_description
+      t.string :lemma
       t.text :description
       t.integer :province_id
       t.string :city

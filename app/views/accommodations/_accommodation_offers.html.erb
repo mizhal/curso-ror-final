@@ -1,0 +1,10 @@
+<div class="accommodation-offers">
+	<h1><%=t '.found_offers'%></h1>
+	<div class="offers">
+		<% accommodation.offers.each{|offer|%>
+			<div class="offer">
+				<%= offer.name %>
+			</div>
+		<% } %>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<article class="accommodation-location">
+	<header>
+		<h1><%= t(".localization")%></h1>
+	</header>
+	<div class="google-map">
+  	<%= gmaps(
+	    	:markers => {
+	    		:data => accommodation.to_gmaps4rails, 
+	    		:options => {draggable: false}
+	    		},
+	    	:map_options => { :auto_zoom => false, :zoom => 16}
+		  )
+	%>
+	</div>
+	<section class="contact-data">
+		<header>
+			<h2><%= t(".contact_data")%></h2>
+		</header>
+		<section>
+			<p>
+				<label><%=t '.phone'%>:</label>
+				<span class="phone"><%= accommodation.phone %></span>
+			</p>
+			<p>
+				<label><%=t '.email'%>:</label>
+				<span class="email">
+					<%= link_to accommodation.email,
+						"mailto://#{@accommodation.email}" %>
+				</span>
+			</p>
+			<p class="">
+				<label><%=t '.web'%>:</label>
+				<span class="web">
+					<%= link_to accommodation.web, 
+						accommodation.web %>
+				</span>
+			</p>
+		</section>
+		<section>
+			<p class="name"><%= accommodation.name %></p>
+			<p>
+				<%= accommodation.address%></br>
+				<%= accommodation.postal_code%></br>
+				<%= "#{accommodation.city} (#{accommodation.province.name})" %>
+			</p>				
+		</section>
+	</section>
+</div>

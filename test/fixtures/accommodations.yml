@@ -2,7 +2,9 @@
 
 el_rosal:
   name: El Rosal
-  brief_description: Calidad en el servicio
+  lemma: Calidad en el servicio
+  brief_description: Calidad en el servicio y mas
+  rooms_description: Las habitaciones estan orientadas al este
   description: La casa del rosal era de un conde que...
   province: asturias
   city: Tineo
