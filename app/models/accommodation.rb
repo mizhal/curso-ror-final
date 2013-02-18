@@ -96,18 +96,22 @@ class Accommodation < ActiveRecord::Base
   
   ### SCOPES
   #########################################################
-  default_scope order("name asc").where(:published => true)
+  default_scope order("name asc")
   scope :published, where(:published => true)
   scope :unpublished, unscoped.where(:published => false)
   scope :featured, where(:featured => true)
-  scope :home_page, featured.order("created_at desc").limit(8)
+  scope :home_page, published.featured.order("created_at desc").limit(8)
   
-  scope :from_province, lambda {|province_id| where(:province_id => province_id) unless province_id.nil? }
+  scope :published_state, lambda {|state| where(:published => state) unless state.blank?}
+  scope :featured_state, lambda {|state| where(:featured => state) unless state.blank?}
+  
+  scope :from_province, lambda {|province_id| where(:province_id => province_id) unless province_id.blank? }
   scope :name_contains, lambda {|name| where("name like ?", "%#{name}%") unless name.blank?}
   scope :with_parent_category, lambda {|parent_category_id| 
     joins(:category).where("categories.parent_id" => parent_category_id) unless parent_category_id.blank?
   }
   scope :with_category, lambda {|category_id| where(:category_id => category_id) unless category_id.blank?}
+  scope :with_landlord, lambda {|landlord_id| where(:landlord_id => landlord_id) unless landlord_id.blank?}
   
   ### Fin: SCOPES
   #########################################################  
@@ -123,6 +127,10 @@ class Accommodation < ActiveRecord::Base
   def main_photo cut
     return self.photos.first.image.url(cut) unless self.photos.empty?
     return nil
+  end
+  
+  def full_address
+    """#{self.address} #{self.postal_code} #{self.city} #{self.province.name}"""
   end
 
   ### Fin: METODOS

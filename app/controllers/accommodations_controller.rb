@@ -6,7 +6,13 @@ class AccommodationsController < ApplicationController
   # GET /accommodations
   # GET /accommodations.json
   def index
-    @accommodations = Accommodation.unscoped
+    @accommodations = Accommodation
+      .published_state(params[:published])
+      .featured_state(params[:featured])
+      .name_contains(params[:name_contains])
+      .with_landlord(params[:landlord_id])
+      .from_province(params[:province_id])
+      .with_parent_category(params[:parent_category_id])
   end
 
   # GET /accommodations/1
@@ -84,6 +90,7 @@ class AccommodationsController < ApplicationController
   
   def public_index
     @accommodations = Accommodation
+      .published
       .with_parent_category(params[:parent_category_id])
       .with_category(params[:category_id])
       .from_province(params[:province_id])
@@ -95,6 +102,58 @@ class AccommodationsController < ApplicationController
     @accommodations = Accommodation.home_page
     
     render :layout => 'application'
+  end
+  
+  def publish
+    accommodation = Accommodation.unpublished.find params[:id]
+    accommodation.published = true
+    
+    if accommodation.save
+      flash[:notice] = t("controllers.accommodations.publish.publication_successful")
+    else
+      flash[:error] = t("controllers.accommodations.publish.publication_failed")
+    end
+    
+    redirect_to accommodations_path
+  end
+
+  def unpublish
+    accommodation = Accommodation.published.find params[:id]
+    accommodation.published = false
+    
+    if accommodation.save
+      flash[:notice] = t("controllers.accommodations.publish.unpublication_successful")
+    else
+      flash[:error] = t("controllers.accommodations.publish.unpublication_failed")
+    end
+    
+    redirect_to accommodations_path
+  end
+  
+  def feature
+    accommodation = Accommodation.published.find params[:id]
+    accommodation.featured = true
+    
+    if accommodation.save
+      flash[:notice] = t("controllers.accommodations.publish.setting_featured_successful")
+    else
+      flash[:error] = t("controllers.accommodations.publish.setting_featured_failed")
+    end
+    
+    redirect_to accommodations_path
+  end
+
+  def unfeature
+    accommodation = Accommodation.published.find params[:id]
+    accommodation.featured = false
+    
+    if accommodation.save
+      flash[:notice] = t("controllers.accommodations.publish.unsetting_featured_successful")
+    else
+      flash[:error] = t("controllers.accommodations.publish.unsetting_featured_failed")
+    end
+    
+    redirect_to accommodations_path
   end
   
   ##

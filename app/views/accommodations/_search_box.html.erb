@@ -1,0 +1,50 @@
+	<div class="accommodation-search-box">
+		<%= form_tag action, :method => :get do %>	
+			<div>
+				<%= text_field_tag :name_contains, 
+					nil,
+					:class => "input-block-level",
+					:placeholder => t(".text_to_search", 
+						:default => "texto a buscar...")
+				 %>
+			</div>
+		
+			<div class="two-columns">
+				<%= select_tag :province_id,
+					options_for_select(provinces.map{|p| [p.name, p.id]}),
+					:class => "input-block-level",
+					:prompt => t(".province",
+						:default => "provincia...")
+				%>
+			</div>
+			<div class="two-columns">
+				<%= select_tag :parent_category_id, 
+					options_for_select(categories.map{|c| [c.name, c.id]}),
+					:class => "input-block-level",
+					:prompt => t(".type",
+						:default => "tipología...")
+				%>
+			</div>
+			<div class="separator"></div>
+			
+			<% if can? :manage, Accommodation %>
+			<div>
+				<%= select_tag :landlord_id, 
+					options_for_select(landlords.map{|l| [l.name, l.id]}),
+					:class => "input-block-level",
+					:prompt => t(".landlord", 
+						:default => "seleccionar propietario...")
+				%>
+			</div>
+			<% end %>
+			
+			<div>
+				<%= submit_tag t(
+						".search_accommodations",
+						:default=>"Buscar alojamientos"
+					),
+					:class => "btn btn-success btn-block" %>
+			</div>
+		<% end %>
+	</div>
+	

@@ -15,4 +15,17 @@ module AccommodationsHelper
     render :partial => "category_navigator",
       :locals => {categories: Category.toplevel}
   end
+  
+  def search_box action
+    landlords = []
+    landlords = User.landlords if can? :manage, Accommodation
+    
+    render :partial => "search_box",
+      :locals => {
+        action: action,
+        provinces: Province.where("true"),
+        categories: Category.toplevel,
+        landlords: landlords
+      }
+  end
 end

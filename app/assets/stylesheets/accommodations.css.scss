@@ -48,6 +48,10 @@ div.linea-abajo {
   border-bottom: 1px solid #000;
 }
 
+  li > a {
+    background-color: $grey;
+  }
+
 div.category-navigator {
   background-color: $background_brown;
   header {

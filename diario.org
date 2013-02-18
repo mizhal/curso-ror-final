@@ -344,7 +344,7 @@ Se asignará a todos ellos el evento onChange que desencadene la modificación d
 *** DONE combo de paises y provincias en accommodation#_form
 *** DONE reformar la vista de index de ofertas
 *** DONE reformar la vista de index de alojamientos
-*** FOCUS buscador de alojamientos
+*** TODO buscador de alojamientos
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
 *** TODO personalizar bootstrap
 En bootstrap_and_overrides.css.less, para los nombres de las variables buscar mediante 

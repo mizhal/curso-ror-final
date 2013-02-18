@@ -12,6 +12,13 @@ Proyecto::Application.routes.draw do
       get :public_index
       get :home
     end
+    
+    member do
+      post :publish
+      post :unpublish
+      post :feature
+      post :unfeature
+    end
   end
   
   ## only => [] no generar rutas de nivel 1 para las acciones comunes

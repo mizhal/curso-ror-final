@@ -8,10 +8,7 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:brief_description) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:province) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:postal_code) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
       <th><%= model_class.human_attribute_name(:featured) %></th>
       <th><%= model_class.human_attribute_name(:published) %></th>
       <th><%= model_class.human_attribute_name(:category) %></th>
@@ -25,10 +22,7 @@
         <td><%= link_to accommodation.name, accommodation_path(accommodation) %></td>
         <td><%= simple_format accommodation.brief_description %></td>
         <td><%= simple_format accommodation.description %></td>
-        <td><%= accommodation.province.name %></td>
-        <td><%= accommodation.city %></td>
-        <td><%= accommodation.address %></td>
-        <td><%= accommodation.postal_code %></td>
+        <td><%= simple_format accommodation.full_address %></td>
         <td><%= check_box_tag nil, nil, accommodation.featured, :readonly => true %></td>
         <td><%= check_box_tag nil, nil, accommodation.published, :readonly => true %></td>
         <td><%= print_full_category accommodation %></td>
@@ -45,6 +39,37 @@
                       :class => 'btn btn-mini btn-danger'
                       ) if can? :destroy, accommodation
           %>
+          <%= link_to( t('.publish'),
+                      publish_accommodation_path(accommodation), 
+                      :method => :post,
+                      :class => 'btn btn-mini'
+                      ) if can? :publish, accommodation and not accommodation.published
+          %>
+
+          <%= link_to( t('.unpublish'),
+                      unpublish_accommodation_path(accommodation), 
+                      :method => :post,
+                      :class => 'btn btn-mini'
+                      ) if can? :unpublish, accommodation and accommodation.published
+          %>  
+          
+          <%= link_to( t('.feature'),
+                      feature_accommodation_path(accommodation), 
+                      :method => :post,
+                      :class => 'btn btn-mini'
+                      ) if can? :unpublish, accommodation and 
+                      	accommodation.published and 
+                      	not accommodation.featured 
+          %>          
+
+          <%= link_to( t('.unfeature'),
+                      unfeature_accommodation_path(accommodation), 
+                      :method => :post,
+                      :class => 'btn btn-mini'
+                      ) if can? :unpublish, accommodation and 
+                      	accommodation.featured
+          %>        
+
         </td>
       </tr>
     <% end %>
@@ -56,3 +81,30 @@
             :class => 'btn btn-primary'
     ) if can? :create, Accommodation
 %>
+
+<%= content_for :bar do %>
+	<%= search_box accommodations_path %>
+	<div class="acc-admin-filters-navigator">
+		<nav>
+			<header>
+				<h1 class="widget-header">
+					<%= t(".filter_by_state") %>
+				</h1>
+			</header>
+			<ul class="nav nav-stacked nav-pills">
+				<li>
+					<%= link_to t(".published"), accommodations_path(:published => 1) %>
+	 			</li>
+				<li>
+					<%= link_to t(".not_published"), accommodations_path(:published => 0) %>
+				</li>
+				<li>
+					<%= link_to t(".featured"), accommodations_path(:featured => 1) %>
+				</li>
+				<li>
+					<%= link_to t(".not_featured"), accommodations_path(:featured => 0) %>
+				</li>
+			</ul>
+		</nav>
+	</div>
+<% end %>
