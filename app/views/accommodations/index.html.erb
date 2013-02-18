@@ -22,18 +22,18 @@
   <tbody>
     <% @accommodations.each do |accommodation| %>
       <tr>
-        <td rowspan="2"><%= link_to accommodation.name, accommodation_path(accommodation) %></td>
+        <td><%= link_to accommodation.name, accommodation_path(accommodation) %></td>
         <td><%= simple_format accommodation.brief_description %></td>
         <td><%= simple_format accommodation.description %></td>
         <td><%= accommodation.province.name %></td>
         <td><%= accommodation.city %></td>
         <td><%= accommodation.address %></td>
         <td><%= accommodation.postal_code %></td>
-        <td><%= check_box_tag nil, accommodation.featured %></td>
-        <td><%= check_box_tag nil, accommodation.published %></td>
+        <td><%= check_box_tag nil, nil, accommodation.featured, :readonly => true %></td>
+        <td><%= check_box_tag nil, nil, accommodation.published, :readonly => true %></td>
         <td><%= print_full_category accommodation %></td>
         <td><%= link_to accommodation.landlord.name, user_path(accommodation.landlord_id) %></td>
-        <td rowspan="2">
+        <td>
           <%= link_to( t('.edit', :default => t("helpers.links.edit")),
                       edit_accommodation_path(accommodation), :class => 'btn btn-mini'
                       ) if can? :edit, accommodation

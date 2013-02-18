@@ -6,7 +6,7 @@ class AccommodationsController < ApplicationController
   # GET /accommodations
   # GET /accommodations.json
   def index
-    @accommodations = Accommodation.all
+    @accommodations = Accommodation.unscoped
   end
 
   # GET /accommodations/1
@@ -89,17 +89,10 @@ class AccommodationsController < ApplicationController
       .from_province(params[:province_id])
       .name_contains(params[:name_contains])
       .page(params[:page]).per(9)
-    8.times {
-      @accommodations << @accommodations.first
-    }
   end
   
   def home
-    accommodation = Accommodation.home_page.first
-    @accommodations = []
-    8.times {
-      @accommodations << accommodation
-    }
+    @accommodations = Accommodation.home_page
     
     render :layout => 'application'
   end
