@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
-  load_and_authorize_resource :accommodation
+  load_and_authorize_resource :accommodation, :except => [:public_index]
+  load_and_authorize_resource
   
   layout 'public'
   

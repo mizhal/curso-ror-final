@@ -15,9 +15,9 @@ class Ability
       end
       can [:edit, :update, :destroy], User, :id => user.id
     else
-      can :read, :all
       can :create, User
-      can :global_map, Accommodation
+      can [:home, :public_index, :global_map], Accommodation
+      can :public_index, Offer
     end
     
     
