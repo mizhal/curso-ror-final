@@ -358,6 +358,12 @@ Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer c
 *** TODO añadir buscador a las gestiones que se consideren oportunas
 *** TODO página principal
 ***** TODO completar
+*** TODO vistas de detalle
+**** TODO alojamiento
+**** TODO habitación
+**** TODO oferta
+*** TODO interface adecuado para que el admin de de alta alojamientos
+Que se muestren los alojamientos no publicados con un botón para dar de alta. También una acción, que debe enviar el correo notificando al usuario que su establecimiento se dió de alta
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
 Ver lo que conviene. 
@@ -397,6 +403,7 @@ Una vez subido, debe descomprimirse (en un directorio temporal conocido) y para 
 Esta acción se realizará en el controlador de "Photo", en una nueva acción para subida masiva.
 Allí hay que ocuparse también de borrar los archivos que sean innecesarios después de crear los objetos Photo. Esto hay que verlo sobre la marcha, pero seguro es que el archivo ZIP debe borrarse.
 
+*** TODO *opcional* comentarios
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00
