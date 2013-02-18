@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     !session[:user].blank?
   end
   
+  ### Redireccion cuando falle la autorizacion con la gema cancan
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+  
 end

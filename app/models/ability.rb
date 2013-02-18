@@ -16,7 +16,9 @@ class Ability
       can [:edit, :update, :destroy], User, :id => user.id
     else
       can :create, User
-      can [:home, :public_index, :global_map], Accommodation
+      can [:show, :home, :public_index, :global_map], Accommodation
+      can :show, [RoomType, Offer]
+      
       can :public_index, Offer
     end
     
