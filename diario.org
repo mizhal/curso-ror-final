@@ -346,6 +346,9 @@ Se asignará a todos ellos el evento onChange que desencadene la modificación d
 *** DONE reformar la vista de index de alojamientos
 *** DONE buscador de alojamientos
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
+*** TODO añadir campos slogan y rooms_description a Accommodation
+Cambiar campo lemma por slogan
+Añadir campos slogan y rooms_description al formulario
 *** TODO [0/2] remozar vista detalle alojamiento
 **** TODO enviar el mapa a la barra en la vista show de alojamiento
 **** TODO crear partials para comentarios y ofertas vinculadas

@@ -1,6 +1,6 @@
 class Accommodation < ActiveRecord::Base
   attr_accessible :address, 
-    :lemma,
+    :slogan,
     :rooms_description,
     :brief_description, 
     :category_id, 
@@ -74,7 +74,7 @@ class Accommodation < ActiveRecord::Base
   
   validates :address, :presence => true
   validates :brief_description, :presence => true
-  validates :lemma, :presence => true
+  validates :slogan, :presence => true
   validates :rooms_description, :presence => true
   validates :category_id, :presence => true
   validates :city, :presence => true

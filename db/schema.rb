@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20130214083827) do
     t.string   "name"
     t.text     "brief_description"
     t.text     "rooms_description"
-    t.string   "lemma"
+    t.string   "slogan"
     t.text     "description"
     t.integer  "province_id"
     t.string   "city"

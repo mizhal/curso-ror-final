@@ -7,10 +7,10 @@
 		</div>
 		<div class="category">
 			<span class="parent-category">
-				<% @accommodation.parent_category.name %>
+				<%= @accommodation.parent_category.name %>
 			</span>
 			<span>
-				<% @accommodation.category.name %>
+				<%= @accommodation.category.name %>
 			</span>
 		</div>
 	</header>
@@ -23,7 +23,7 @@
 		<% } unless @accommodation.photos.empty? %>
 	</section>
 	<section class="summary">
-		<h2><%= @accommodation.lemma %></h2>
+		<h2><%= @accommodation.slogan %></h2>
 		<%= simple_format @accommodation.brief_description %>
 	</section>
 	<section class="description">
@@ -33,9 +33,9 @@
 	<section class="rooms">
 		<h2><%=t '.rooms'%></h2>
 		<%= simple_format @accommodation.rooms_description %>
-		<% @accommodation.room_types.each { |room| %>
-			<%= render :partial => "rooms/room_card",
-				:locals => {room: room}%>
+		<% @accommodation.room_types.each { |room_type| %>
+			<%= render :partial => "room_types/room_type_card",
+				:locals => {room_type: room_type}%>
 		<% } %>
 	</section>
 </article>

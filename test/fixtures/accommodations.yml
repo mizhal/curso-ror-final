@@ -2,7 +2,7 @@
 
 el_rosal:
   name: El Rosal
-  lemma: Calidad en el servicio
+  slogan: Calidad en el servicio
   brief_description: Calidad en el servicio y mas
   rooms_description: Las habitaciones estan orientadas al este
   description: La casa del rosal era de un conde que...
@@ -20,7 +20,8 @@ el_rosal:
   
 casa_luisa:
   name: Casa Luisa
-  brief_description: Como en su propia casa
+  slogan: Como en su propia casa
+  brief_description: Como en su propia casa...
   description: Doña luisa es conocida en todo el valle...
   province: asturias
   city: Arriondas
@@ -36,6 +37,7 @@ casa_luisa:
   
 casa_martin:
   name: Casa Martin
+  slogan: Como en su propia casa
   brief_description: Como en su propia casa
   description: Doña luisa es conocida en todo el valle...
   province: segovia
