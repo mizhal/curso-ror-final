@@ -82,6 +82,28 @@ class AccommodationsController < ApplicationController
     render layout: 'application'
   end
   
+  def public_index
+    @accommodations = Accommodation
+      .with_parent_category(params[:parent_category_id])
+      .with_category(params[:category_id])
+      .from_province(params[:province_id])
+      .name_contains(params[:name_contains])
+      .page(params[:page]).per(9)
+    8.times {
+      @accommodations << @accommodations.first
+    }
+  end
+  
+  def home
+    accommodation = Accommodation.home_page.first
+    @accommodations = []
+    8.times {
+      @accommodations << accommodation
+    }
+    
+    render :layout => 'application'
+  end
+  
   ##
   ## Accion para llamada AJAX que actualiza el combo de provincias
   def provinces

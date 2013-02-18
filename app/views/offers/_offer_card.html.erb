@@ -1,0 +1,26 @@
+<article class="offer ">
+	<div class="row">
+		<div class="image span2">
+			<%= image_tag offer.image(:thumbnail), :alt => offer.name %>
+		</div>
+		<div class="data span5">
+			<h1><%= offer.name %></h1>
+			<p class="summary"><%= simple_format offer.summary %></p>
+			<p class="accommodation">
+				<%= link_to offer.accommodation.name, accommodation_path(offer.accommodation_id) %>
+			</p>
+		</div>
+	
+		<div class="price span2">
+			<p class="from"><%= t(".from") %></p>
+			<p class="quantity"><%= offer.price %>€</p>
+			<p class="vat"><%= t(".vat_included") %></p>
+			<p class="more"><%= 
+				link_to t(".more_info"), 
+					accommodation_offer_path(offer.accommodation_id, offer.id)
+				%>
+			</p>
+		</div>
+	
+	</div>
+</article>

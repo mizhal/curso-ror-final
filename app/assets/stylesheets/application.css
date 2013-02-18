@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap_and_overrides
  */
 
 /* mixin para indentar/tab un div */
@@ -23,5 +24,18 @@ div.nested-template {
 }
 
 div.bar {
-	background-color: red;
+}
+
+div.separator{
+	clear:both;
+}
+
+div.two-columns{
+	float:left;
+	width:50%;
+}
+
+h1.widget-header{
+	font-variant: small-caps;
+	font-size: 14pt;
 }

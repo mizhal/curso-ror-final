@@ -28,4 +28,28 @@ class Offer < ActiveRecord::Base
   
   ### FIN: VALIDACIONES
   ###################################
+  
+  ### SCOPES
+  #####################################
+  scope :published, joins("left join accommodations on offers.accommodation_id = accommodations.id")
+    .where("accommodations.published" => true)
+  scope :name_contains, lambda { |name| where("name like (?)", "%#{name}%") unless name.blank? }
+  scope :from_province, lambda { |province_id| 
+    where("accommodations.province_id" => province_id) unless province_id.blank?
+  }
+  
+  
+  ### Fin: SCOPES
+  #####################################
+  
+  ### METODOS
+  ######################################
+  def image cut
+    return self.photos.first.image.url(cut) unless self.photos.empty?
+    return nil
+  end
+  
+  ### Fin: METODOS
+  ######################################
+    
 end

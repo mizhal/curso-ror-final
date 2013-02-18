@@ -1,0 +1,19 @@
+<article class="accommodation">
+	<div class="image">
+		<%= image_tag accommodation.main_photo(:thumbnail), 
+			:alt => accommodation.name %>
+	</div>
+	<div class="content">
+		<h1><%= accommodation.name %></h1>
+		<p class="category">
+			<%= print_full_category accommodation %>
+		</p>
+		<p class="location">
+			<%= "#{accommodation.city} (#{accommodation.province.name})" %>
+		</p>
+	</div>
+	<aside>
+		<%= link_to t(".more_information"), accommodation_path(accommodation),
+			:class => "btn btn-success" %>
+	</aside>
+</article>

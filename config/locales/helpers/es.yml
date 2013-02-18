@@ -1,0 +1,5 @@
+es:
+  helpers:
+    accommodations:
+      print_full_category:
+        category_joiner: de

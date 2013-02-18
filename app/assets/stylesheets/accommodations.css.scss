@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$grey: #d1cbbc;
+$header_brown: #c3956e; 
+$background_brown: #f0ead7;
+$dark_brown: #633827;
+
 /* Evitar distorsión en las barras de gmaps */
 #map label { width: auto; display:inline; }
 #map img { max-width: none; }
@@ -18,3 +23,48 @@ div.location-map div#map, div.location-map div.map_container{
 div.location-section div.gmaps-error-output {
   color: red;
 }
+
+article.accommodation {
+  padding: 5px;
+  margin: 10px 5px;
+  div.image {
+    text-align: center;
+    img {
+      width: 100%;
+    }
+  }
+  h1 {
+    font-size: 14pt;
+  }
+  p.category{
+    font-size: 10pt;
+  }
+  p.location{
+    font-variant: small-caps;
+  }
+}
+
+div.linea-abajo {
+  border-bottom: 1px solid #000;
+}
+
+div.category-navigator {
+  background-color: $background_brown;
+  header {
+    text-align: center;
+    background-color: $header-brown;
+    color: white;
+  }
+  ul {
+    padding: 0px 20px 20px 20px;
+  }
+  li > a {
+    background-color: $grey;
+  }
+}
+
+div.accommodation-search-box{
+  background-color: $dark_brown;
+  padding: 20px;
+}
+

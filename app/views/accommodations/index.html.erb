@@ -16,26 +16,24 @@
       <th><%= model_class.human_attribute_name(:published) %></th>
       <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:landlord) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @accommodations.each do |accommodation| %>
       <tr>
-        <td><%= link_to accommodation.name, accommodation_path(accommodation) %></td>
-        <td><%= accommodation.brief_description %></td>
-        <td><%= accommodation.description %></td>
+        <td rowspan="2"><%= link_to accommodation.name, accommodation_path(accommodation) %></td>
+        <td><%= simple_format accommodation.brief_description %></td>
+        <td><%= simple_format accommodation.description %></td>
         <td><%= accommodation.province.name %></td>
         <td><%= accommodation.city %></td>
         <td><%= accommodation.address %></td>
         <td><%= accommodation.postal_code %></td>
-        <td><%= accommodation.featured %></td>
-        <td><%= accommodation.published %></td>
-        <td><%= link_to accommodation.category.name, category_path(accommodation.category_id) %></td>
+        <td><%= check_box_tag nil, accommodation.featured %></td>
+        <td><%= check_box_tag nil, accommodation.published %></td>
+        <td><%= print_full_category accommodation %></td>
         <td><%= link_to accommodation.landlord.name, user_path(accommodation.landlord_id) %></td>
-        <td><%=l accommodation.created_at %></td>
-        <td>
+        <td rowspan="2">
           <%= link_to( t('.edit', :default => t("helpers.links.edit")),
                       edit_accommodation_path(accommodation), :class => 'btn btn-mini'
                       ) if can? :edit, accommodation

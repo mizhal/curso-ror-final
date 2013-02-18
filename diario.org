@@ -163,6 +163,7 @@ description:text
 price:float
 
 belongs_to :accommodation
+has_many :photos, :as => :image_owner
 
 *** Foto/Photo
 ## created_at y modified_at
@@ -197,7 +198,7 @@ privacy_policy:boolean
 *** DONE establecer control versiones
 *** DONE importación de estilos de bootstrap
    rails generate bootstrap:install static
-    rails g bootstrap:layout application fixed
+   rails g bootstrap:layout application fixed
 *** DONE adaptacion del layout de aplicación
 **** DONE eliminar las barras sobrantes
 **** DONE eliminar iconos de apple
@@ -341,12 +342,22 @@ Las inputs/select que tienen feedback con el mapa tendrán la clase 'gmaps-feedb
 Se asignará a todos ellos el evento onChange que desencadene la modificación del marker en el mapa (asimismo se actualizarán cuando se mueva el marker si es posible)
 *** DONE combo de categorias en accommodation#_form
 *** DONE combo de paises y provincias en accommodation#_form
-*** TODO buscador de alojamientos
+*** DONE reformar la vista de index de ofertas
+*** DONE reformar la vista de index de alojamientos
+*** FOCUS buscador de alojamientos
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
-*** TODO navegador de tipologías
+*** TODO personalizar bootstrap
+En bootstrap_and_overrides.css.less, para los nombres de las variables buscar mediante 
+grep -i success /var/lib/gems/1.9.1/gems/twitter-bootstrap-rails-2.2.3/vendor/toolkit/twitter/bootstrap/*.less -A 5
+Por los distintos archivos de less
+*** DONE navegador de tipologías
 Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
 *** TODO buscador de ofertas
+**** TODO añadir estilos
+**** TODO probar
+*** TODO añadir buscador a las gestiones que se consideren oportunas
 *** TODO página principal
+***** TODO completar
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
 Ver lo que conviene. 

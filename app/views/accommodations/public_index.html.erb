@@ -1,0 +1,46 @@
+<section class="accommodations-public-index">
+	<div class="row">
+		<% @accommodations.each_with_index { |accommodation, index| %>
+			<div class="span3">
+				<%= render :partial => "accommodation_card", 
+					:locals => {accommodation:accommodation}
+				%>
+			</div>
+			<% if index % 3 == 2 %>
+				<div class="span9 linea-abajo"></div>
+			<% end %>
+		<% } %>
+	</div>
+</section>
+
+<%= content_for :bar do %>
+	<div class="accommodation-search-box">
+		<%= form_tag public_index_accommodations_path do %>	
+			<div>
+				<%= text_field_tag :name_contains, 
+					nil,
+					:class => "input-block-level"
+				 %>
+			</div>
+		
+			<div class="two-columns">
+				<%= select_tag :province_id, nil,
+					:class => "input-block-level"
+				%>
+			</div>
+			<div class="two-columns">
+				<%= select_tag :parent_category_id, nil,
+					:class => "input-block-level" 
+				%>
+			</div>
+			<div class="separator"></div>
+			<div>
+				<%= submit_tag t(".search_accommodations"),
+					:class => "btn btn-success btn-block" %>
+			</div>
+		<% end %>
+	</div>
+	
+	<%= category_navigator %>
+</div>
+<% end %>

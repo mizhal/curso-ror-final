@@ -1,0 +1,25 @@
+<section class="home">
+	<div class="row">
+		<% @accommodations.each_with_index { |accommodation, index| %>
+			<div class="span3">
+				<%= render :partial => "accommodation_card", 
+					:locals => {accommodation:accommodation}
+				%>
+			</div>
+			<% if index % 4 == 3 %>
+				<div class="span12 linea-abajo"></div>
+			<% end %>
+		<% } %>
+	</div>
+	<div class="row">
+		<div class="span5">
+			<!-- RESERVAS -->
+		</div>
+		<div class="span4">
+			Consulta el mapa de alojamientos
+		</div>
+		<div class="span3">
+			Regala una oferta RAMAX
+		</div>
+	</div>
+</section>

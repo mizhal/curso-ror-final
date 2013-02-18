@@ -1,0 +1,21 @@
+<% unless categories.empty? %>
+<div class="category-navigator">
+	<nav>
+		<header>
+			<h1 class="widget-header">
+				<%= t(".choose_your_type") %>
+			</h1>
+		</header>
+		<ul class="nav nav-stacked nav-pills">
+			<% categories.each{ |category|%>
+			<li>
+				<%= link_to category.name, 
+				public_index_accommodations_path(
+					:parent_category_id => category.id
+				) %>
+			</li>
+			<% } %>
+		</ul>
+	</nav>
+</div>
+<% end %>

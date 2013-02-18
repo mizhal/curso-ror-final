@@ -94,6 +94,41 @@ class Accommodation < ActiveRecord::Base
   ### FIN: VALIDACIONES
   #########################################################
   
+  ### SCOPES
+  #########################################################
+  default_scope order("name asc").where(:published => true)
+  scope :published, where(:published => true)
+  scope :unpublished, unscoped.where(:published => false)
+  scope :featured, where(:featured => true)
+  scope :home_page, featured.order("created_at desc").limit(8)
+  
+  scope :from_province, lambda {|province_id| where(:province_id => province_id) unless province_id.nil? }
+  scope :name_contains, lambda {|name| where("name like ?", "%#{name}%") unless name.blank?}
+  scope :with_parent_category, lambda {|parent_category_id| 
+    joins(:category).where("categories.parent_id" => parent_category_id) unless parent_category_id.blank?
+  }
+  scope :with_category, lambda {|category_id| where(:category_id => category_id) unless category_id.blank?}
+  
+  ### Fin: SCOPES
+  #########################################################  
+  
+  
+  ### METODOS
+  ##########################################################
+  def full_category_path
+    ## retorna la categoria padre y la categoria del alojamiento
+    self.category.full_path.map{|c| c.name}
+  end
+  
+  def main_photo cut
+    return self.photos.first.image.url(cut) unless self.photos.empty?
+    return nil
+  end
+
+  ### Fin: METODOS
+  ##########################################################
+
+  
   ### mapas
   ####################################################
   acts_as_gmappable :process_geocoding => 

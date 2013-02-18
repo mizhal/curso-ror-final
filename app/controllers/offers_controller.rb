@@ -20,6 +20,7 @@ class OffersController < ApplicationController
   # GET /offers/new.json
   def new
     @offer = Offer.new :accommodation_id => params[:accommodation_id]
+    @offer.photos.build
   end
 
   # GET /offers/1/edit
@@ -65,6 +66,12 @@ class OffersController < ApplicationController
   
   ## GET /offers/public_index(.:format) 
   def public_index
-    @offers = Offer.order("created_at desc")
+    offer = Offer.published.first
+    @offers = []
+    9.times do
+      @offers << offer
+    end
+    
+    @provinces = Province.all
   end
 end

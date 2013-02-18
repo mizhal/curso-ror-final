@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   has_attached_file :image,
     :styles => {
       :detail => "600x400",
-      :thumbnail => "150x100"
+      :thumbnail => "190x125"
     }
   
   belongs_to :image_owner, :polymorphic => true

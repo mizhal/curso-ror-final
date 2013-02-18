@@ -22,6 +22,7 @@ class Category < ActiveRecord::Base
   
   ### scopes
   scope :toplevel, where(:parent_id => nil)
+  scope :subcategories, where("parent_id is not null")
   scope :subcategories_of, lambda{|parent_id| where(:parent_id => parent_id) unless parent_id.blank?}
   scope :siblings_including_self_of, lambda{|subcategory_id| 
       where(:parent_id => find(subcategory_id).parent_id)
@@ -58,6 +59,16 @@ class Category < ActiveRecord::Base
   def secure_set_parent_id parent_id
     ## establecer parent id si y solo si es correcto
     self.parent_id = parent_id.to_i if Category.exists? parent_id.to_i
+  end
+  
+  
+  def full_path
+    ## retorna la lista de ancestros mas la categoria actual
+    if is_toplevel?
+      return [self]
+    else
+      return [self.parent, self]
+    end
   end
   ### FIN: METODOS
   ###################################
