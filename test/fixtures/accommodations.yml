@@ -31,3 +31,19 @@ casa_luisa:
   email: casaluisa@gmail.com
   web: https://nextbox.groups.com/profile?u=234232&qq=ixo
   phone: 985 21 02 01
+  
+casa_martin:
+  name: Casa Martin
+  brief_description: Como en su propia casa
+  description: Doña luisa es conocida en todo el valle...
+  province: segovia
+  city: Segovia
+  address: Av del Acueducto, 1
+  postal_code: 33400
+  featured: false
+  published: true
+  category: albergue_1_mochila
+  landlord: gonzalo
+  email: casamartin@gmail.com
+  web: https://nextbox.groups.com/profile?u=234232&qq=ixo
+  phone: 985 21 02 01

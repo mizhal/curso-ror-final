@@ -32,3 +32,7 @@ casa_rural_2_tenedores:
 casa_rural_3_tenedores:
   name: "3 Tenedores"
   parent: casa_rural
+  
+albergue_1_mochila:
+  name: "1 Mochila"
+  parent: albergue  

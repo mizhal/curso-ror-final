@@ -12,6 +12,10 @@ alenteixo:
   name: Alenteixo
   country: portugal
   
+segovia:
+  name: Segovia
+  country: espanya
+  
 porto:
   name: Porto
   country: portugal
