@@ -23,8 +23,12 @@
         <td><%= simple_format accommodation.brief_description %></td>
         <td><%= simple_format accommodation.description %></td>
         <td><%= simple_format accommodation.full_address %></td>
-        <td><%= check_box_tag nil, nil, accommodation.featured, :readonly => true %></td>
-        <td><%= check_box_tag nil, nil, accommodation.published, :readonly => true %></td>
+        <td>
+        	<%= true_false_icon accommodation.featured %>
+        </td>
+        <td>
+			<%= true_false_icon accommodation.published %>
+        </td>
         <td><%= print_full_category accommodation %></td>
         <td><%= link_to accommodation.landlord.name, user_path(accommodation.landlord_id) %></td>
         <td>
