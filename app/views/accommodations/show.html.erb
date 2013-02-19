@@ -64,11 +64,12 @@
 <% end %>
 
 <% content_for :bar do %>
-	<%= render :partial => "show_location", 
-		:locals => {accommodation: @accommodation} %>
-		
-	<%= render :partial => "show_comments"
-	%>
+	<%= render :partial => "show_location",  
+			:layout => "shared/data_box",
+		 	:locals => {accommodation: @accommodation}
+	%>	
+
+	<%= render :partial => "show_comments" %>
 	
 	<%= render :partial => "accommodation_offers",
 		:locals => {accommodation: @accommodation} %>

@@ -3,6 +3,9 @@
 @chocolate: #bd906a;
 @medium-chocolate: #7e4734;
 @dark-chocolate: #633827;
+@hazelnut: #f0ead7;
+
+@grana: #4f3327;
   
 .bg-chocolate {
   background-color: @chocolate;
@@ -14,6 +17,10 @@
 
 .bg-dark-chocolate {
   background-color: @dark-chocolate;
+}
+
+.bg-hazelnut {
+  background-color: @hazelnut;
 }
 
 .color-white {
@@ -53,3 +60,33 @@ div.search-box{
 /***
  * Cajas de datos
  */
+
+div.data-box {
+  div.head {
+    line-height: 35px;
+    .bg-chocolate;
+    text-transform: uppercase;
+    font-size: 14pt;
+    color: #fff;
+    padding: 0 25px;
+  }
+  div.content {
+    font-size: 10px;
+    line-height: 10px;
+    padding: 10px;
+    .bg-hazelnut;
+    label {
+      display: inline;
+      text-transform: uppercase;
+      color: #8f8f8f;
+      font-size: 9px;
+      
+    }
+    label.vertical{display: block;}
+    h2 {
+      color: @grana;
+      font-size: 10pt;
+      text-transform: uppercase;
+    }
+  }
+}

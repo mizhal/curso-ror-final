@@ -7,6 +7,9 @@ $header_brown: #c3956e;
 $background_brown: #f0ead7;
 $dark_brown: #633827;
 
+$hazelnut: #f0ead7;
+$grana: #4f3327;
+
 /* Evitar distorsión en las barras de gmaps */
 #map label { 
    width: auto; 
@@ -57,7 +60,7 @@ article.accommodation {
 article.accommodation-detail {
   header{
     margin: 10px 0;
-    background-color: #eee5ce; 
+    background-color: $hazelnut; 
        
     div {
       display: inline-block;
@@ -66,8 +69,11 @@ article.accommodation-detail {
     
     div.city {
       border-right: 1px dotted #000;
+      color: $grana;
     }
-    
+    span.parent-type{
+      font-variant: small-caps;
+    }
     span.parent-type:after {
       content: " |";
     }
@@ -83,6 +89,23 @@ article.accommodation-detail {
     padding: 5px;
     background-color: #f7f0e6;    
   }
+  
+  h2 {
+    color: $grana;
+    font-size: 14pt;
+    text-transform: uppercase;
+  }
+  
+  section.summary {
+    padding: 10px;
+    background-color: #f8f9f9;
+    h2 {
+      font-size: 12pt;
+      text-transform: none;
+    }
+
+  }
+  
   
 }
 
