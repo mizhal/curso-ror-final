@@ -1,24 +1,29 @@
-<h1><%=t '.login_form' %></h1>
-
-<%= form_tag login_path do %>
-  <div class="control-group">
-    <%= label_tag t('.email'), nil, :class => 'control-label' %>
-    <div class="controls">
-      <%= text_field_tag :email, nil, :class => 'text_field' %>
-    </div>
-  </div>
-  
-  <div class="control-group">
-    <%= label_tag t('.password'), nil, :class => 'control-label' %>
-    <div class="controls">
-      <%= password_field_tag :password, nil, :class => 'text_field' %>
-    </div>
-  </div>
-  
-  <div class="control-group">
-    <div class="controls">
-      <%= submit_tag t(".submit"), :class => 'text_field' %>
-    </div>
-  </div>
-
+<%= content_for :view_title do %>
+	<%=t '.log_in' %>
 <% end %>
+
+<div class="login-form">
+	<%= form_tag login_path do %>
+	  <div class="control-group">
+	    <%= label_tag t('.email'), nil, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= text_field_tag :email, nil, :class => 'input-xlarge' %>
+	    </div>
+	  </div>
+	  
+	  <div class="control-group">
+	    <%= label_tag t('.password'), nil, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= password_field_tag :password, nil, :class => 'input-xlarge' %>
+	    </div>
+	  </div>
+	  
+	  <div class="control-group">
+	    <div class="controls">
+	      <%= submit_tag t(".submit"), :class => 'text_field' %>
+	    </div>
+	  </div>
+	
+	<% end %>
+
+</div>

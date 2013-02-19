@@ -1,3 +1,7 @@
+<%= content_for :view_title do %>
+	<%= t('.featured_this_week', :default => "Esta semana te recomendamos") %>
+<% end %>
+
 <section class="home">
 	<div class="row">
 		<% @accommodations.each_with_index { |accommodation, index| %>

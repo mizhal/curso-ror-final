@@ -43,7 +43,7 @@
 	  <div class="control-group">
 	    <%= f.label :postal_code, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :postal_code, 
+	      <%= f.text_field :postal_code, 
 	      	:class => 'number_field input-block-level' %>
 	    </div>
 	  </div>
@@ -51,7 +51,7 @@
 	  <div class="control-group">
 	    <%= f.label :latitude, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :latitude, 
+	      <%= f.text_field :latitude, 
 	      	:class => 'number_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'latitude'} 
 	      %>
@@ -61,7 +61,7 @@
 	  <div class="control-group">
 	    <%= f.label :longitude, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.number_field :longitude, 
+	      <%= f.text_field :longitude, 
 	      	:class => 'number_field gmaps-feedback-input input-block-level',
 	      	:data => { :gmapsfield => 'longitude'} 
 	      %>
@@ -69,7 +69,7 @@
 	  </div>
 
 	  <div class="gmaps-errors-output"></div>
-	  <div class="location-map">
+	  <div class="google-map">
 	    <%= gmaps(
 		    	:markers => {
 		    		:data => @accommodation.to_gmaps4rails, 

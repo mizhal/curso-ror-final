@@ -1,4 +1,7 @@
-<h1><%=t(".map_all_accommodations")%></h1>
-<div class="location-map">
+<%= content_for :view_title do %>
+	<%=t '.map_all_accommodations' %>
+<% end %>
+
+<div class="google-map">
 	<%= gmaps4rails(@gmaps_json) %>	
 </div>

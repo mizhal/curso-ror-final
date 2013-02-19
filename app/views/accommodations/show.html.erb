@@ -1,12 +1,16 @@
+<%= content_for :view_title do %>
+	<%= @accommodation.name %>
+<% end %>
+
 <article class="accommodation-detail">
 	<header>
-		<h1><%= @accommodation.name %></h1>
+		<h1 class="hidden"><%= @accommodation.name %></h1>
 		<div class="city">
 			<%= @accommodation.city %>
 			(<%= @accommodation.province.name %>)
 		</div>
-		<div class="category">
-			<span class="parent-category">
+		<div class="type">
+			<span class="parent-type" >
 				<%= @accommodation.parent_category.name %>
 			</span>
 			<span>
@@ -19,7 +23,7 @@
 	</section>
 	<section class="photos">
 		<% @accommodation.photos.each{ |photo| %>
-			<%= image_tag photo.url(:thumbnail)%>
+			<%= image_tag photo.image.url(:thumbnail)%>
 		<% } unless @accommodation.photos.empty? %>
 	</section>
 	<section class="summary">
@@ -29,8 +33,6 @@
 	<section class="description">
 		<h2><%= t '.description' %></h2>
 		<%= simple_format @accommodation.description %>
-	</section>
-	<section class="rooms">
 		<h2><%=t '.rooms'%></h2>
 		<%= simple_format @accommodation.rooms_description %>
 		<% @accommodation.room_types.each { |room_type| %>

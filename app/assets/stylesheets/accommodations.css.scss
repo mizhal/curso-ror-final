@@ -20,8 +20,12 @@ $dark_brown: #633827;
 // se usa un selector mas especifico para
 // sobreescribir el ancho por defecto
 // de 800px
+
 div#map, div.google-map div.map_container{
-  width:100%;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 5px 0;
   overflow: hidden;
 }
 
@@ -49,12 +53,41 @@ article.accommodation {
   }
 }
 
-div.linea-abajo {
-  border-bottom: 1px solid #000;
+
+article.accommodation-detail {
+  header{
+    margin: 10px 0;
+    background-color: #eee5ce; 
+       
+    div {
+      display: inline-block;
+      padding: 15px;
+    }
+    
+    div.city {
+      border-right: 1px dotted #000;
+    }
+    
+    span.parent-type:after {
+      content: " |";
+    }
+  }
+  section.main-photo{
+    padding: 5px;
+    background-color: #f7f0e6;
+    img {
+      width: 100%;
+    }
+  }
+  section.photos{
+    padding: 5px;
+    background-color: #f7f0e6;    
+  }
+  
 }
 
-li > a {
-  background-color: $grey;
+div.linea-abajo {
+  border-bottom: 1px solid #000;
 }
 
 div.category-navigator {
@@ -66,9 +99,6 @@ div.category-navigator {
   }
   ul {
     padding: 0px 20px 20px 20px;
-  }
-  li > a {
-    background-color: $grey;
   }
 }
 

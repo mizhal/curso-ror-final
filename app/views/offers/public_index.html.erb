@@ -1,16 +1,15 @@
+<%= content_for :view_title do %>
+	<%= t('.unrepeatable_offers', :default => "Ofertas irrepetibles") %>
+<% end %>
+
 <section class="public-offers">
-	<header class="page-header">
-	  <h1><%=t '.unrepeatable_offers' %></h1>
-	</header>
-	<section class="offers">
-		<div class="row">
-		<% @offers.each{ |offer| %>
-			<div class="span9">
-				<%= render :partial => "offer_card", :locals => {offer:offer} %>
-			</div>
-		<% } %>
+	<div class="row">
+	<% @offers.each{ |offer| %>
+		<div class="span9">
+			<%= render :partial => "offer_card", :locals => {offer:offer} %>
 		</div>
-	</section>
+	<% } %>
+	</div>
 </section>
 
 <% content_for :bar do %>

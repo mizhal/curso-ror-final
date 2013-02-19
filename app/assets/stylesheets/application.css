@@ -13,6 +13,8 @@
  *= require bootstrap_and_overrides
  */
 
+.hidden{ display:none; }
+
 /* mixin para indentar/tab un div */
 div.inner-indentation {
 	padding-left: 4em;
@@ -26,16 +28,154 @@ div.nested-template {
 div.bar {
 }
 
-div.separator{
-	clear:both;
+div.separator {
+	clear: both;
 }
 
-div.two-columns{
-	float:left;
-	width:50%;
+div.two-columns {
+	float: left;
+	width: 50%;
 }
 
-h1.widget-header{
+div.view-content{
+	padding: 0 10px 10px;
+}
+
+h1.widget-header {
 	font-variant: small-caps;
 	font-size: 14pt;
+}
+
+h1.main-header {
+	color: #fff;
+	font-size: 20px;
+	line-height: 50px;
+	padding: 0 16px;
+	margin: 0;
+}
+
+.bar {
+  margin-top: 5px;	
+}
+
+/** Navegadores generales del sitio */
+nav.main-navigator {
+	float: right;	
+}
+
+nav.main-navigator li {
+	display: inline;
+}
+
+header nav.main-navigator {
+	line-height: 75px; /** tam de la imagen*/
+}
+header nav.main-navigator li a {
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 0 0 0 1em; 
+	color: #000;
+	text-decoration: none;
+}
+
+/** FOOTER de layout */
+	
+footer .company-legal {
+	float: left;
+}
+
+/*** Navegador del pie */
+footer nav.main-navigator {
+	float: right;
+}
+
+footer nav.main-navigator li {
+	padding: 0 0 3em;
+}
+
+footer nav.main-navigator li a {
+	color: #fff;
+}
+
+footer nav.main-navigator li:after {
+    content: "  |";
+}
+footer nav.main-navigator li:last-child:after {
+    content: "";
+}
+
+/** COMUN **/
+
+.header-gradient {
+	min-height: 1em;
+	/** gradiente **/
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 24%, #515151 100%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(24%,#eaeaea), color-stop(100%,#515151), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 24%,#515151 100%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 24%,#515151 100%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 24%,#515151 100%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ffffff 1%,#eaeaea 24%,#515151 100%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+.hero-block {
+	min-height: 2em;
+}
+
+.white-border {
+	border-top: 10px solid #fff;
+	border-left: 10px solid #fff;
+	border-right: 10px solid #fff;
+}
+
+.relative-container {
+	position: relative;
+	text-align: center;
+}
+
+.decoration-bottom-bar{
+	position: absolute;
+	float: left;
+	width: 100%;
+	bottom: 0px;
+}
+
+/** estilos */
+
+.bold {
+	font-weight: 600;
+}
+
+.italics {
+	font-style: italic;
+}
+
+/** COLORES */
+.bg-chocolate {
+	background-color: #bd906a;
+}
+
+.bg-medium-chocolate {
+	background-color: #7e4734;	
+}
+
+.bg-dark-chocolate {
+	background-color: #633827;
+}
+
+.color-white {
+	color: #fff;
+}
+
+/** Formulario de login */
+div.login-form {
+	text-align: center;
+}
+
+div.login-form form {	
+	text-align: left;
+	display: inline-block;
+	padding: 10px;
 }

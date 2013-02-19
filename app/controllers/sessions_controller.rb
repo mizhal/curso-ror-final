@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   
-  layout 'public'
+  layout 'public_full'
   
   def new
     if request.post?

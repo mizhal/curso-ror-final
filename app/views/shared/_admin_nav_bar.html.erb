@@ -1,16 +1,8 @@
 <nav>
-	<ul class="nav nav-pills">
-		<li class="<%= 'active' if (params[:controller] == 'accommodations' and
-			params['action'] == 'home') %>">
-			<%= link_to t(".start"), home_accommodations_path %>
-		</li>
-		<li class="<%= 'active' if (params[:controller] == 'accommodations' and
-			params['action'] == 'public_index' ) %>">
-			<%= link_to t(".accommodations"), public_index_accommodations_path %>
-		</li>
+	<ul class="nav nav-pills nav-stacked">
 		<li class="<%= 'active' if (params[:controller] == 'accommodations' and
 			params['action'] == 'index' ) %>">
-			<%= link_to t(".accommodations_admin"), accommodations_path %>
+			<%= link_to t(".accommodations"), accommodations_path %>
 		</li>
 		<li class="<%= 'active' if (params[:controller] == 'accommodations' and 
 			params['action'] == 'global_map') %>">
@@ -24,16 +16,6 @@
 		</li>
 		<li class="<%= 'active' if params[:controller] == 'categories' %>">
 			<%= link_to t(".categories"), categories_path %>
-		</li>
-		<li class="<%= 'active' if params[:controller] == 'contact_requests' %>">
-			<%= link_to t(".contact"), new_contact_request_path %>
-		</li>
-		<li class="<%= 'active' if params[:controller] == 'sessions'%>">
-			<% if in_session? %>
-				<%= link_to t(".logout"), logout_path %>
-			<% else %>
-				<%= link_to t(".login"), login_path %>
-			<% end %>
 		</li>
 	</ul>
 </nav>

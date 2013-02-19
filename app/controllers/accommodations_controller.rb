@@ -1,7 +1,7 @@
 class AccommodationsController < ApplicationController
   load_and_authorize_resource
   
-  layout 'public'
+  layout 'public_bar'
   
   # GET /accommodations
   # GET /accommodations.json
@@ -13,6 +13,14 @@ class AccommodationsController < ApplicationController
       .with_landlord(params[:landlord_id])
       .from_province(params[:province_id])
       .with_parent_category(params[:parent_category_id])
+      
+    if current_role? :landlord
+      @accommodations = @accommodations.with_landlord(current_user_id)
+      render layout: 'public_full'
+    elsif current_role? :admin
+      render layout: 'admin'
+    end
+      
   end
 
   # GET /accommodations/1
@@ -27,9 +35,10 @@ class AccommodationsController < ApplicationController
     @accommodation = Accommodation.new
     load_combo_data
     
-    2.times do 
-      @accommodation.room_types.build
-    end
+    @accommodation.room_types.build
+    @accommodation.photos.build
+    
+    render layout: 'public_full'
   end
 
   # GET /accommodations/1/edit
@@ -37,9 +46,10 @@ class AccommodationsController < ApplicationController
     @accommodation = Accommodation.find(params[:id])
     load_combo_data
     
-    if @accommodation.room_types.empty?
-      @accommodation.room_types.build
-    end
+    @accommodation.room_types.build if @accommodation.room_types.empty?
+    @accommodation.photos.build if @accommodation.photos.empty?
+    
+    render layout: 'public_full'
   end
 
   # POST /accommodations
@@ -85,7 +95,8 @@ class AccommodationsController < ApplicationController
       marker.infowindow render_to_string :partial => "accommodations/gmaps_infobox",
         :locals => accommodation.gmaps_custom_infobox_data
     end
-    render layout: 'application'
+    
+    render :layout => 'public_full'
   end
   
   def public_index
@@ -101,7 +112,7 @@ class AccommodationsController < ApplicationController
   def home
     @accommodations = Accommodation.home_page
     
-    render :layout => 'application'
+    render :layout => 'public_full'
   end
   
   def publish

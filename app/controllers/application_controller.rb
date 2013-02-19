@@ -1,8 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+
   def current_user
     User.find session[:user][:id] unless session[:user].blank?
+  end
+  
+  def current_user_id
+    return session[:user][:id] unless session[:user].blank?
+  end  
+
+  helper_method :current_role?  
+  def current_role? role
+    return current_user.has_role? role if in_session?
+    return false
   end
   
   helper_method :in_session?

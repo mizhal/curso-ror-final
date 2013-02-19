@@ -7,20 +7,16 @@ class Ability
       if user.has_role? :admin
         can :manage, :all
       elsif user.has_role? :landlord
-        can :create, Accommodation
+        can [:home, :read, :create], Accommodation
         can [:update, :destroy], Accommodation, 
           :landlord_id => user.id
-        ## los objetos dependientes de Accommodation se autorizan anidados
-        can :read, :all
       end
-      can [:edit, :update, :destroy], User, :id => user.id
-    else
-      can :create, User
-      can [:show, :home, :public_index, :global_map], Accommodation
-      can :show, [RoomType, Offer]
-      
-      can :public_index, Offer
     end
+    can :create, User
+    can [:show, :home, :public_index, :global_map], Accommodation
+    can :show, [RoomType, Offer]
+    
+    can :public_index, Offer
     
     
     # Define abilities for the passed in user here. For example:

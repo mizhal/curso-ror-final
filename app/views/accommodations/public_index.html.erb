@@ -1,3 +1,7 @@
+<%= content_for :view_title do %>
+	<%= t('.accommodations', :default => "Alojamientos") %>
+<% end %>
+
 <section class="accommodations-public-index">
 	<div class="row">
 		<% @accommodations.each_with_index { |accommodation, index| %>

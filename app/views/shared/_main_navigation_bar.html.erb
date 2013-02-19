@@ -1,0 +1,28 @@
+	<nav class="main-navigator">
+		<ul>
+			<li><%= link_to t('.start'), root_path %></li>
+			<li><%= link_to t('.accommodations'), public_index_accommodations_path %></li>
+			<li><%= link_to t('.offers'), public_index_offers_path %></li>
+			<li><%= link_to t('.contact'), new_contact_request_path %></li>
+			<% if current_role? :landlord %>
+			<li>
+				<%= link_to t('.landlord_menu'), accommodations_path %>
+			</li>
+			<% end %>
+
+			<% if current_role? :admin %>			
+			<li>
+				<%= link_to t('.manager_menu'), accommodations_path %>
+				
+			</li>
+			<% end %>
+			
+			<li>
+				<% if in_session? %>
+					<%= link_to(t('.logout'), logout_path) %>
+				<% else %>
+					<%= link_to(t('.login'), login_path) %>
+				<% end %>
+			</li>
+		</ul>
+	</nav>
