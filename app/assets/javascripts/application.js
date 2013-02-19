@@ -21,7 +21,7 @@
  * en una entrada
  */
 function avoid_enter_key_in_forms(){
-	$('form *').keydown(function(event){
+	$('form input').keydown(function(event){
 		if(event.keyCode == 13) {
 	    	event.preventDefault();
 	    	$(this).change();
