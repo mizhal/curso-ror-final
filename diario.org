@@ -349,6 +349,8 @@ Por nombre, provincia (desplegable de provincias), tipología (desplegable de ti
 *** DONE añadir campos slogan y rooms_description a Accommodation
 Cambiar campo lemma por slogan
 Añadir campos slogan y rooms_description al formulario
+*** DONE extraer el formulario de busqueda de ofertas a un helper
+*** TODO widget de consultas
 *** TODO [0/2] remozar vista detalle alojamiento
 **** TODO enviar el mapa a la barra en la vista show de alojamiento
 **** TODO crear partials para comentarios y ofertas vinculadas
@@ -360,7 +362,7 @@ Añadir campos slogan y rooms_description al formulario
 Me tengo que replantear las cosas y clasificar bien los "widgets" que aparecen en las capturas, porque hay unas cuantas cosas que se repiten y debo aprovecharlas en lo posible
 *** DONE navegador de tipologías
 Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
-*** FOCUS estilo de la vista pública de ofertas
+*** TODO estilo de la vista pública de ofertas
 *** TODO layout público
 Barras laterales, content_for, pie de página...
 *** TODO buscador de ofertas
