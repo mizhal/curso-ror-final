@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130214083827) do
     t.string   "name"
     t.text     "brief_description"
     t.text     "description"
+    t.text     "characteristics"
     t.integer  "accommodation_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false

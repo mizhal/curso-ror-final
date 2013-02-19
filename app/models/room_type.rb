@@ -1,6 +1,7 @@
 class RoomType < ActiveRecord::Base
   attr_accessible :brief_description, 
     :description, 
+    :characteristics,
     :name,
     :accommodation_id,
     :photos_attributes
@@ -20,6 +21,7 @@ class RoomType < ActiveRecord::Base
   
   validates :brief_description, :presence => true
   validates :description, :presence => true
+  validates :characteristics, :presence => true
   validates :name, :presence => true
   validates :accommodation_id, :presence => true
   
@@ -28,4 +30,14 @@ class RoomType < ActiveRecord::Base
   
   ### fin: VALIDACIONES
   #################################################
+  
+  ### METODOS
+  ##################################################
+  def main_photo cut
+    self.photos.first.url(cut) unless self.photos.empty?
+  end
+
+  ### FIN: METODOS
+  ##################################################
+  
 end

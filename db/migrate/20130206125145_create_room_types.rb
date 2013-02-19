@@ -4,6 +4,7 @@ class CreateRoomTypes < ActiveRecord::Migration
       t.string :name
       t.text :brief_description
       t.text :description
+      t.text :characteristics
       t.integer :accommodation_id
 
       t.timestamps

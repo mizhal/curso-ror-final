@@ -22,6 +22,13 @@
 	      	:rows => 10 %>
 	    </div>
 	  </div>
+	  <div class="control-group">
+	    <%= f.label :characteristics, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_area :characteristics, 
+	      	:class => 'text_area input-block-level', :rows => 3 %>
+	    </div>
+	  </div>
 	  
 	  <div class="control-group">	  
 	  	<%= f.label :_destroy, t(".remove_room_type") %>  
