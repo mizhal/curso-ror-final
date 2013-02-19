@@ -2,9 +2,9 @@
 	<h1><%=t '.found_offers'%></h1>
 	<div class="offers">
 		<% accommodation.offers.each{|offer|%>
-			<div class="offer">
-				<%= offer.name %>
-			</div>
+			<%= render :partial => "offers/offer_in_accommodation_card",
+				:locals => {offer: offer} 
+			%>
 		<% } %>
 	</div>
 </div>

@@ -346,14 +346,18 @@ Se asignará a todos ellos el evento onChange que desencadene la modificación d
 *** DONE reformar la vista de index de alojamientos
 *** DONE buscador de alojamientos
 Por nombre, provincia (desplegable de provincias), tipología (desplegable de tipologias)
-*** TODO añadir campos slogan y rooms_description a Accommodation
+*** DONE añadir campos slogan y rooms_description a Accommodation
 Cambiar campo lemma por slogan
 Añadir campos slogan y rooms_description al formulario
 *** TODO [0/2] remozar vista detalle alojamiento
 **** TODO enviar el mapa a la barra en la vista show de alojamiento
 **** TODO crear partials para comentarios y ofertas vinculadas
-***** crear mockup de ofertas vinculadas
-***** crear mockup de comentarios
+***** DONE crear mockup de ofertas vinculadas
+***** DONE crear mockup de comentarios
+***** FOCUS crear partial y "tarjeta" de oferta vinculada
+****** DONE escribir HTML
+****** TODO dar estilo
+Me tengo que replantear las cosas y clasificar bien los "widgets" que aparecen en las capturas, porque hay unas cuantas cosas que se repiten y debo aprovecharlas en lo posible
 *** TODO personalizar bootstrap
 En bootstrap_and_overrides.css.less, para los nombres de las variables buscar mediante 
 grep -i success /var/lib/gems/1.9.1/gems/twitter-bootstrap-rails-2.2.3/vendor/toolkit/twitter/bootstrap/*.less -A 5
