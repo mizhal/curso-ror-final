@@ -358,23 +358,23 @@ Añadir campos slogan y rooms_description al formulario
 ****** DONE escribir HTML
 ****** TODO dar estilo
 Me tengo que replantear las cosas y clasificar bien los "widgets" que aparecen en las capturas, porque hay unas cuantas cosas que se repiten y debo aprovecharlas en lo posible
-*** TODO personalizar bootstrap
-En bootstrap_and_overrides.css.less, para los nombres de las variables buscar mediante 
-grep -i success /var/lib/gems/1.9.1/gems/twitter-bootstrap-rails-2.2.3/vendor/toolkit/twitter/bootstrap/*.less -A 5
-Por los distintos archivos de less
 *** DONE navegador de tipologías
 Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
+*** FOCUS estilo de la vista pública de ofertas
+*** TODO layout público
+Barras laterales, content_for, pie de página...
 *** TODO buscador de ofertas
 **** TODO añadir estilos
 **** TODO probar
 *** TODO añadir buscador a las gestiones que se consideren oportunas
+Añadir buscador de usuarios por nombre y de categorías por nombre
 *** TODO página principal
 ***** TODO completar
 *** TODO vistas de detalle
-**** TODO alojamiento
+**** FOCUS alojamiento
 **** TODO habitación
 **** TODO oferta
-*** TODO interface adecuado para que el admin de de alta alojamientos
+*** DONE interface adecuado para que el admin de de alta alojamientos
 Que se muestren los alojamientos no publicados con un botón para dar de alta. También una acción, que debe enviar el correo notificando al usuario que su establecimiento se dió de alta
 *** TODO permisos de las fotos
 En el momento, las fotos no están anidadas con los alojamientos y por ello no se puede validar los permisos de esa manera.
@@ -385,21 +385,15 @@ Todos los objetos que tienen composición fuerte deben tener esta cláusula.
 *** TODO revisar multipart en formularios con fotos
 *** TODO paginacion de vistas
 Excepto categorías que es árbol
-*** TODO crear categorías y subcategorías mediante nested forms
-*** TODO *opcional* subformulario AJAX para fotos
-**** TODO colocar subformulario AJAX en Accommodation#show
-**** TODO colocar subformulario AJAX en RoomType#show
 *** TODO indices en campos de búsqueda
 Analizar si queda alguno
-*** TODO layout público
-Barras laterales, content_for, pie de página...
 
 *** TODO poner todas las inputs como block-level
 Poner la clase/mixin de bootstrap 'input-block-level' a todas las inputs para mejor aspecto
-*** TODO crear controladores adicionales
-...el de la vista pública si es que es necesario...
-*** TODO reformar vistas
-De tabla al formato especifico
+*** TODO personalizar bootstrap
+En bootstrap_and_overrides.css.less, para los nombres de las variables buscar mediante 
+grep -i success /var/lib/gems/1.9.1/gems/twitter-bootstrap-rails-2.2.3/vendor/toolkit/twitter/bootstrap/*.less -A 5
+Por los distintos archivos de less
 *** TODO *opcional* lightbox para imágenes
 Incorporar esta librería de JS:
    Ligthbox2
@@ -416,6 +410,10 @@ Esta acción se realizará en el controlador de "Photo", en una nueva acción pa
 Allí hay que ocuparse también de borrar los archivos que sean innecesarios después de crear los objetos Photo. Esto hay que verlo sobre la marcha, pero seguro es que el archivo ZIP debe borrarse.
 
 *** TODO *opcional* comentarios
+*** TODO *opcional* crear categorías y subcategorías mediante nested forms
+*** RECHAZADO *opcional* subformulario AJAX para fotos
+**** TODO colocar subformulario AJAX en Accommodation#show
+**** TODO colocar subformulario AJAX en RoomType#show
 ** TODO Cuestiones
 *** DONE Repensar si es justificable usar grupos
 :CUSTOM_ID: Q00
