@@ -1,0 +1,26 @@
+  <% set_content_for :databox_header do %>
+  	<%=t '.management' %>
+  <% end %>
+
+  <%= link_to(t('.edit', 
+  	:default => t("helpers.links.edit")),
+    edit_accommodation_path(@accommodation), 
+    :class => 'btn'
+    ) if can? :edit, @accommodation
+  %>
+  <%= link_to(t('.destroy', :default => t("helpers.links.destroy")),
+              accommodation_path(@accommodation),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger'
+      ) if can? :destroy, @accommodation %>
+      
+  <%= link_to(t('.add_room'),
+              new_accommodation_room_type_path(@accommodation),
+              :class => "btn"
+      ) if can? :edit, @accommodation %>
+      
+  <%= link_to(t('.upload_photos'),
+              new_photo_path(:image_owner_id => @accommodation.id),
+              :class => "btn"
+      ) if can? :edit, @accommodation %>
