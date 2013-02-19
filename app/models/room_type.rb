@@ -34,7 +34,7 @@ class RoomType < ActiveRecord::Base
   ### METODOS
   ##################################################
   def main_photo cut
-    self.photos.first.url(cut) unless self.photos.empty?
+    self.photos.first.image.url(cut) unless self.photos.empty?
   end
 
   ### FIN: METODOS
