@@ -1,5 +1,8 @@
-/** COLORES */
-  
+
+@import "twitter/bootstrap/bootstrap";
+
+/** COLORES */  
+
 @chocolate: #bd906a;
 @medium-chocolate: #7e4734;
 @dark-chocolate: #633827;
@@ -33,8 +36,6 @@
  * 
  * 
  ***/
-
-@import "twitter/bootstrap/bootstrap";
 
 div.search-box{
   .bg-dark-chocolate;
@@ -87,6 +88,24 @@ div.data-box {
       color: @grana;
       font-size: 10pt;
       text-transform: uppercase;
+    }
+  }
+}
+
+/***
+ * Formulario de consultas
+ *
+ */
+
+div.send-request {
+  .bg-dark-chocolate;
+  form {
+    margin: 0;
+    padding: 0;
+    div {margin: 0 5px;
+      label {display: inline;}
+      input, textarea {width: 50%; display: inline; float: right; }
+      clear: both;
     }
   }
 }

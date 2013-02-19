@@ -1,0 +1,22 @@
+<div class="send-request">
+	<h1><%=t '.send_request'%></h1>
+	<%= form_for :request, 
+		:url => requests_path,
+		:html => { :class => 'form-horizontal'} do |f| %>
+		<div>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div>			
+			<%= f.label :email%>
+			<%= f.text_field :email %>
+		</div>
+		<div>
+			<%= f.label :query %>
+			<%= f.text_area :query %>
+		</div>
+		<div>
+			<%= f.submit nil %>
+		</div>
+	<% end %>
+</div>
