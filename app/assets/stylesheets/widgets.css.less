@@ -40,7 +40,7 @@
 div.search-box{
   .bg-dark-chocolate;
   padding: 10px;
-
+  margin: 10px 0;
   
   input, select {
     border-radius: 0;
@@ -63,11 +63,12 @@ div.search-box{
  */
 
 div.data-box {
+  margin: 10px 0;
   div.head {
     line-height: 35px;
     .bg-chocolate;
     text-transform: uppercase;
-    font-size: 14pt;
+    font-size: 10pt;
     color: #fff;
     padding: 0 25px;
   }
@@ -88,6 +89,11 @@ div.data-box {
       color: @grana;
       font-size: 10pt;
       text-transform: uppercase;
+      margin: 0;
+    }
+    p {
+      line-height: 15pt;
+      margin: 0;
     }
   }
 }
@@ -99,13 +105,55 @@ div.data-box {
 
 div.send-request {
   .bg-dark-chocolate;
-  form {
+  padding: 0 5px 5px;
+  margin: 10px 0;
+  h1 {
     margin: 0;
-    padding: 0;
-    div {margin: 0 5px;
-      label {display: inline;}
-      input, textarea {width: 50%; display: inline; float: right; }
-      clear: both;
+    line-height: 35px;
+    text-transform: uppercase;
+    font-size: 10pt;
+    color: #fff;
+
+    font-weight: 100;
+    span.request{color: @chocolate;}
+  }
+  form {
+    color: @chocolate;
+    margin: 0;
+    padding: 5px;
+    text-align: rigth;
+    
+    /** GRADIENTE */
+    background: @dark-chocolate; /* Old browsers */
+    background: -moz-linear-gradient(top, @medium-chocolate 7%, @dark-chocolate 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(7%,@medium-chocolate), color-stop(100%,@dark-chocolate)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, @medium-chocolate 7%,@dark-chocolate 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, @medium-chocolate 7%,@dark-chocolate 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, @medium-chocolate 7%,@dark-chocolate 100%); /* IE10+ */
+    background: linear-gradient(to bottom, @medium-chocolate 7%,@dark-chocolate 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="@medium-chocolate", endColorstr="@dark-chocolate",GradientType=0 ); /* IE6-9 */
+        
+    /** FIN GRADIENTE */
+    
+    div {
+      padding: 0;
+      label {
+        float: left;
+        width: 50%; 
+        margin: auto 0;
+        font-size: 8pt;
+      }
+      input, textarea {
+        display: block;
+        width: 50%; 
+        padding: 0;
+      }
+      input[type='submit'] {
+        width: 100%;
+        .buttonBackground(@chocolate, @chocolate);
+        text-transform: uppercase;
+        font-size: 8pt;
+      } 
     }
   }
 }
