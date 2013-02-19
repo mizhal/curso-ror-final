@@ -67,12 +67,7 @@ class OffersController < ApplicationController
   
   ## GET /offers/public_index(.:format) 
   def public_index
-    offer = Offer.published.first
-    @offers = []
-    9.times do
-      @offers << offer
-    end
-    
+    @offers = Offer.published
     @provinces = Province.all
   end
 end

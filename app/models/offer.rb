@@ -31,6 +31,7 @@ class Offer < ActiveRecord::Base
   
   ### SCOPES
   #####################################
+  default_scope order("created_at desc")
   scope :published, joins("left join accommodations on offers.accommodation_id = accommodations.id")
     .where("accommodations.published" => true)
   scope :name_contains, lambda { |name| where("name like (?)", "%#{name}%") unless name.blank? }

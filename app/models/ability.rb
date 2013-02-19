@@ -3,11 +3,11 @@ class Ability
 
   def initialize(user)
     unless user.blank?
-      Rails.logger.debug ">>> User.id #{user.name}"
       if user.has_role? :admin
         can :manage, :all
       elsif user.has_role? :landlord
-        can [:home, :read, :create], Accommodation
+        can :subcategories, Category
+        can [:home, :read, :create, :provinces], Accommodation
         can [:update, :destroy], Accommodation, 
           :landlord_id => user.id
       end
@@ -15,7 +15,6 @@ class Ability
     can :create, User
     can [:show, :home, :public_index, :global_map], Accommodation
     can :show, [RoomType, Offer]
-    
     can :public_index, Offer
     
     
