@@ -7,9 +7,7 @@ class Ability
         can :manage, :all
       elsif user.has_role? :landlord
         can :subcategories, Category
-        can [:read, :create, :provinces], Accommodation
-        can [:update, :destroy], Accommodation, 
-          :landlord_id => user.id
+        can :manage, Accommodation, :landlord_id => user.id
       end
     end
     can :create, User
