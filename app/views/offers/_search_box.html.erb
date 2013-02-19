@@ -1,0 +1,18 @@
+<div class="search-box">
+	<%= form_tag public_index_offers_path do %>
+		<div>
+			<%= text_field_tag :name_contains, 
+				nil,
+				:placeholder => t(".text_to_search", :default => "texto a buscar") %>
+		</div>
+		<div>
+			<%= select_tag :province_id,
+				options_for_select(provinces.map{|p|[p.name, p.id]})
+			%>
+		</div>
+		<div>
+			<%= submit_tag t(".search_offers", :default => "buscar ofertas"), 
+				:class => "btn-block" %>
+		</div>
+	<% end %>
+</div>

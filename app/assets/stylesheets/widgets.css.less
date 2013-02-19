@@ -1,0 +1,55 @@
+/** COLORES */
+  
+@chocolate: #bd906a;
+@medium-chocolate: #7e4734;
+@dark-chocolate: #633827;
+  
+.bg-chocolate {
+  background-color: @chocolate;
+}
+
+.bg-medium-chocolate {
+  background-color: @medium-chocolate;  
+}
+
+.bg-dark-chocolate {
+  background-color: @dark-chocolate;
+}
+
+.color-white {
+  color: #fff;
+}
+
+
+/*** 
+ * Cajas de busqueda 
+ * 
+ * 
+ ***/
+
+@import "twitter/bootstrap/bootstrap";
+
+div.search-box{
+  .bg-dark-chocolate;
+  padding: 10px;
+
+  
+  input, select {
+    border-radius: 0;
+    font-size: 12pt;
+    .input-block-level;
+    border: 2px solid @chocolate;
+  }
+  
+  button, input[type='button'], input[type='submit'] {
+    .btn;
+    .btn-block;
+    .buttonBackground(@chocolate, @chocolate);
+    border-radius: 0;
+  }
+}
+
+
+/***
+ * Cajas de datos
+ */

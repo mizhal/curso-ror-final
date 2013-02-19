@@ -16,7 +16,7 @@ module AccommodationsHelper
       :locals => {categories: Category.toplevel}
   end
   
-  def search_box action
+  def accommodations_search_box action
     landlords = []
     landlords = User.landlords if can? :manage, Accommodation
     
