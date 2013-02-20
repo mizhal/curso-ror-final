@@ -1,5 +1,12 @@
+<% set_content_for :databox_header do %>
+	<%= t('.manager menu') %>
+<% end %>
+
 <nav>
 	<ul class="nav nav-pills nav-stacked">
+		<li class="<%= 'active' if params[:controller] == 'config_values' %>">
+			<%= link_to t(".configuration"), config_values_path %>
+		</li>
 		<li class="<%= 'active' if (params[:controller] == 'accommodations' and
 			params['action'] == 'index' ) %>">
 			<%= link_to t(".accommodations"), accommodations_path %>

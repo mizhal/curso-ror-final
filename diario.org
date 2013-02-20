@@ -351,6 +351,11 @@ Cambiar campo lemma por slogan
 Añadir campos slogan y rooms_description al formulario
 *** DONE extraer el formulario de busqueda de ofertas a un helper
 *** DONE widget de consultas
+*** TODO widget de gestion de alojamientos
+Debe mostrar botones para editar, borrar, crear habitaciones, añadir fotos y añadir ofertas
+*** TODO generar scaffold de Config
+Un objeto global de configuracion
+*** FOCUS definir fotos por defecto 
 *** FOCUS partial de oferta vinculada
 *** TODO [0/2] remozar vista detalle alojamiento
 **** TODO enviar el mapa a la barra en la vista show de alojamiento

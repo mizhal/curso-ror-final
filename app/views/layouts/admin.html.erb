@@ -64,8 +64,8 @@
 				<div class="span3">
 					<div class="bar">
 						<div class="admin-menu">
-							<h1><%= t('.manager menu') %></h1>
-							<%= render :partial => "shared/admin_nav_bar" %>
+							<%= render :partial => "shared/admin_nav_bar",
+								:layout => "shared/data_box" %>
 						</div>
 						<%= yield :bar %>
 					</div>
