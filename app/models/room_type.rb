@@ -7,7 +7,8 @@ class RoomType < ActiveRecord::Base
     :photos_attributes
   
   belongs_to :accommodation
-  has_many :photos, :as => :image_owner
+  has_many :photos, :as => :image_owner,
+    :dependent => :destroy
   accepts_nested_attributes_for :photos,
     :allow_destroy => true,
     :reject_if => lambda {|attrs| attrs[:image].nil?}

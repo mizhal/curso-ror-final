@@ -24,9 +24,12 @@ class Accommodation < ActiveRecord::Base
     :parent_category_id
     
   belongs_to :province
-  has_many :photos, :as => :image_owner
-  has_many :offers
-  has_many :room_types
+  has_many :photos, :as => :image_owner,
+    :dependent => :destroy
+  has_many :offers,
+    :dependent => :destroy
+  has_many :room_types,
+    :dependent => :destroy
   belongs_to :category
   
   ## en este caso prefiero un nombre mas concreto para

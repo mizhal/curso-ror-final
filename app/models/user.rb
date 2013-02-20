@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     :role_id, 
     :surname
     
-  has_many :accommodations
+  has_many :accommodations, 
+    :dependent => :destroy
   belongs_to :role
   
   has_secure_password
