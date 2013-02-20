@@ -1,9 +1,9 @@
-<div class="acc-offer-card">
-	<%= image_tag offer.main_photo(:thumbnail) %>
+<article class="micro-offer-card">
+	<%= image_tag offer.main_photo(:micro) %>
 	<h1><%= offer.name %></h1>
 	<p class="from">
 		<%=t '.from' %>
 		<%= offer.price %>€
 		(<%=t '.vat_included' %>)
 	</p>
-</div>
+</article>

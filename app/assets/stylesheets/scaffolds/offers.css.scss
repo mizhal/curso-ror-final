@@ -14,3 +14,19 @@ article.offer {
 div.search-box {
   padding: 10px;
 }
+
+article.micro-offer-card{
+  display: inline-block;
+  width: 100%;
+  font-size: 8pt;
+  line-height: 8pt;  
+  img{
+    float:left;
+    margin: 0 5px 0 0;
+  }
+  h1 {
+    font-size: 8pt;
+    line-height: 8pt;
+    text-transform: uppercase;
+  }
+}

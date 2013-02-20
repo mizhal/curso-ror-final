@@ -1,10 +1,16 @@
 <div class="accommodation-offers">
-	<h1><%=t '.found_offers'%></h1>
+	<%= set_content_for :databox_header do %>
+		<%=t '.found_offers'%>
+	<% end %>
 	<div class="offers">
 		<% accommodation.offers.each{|offer|%>
 			<%= render :partial => "offers/offer_in_accommodation_card",
 				:locals => {offer: offer} 
 			%>
+
+			<% if accommodation.offers.length > 1 %> 
+				<div class="black-border"></div> 
+			<%end%>
 		<% } %>
 	</div>
 </div>

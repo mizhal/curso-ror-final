@@ -45,7 +45,9 @@
 <% content_for :bar do %>
 	<% if can? :manage, @accommodation %>
 		<%= render :layout => "shared/data_box", 
-			:partial => "show_management_menu" %>
+			:partial => "show_management_menu",
+			:locals => {accommodation: @accommodation}
+		%>
 	<% end %>
 
 	<%= render :partial => "show_location",  
@@ -56,5 +58,6 @@
 	<%= render :partial => "shared/send_request" %>
 	
 	<%= render :partial => "accommodation_offers",
-		:locals => {accommodation: @accommodation} %>
+			:layout => "shared/data_box",		
+			:locals => {accommodation: @accommodation} %>
 <% end %>

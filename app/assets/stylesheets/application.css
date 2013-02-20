@@ -131,6 +131,10 @@ footer nav.main-navigator li:last-child:after {
 	border-right: 10px solid #fff;
 }
 
+.black-border {
+	border: 1px solid #000;
+}
+
 .relative-container {
 	position: relative;
 	text-align: center;
