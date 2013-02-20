@@ -51,11 +51,11 @@ h1.main-header {
 	font-size: 20px;
 	line-height: 50px;
 	padding: 0 16px;
-	margin: 0;
+	margin: 0 0 10px;
 }
 
 .bar {
-  margin-top: 5px;	
+	margin: 0;
 }
 
 /** Navegadores generales del sitio */
