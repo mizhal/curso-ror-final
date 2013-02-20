@@ -120,6 +120,27 @@ class Accommodation < ActiveRecord::Base
   scope :with_category, lambda {|category_id| where(:category_id => category_id) unless category_id.blank?}
   scope :with_landlord, lambda {|landlord_id| where(:landlord_id => landlord_id) unless landlord_id.blank?}
   
+  scope :search_base, lambda { |hash|
+    name_contains(hash[:name_contains])
+    .from_province(hash[:province_id])
+    .with_parent_category(hash[:parent_category_id])
+    .with_category(hash[:category_id])    
+  }
+  scope :search_private, lambda { |hash, page_size|
+    search_base(hash)
+    .published_state(hash[:published])
+    .featured_state(hash[:featured])
+    .page(hash[:page])
+    .per(page_size)
+  }
+  
+  scope :search_public, lambda {|hash, page_size|
+    published
+    .search_base(hash)
+    .page(hash[:page])
+    .per(page_size)
+  }
+  
   ### Fin: SCOPES
   #########################################################  
   

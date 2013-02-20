@@ -6,18 +6,15 @@ class AccommodationsController < ApplicationController
   # GET /accommodations
   # GET /accommodations.json
   def index
-    @accommodations = Accommodation
-      .published_state(params[:published])
-      .featured_state(params[:featured])
-      .name_contains(params[:name_contains])
-      .with_landlord(params[:landlord_id])
-      .from_province(params[:province_id])
-      .with_parent_category(params[:parent_category_id])
-      
     if current_role? :landlord
-      @accommodations = @accommodations.with_landlord(current_user_id)
+      @accommodations = Accommodation
+        .search_private(params, 10)
+        .with_landlord(current_user_id)
       render layout: 'public_full'
     elsif current_role? :admin
+      @accommodations = Accommodation
+        .search_private(params, 10)
+        .with_landlord(params[:landlord_id]) ## solo admin puede buscar por landlord
       render layout: 'admin'
     end
       
@@ -100,13 +97,7 @@ class AccommodationsController < ApplicationController
   end
   
   def public_index
-    @accommodations = Accommodation
-      .published
-      .with_parent_category(params[:parent_category_id])
-      .with_category(params[:category_id])
-      .from_province(params[:province_id])
-      .name_contains(params[:name_contains])
-      .page(params[:page]).per(9)
+    @accommodations = Accommodation.search_public(params, 9)
   end
   
   def home
