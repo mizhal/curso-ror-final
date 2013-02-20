@@ -87,14 +87,12 @@
 %>
 
 <%= content_for :bar do %>
-	<%= accommodations_search_box accommodations_path %>
+	<%= render :layout => "shared/data_box", 
+		:locals => {
+				header: t(".filter_by_state")
+		} do %>
 	<div class="acc-admin-filters-navigator">
 		<nav>
-			<header>
-				<h1 class="widget-header">
-					<%= t(".filter_by_state") %>
-				</h1>
-			</header>
 			<ul class="nav nav-stacked nav-pills">
 				<li>
 					<%= link_to t(".published"), accommodations_path(:published => 1) %>
@@ -111,4 +109,6 @@
 			</ul>
 		</nav>
 	</div>
+	<% end %>
+	<%= accommodations_search_box accommodations_path %>
 <% end %>
