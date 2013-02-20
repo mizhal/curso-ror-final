@@ -69,7 +69,7 @@ class OffersController < ApplicationController
   
   ## GET /offers/public_index(.:format) 
   def public_index
-    @offers = Offer.published
+    @offers = Offer.search(params, 5)
     @provinces = Province.all
   end
 end

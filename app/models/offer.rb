@@ -35,9 +35,17 @@ class Offer < ActiveRecord::Base
   default_scope order("created_at desc")
   scope :published, joins("left join accommodations on offers.accommodation_id = accommodations.id")
     .where("accommodations.published" => true)
-  scope :name_contains, lambda { |name| where("name like (?)", "%#{name}%") unless name.blank? }
+  scope :name_contains, lambda { |name| where("offers.name like (?)", "%#{name}%") unless name.blank? }
   scope :from_province, lambda { |province_id| 
     where("accommodations.province_id" => province_id) unless province_id.blank?
+  }
+  
+  scope :search, lambda {|hash, page_size|
+    published
+    .name_contains(hash[:name_contains])
+    .from_province(hash[:province_id])
+    .page(hash[:page])
+    .per(page_size)  
   }
   
   
