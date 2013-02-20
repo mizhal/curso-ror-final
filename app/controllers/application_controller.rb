@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
   
+  rescue_from ActionController::RedirectBackError do |exception|
+    redirect_to root_url
+  end
+  
 end
