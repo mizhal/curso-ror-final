@@ -2,7 +2,9 @@
 	<%= t '.contact_us', :default => "Contacto"%>
 <% end %>
 
-<%= render 'form' %>
+<div class="contact-form">
+	<%= render 'form' %>
+</div>
 
 <%= content_for :bar do %>
 	<%= image_tag "contact-image.png", :alt => t(".contact_us", :default => "Contacte con nosotros") %>
