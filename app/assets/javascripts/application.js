@@ -195,7 +195,7 @@ $(document).ready(function(){
 	// funcionalidad de gmaps
 	
 	//// feedback de latitud, longitud y direccion en el formulario de Accommodation
-	if($('div.location-section div.location-map').length > 0) { //test: existe el div asociado a la funcionalidad
+	if($('div.location-section div.google-map').length > 0) { //test: existe el div asociado a la funcionalidad
 		//setup_gmaps_inputs_feedback();
 		var gmaps_sync = new GMapsSyncedFields();
 		gmaps_sync.setup();
