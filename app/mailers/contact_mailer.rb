@@ -4,10 +4,19 @@ class ContactMailer < ActionMailer::Base
   def send_contact_request contact_request, user
     @contact_request = contact_request
     @user = user
-    Rails.logger.debug "mail to #{@user.email}"
     mail(
         :to => user.email,
         :subject => I18n.t(".contact_form_notification")
     )
   end
+
+  def send_request request, user
+    @request = request
+    @user = user
+    mail(
+        :to => user.email,
+        :subject => I18n.t(".request_notification")
+    )
+  end
+
 end

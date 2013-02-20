@@ -1,0 +1,22 @@
+<%- model_class = ContactRequest -%>
+<body>
+	<p>A la atención de D. <%= @user.full_name %></p>
+	<p>
+	Se ha recibido una consulta a través del sistema web.
+	A continuación se muestra el contenido de dicha consulta
+	</p>
+	<article class="contact_request">
+		<dl>
+			<dt><%= model_class.human_attribute_name(:name)%></dt>
+			<dd><%= @request.name %></dd>
+			<dt><%= model_class.human_attribute_name(:email)%></dt>
+			<dd><%= @request.email %></dd>		
+			<dt><%= model_class.human_attribute_name(:request)%></dt>
+			<dd>
+				<blockquote>
+					<%= simple_format @request.request %>
+				</blockquote>
+			</dd>					
+		</dl>
+	</article>
+</body>
