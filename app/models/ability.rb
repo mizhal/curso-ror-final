@@ -11,6 +11,7 @@ class Ability
           :landlord_id => user.id
         can :manage, [Offer, RoomType], :accommodation => {:landlord_id => user.id}
       end
+      can [:show, :update], User, :id => user.id
     end
     can :create, User
     can [:show, :home, :public_index, :global_map], Accommodation
