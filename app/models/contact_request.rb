@@ -22,11 +22,11 @@ class ContactRequest
   ### VALIDACIONES
   ####################################################
   validates :name, :presence => true
-  validates :company, :presence => true
   validates :email, :presence => true,
     :format => {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   validates :phone,
-    :format => {with: /[0-9 ]+/i}
+    :format => {with: /[0-9 ]+/i},
+    :allow_blank => true
   validates :comments, :presence => true
   validates :accept_privacy_policy,
     :acceptance => true
