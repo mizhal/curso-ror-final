@@ -39,6 +39,9 @@ class Offer < ActiveRecord::Base
   scope :from_province, lambda { |province_id| 
     where("accommodations.province_id" => province_id) unless province_id.blank?
   }
+  scope :from_user, lambda { |user_id|
+    joins(:accommodation).where("accommodations.landlord_id" => user_id)
+  }
   
   scope :search, lambda {|hash, page_size|
     published
