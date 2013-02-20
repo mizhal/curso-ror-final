@@ -1,20 +1,27 @@
-<h1>New contact_request</h1>
+<% content_for :view_title do %>
+	<%= t '.contact_us', :default => "Contacto"%>
+<% end %>
 
 <%= render 'form' %>
 
 <%= content_for :bar do %>
-	<div class="host-contact-data">
-		<h1><%= t '.contact_data' %></h1>
-		<p><%= t '.if_you_have_any_request' %></p>
-		<p>
-			<label><%=t '.phone' %></label>
-			<span class="value"><%= @host_phone %></span>
-		</p>
-		<p>
-			<label><%=t '.email' %></label>
-			<span class="value"><%= link_to @host_email, "mailto://#{@host_email}" %></span>
-		</p>
-	</div>
+	<%= image_tag "contact-image.png", :alt => t(".contact_us", :default => "Contacte con nosotros") %>
+	<%= render :layout => "shared/data_box", 
+		:locals => {
+				header: t('.contact_data')
+			} do %>
+		<article class="host-contact-data">
+			<p><%= t '.if_you_have_any_request' %></p>
+			<p>
+				<label><%=t '.phone' %>:</label>
+				<span class="value"><%= @host_phone %></span>
+			</p>
+			<p>
+				<label><%=t '.email' %>:</label>
+				<span class="value"><%= link_to @host_email, "mailto://#{@host_email}" %></span>
+			</p>
+		</article>
+	<% end %>
 <% end %>
 
 
