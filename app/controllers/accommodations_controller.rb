@@ -108,9 +108,8 @@ class AccommodationsController < ApplicationController
   
   def publish
     accommodation = Accommodation.unpublished.find params[:id]
-    accommodation.published = true
-    
-    if accommodation.save
+
+    if accommodation.update_attribute(:published, true)
       flash[:notice] = t("controllers.accommodations.publish.publication_successful")
     else
       flash[:error] = t("controllers.accommodations.publish.publication_failed")
@@ -121,9 +120,8 @@ class AccommodationsController < ApplicationController
 
   def unpublish
     accommodation = Accommodation.published.find params[:id]
-    accommodation.published = false
-    
-    if accommodation.save
+
+    if accommodation.update_attribute(:published, false)
       flash[:notice] = t("controllers.accommodations.publish.unpublication_successful")
     else
       flash[:error] = t("controllers.accommodations.publish.unpublication_failed")
@@ -134,9 +132,9 @@ class AccommodationsController < ApplicationController
   
   def feature
     accommodation = Accommodation.published.find params[:id]
-    accommodation.featured = true
+    #accommodation.featured = true
     
-    if accommodation.save
+    if accommodation.update_attribute(:featured, true)
       flash[:notice] = t("controllers.accommodations.publish.setting_featured_successful")
     else
       flash[:error] = t("controllers.accommodations.publish.setting_featured_failed")
@@ -147,9 +145,8 @@ class AccommodationsController < ApplicationController
 
   def unfeature
     accommodation = Accommodation.published.find params[:id]
-    accommodation.featured = false
-    
-    if accommodation.save
+
+    if accommodation.update_attribute(:featured, false)
       flash[:notice] = t("controllers.accommodations.publish.unsetting_featured_successful")
     else
       flash[:error] = t("controllers.accommodations.publish.unsetting_featured_failed")
