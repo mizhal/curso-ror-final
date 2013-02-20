@@ -8,11 +8,13 @@ class Photo < ActiveRecord::Base
   has_attached_file :image,
     :styles => {
       :detail => ["600x300>", 'png'],
-      :thumbnail => ["190x125>", 'png']
+      :thumbnail => ["200x100>", 'png'],
+      :micro => ["100x50", "png"]
     },
     :convert_options => {
       :detail => "-background transparent -gravity center -extent 600x300",
-      :thumbnail => "-background transparent -gravity center -extent 190x125"
+      :thumbnail => "-background transparent -gravity center -extent 200x100",
+      :micro => "-background transparent -gravity center -extent 100x50"
     }
   
   belongs_to :image_owner, :polymorphic => true

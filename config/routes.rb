@@ -1,7 +1,4 @@
 Proyecto::Application.routes.draw do
-  resources :config_values
-
-
   match 'login' => "sessions#new"
   match 'logout' => "sessions#destroy"
 
@@ -47,6 +44,8 @@ Proyecto::Application.routes.draw do
     :only => [:new, :create]
   resources :requests,
     :only => [:create]
+    
+  resources :config_values, :except => [:show]
 
 
   # The priority is based upon order of creation:
