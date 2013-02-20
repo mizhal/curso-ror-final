@@ -351,27 +351,30 @@ Cambiar campo lemma por slogan
 Añadir campos slogan y rooms_description al formulario
 *** DONE extraer el formulario de busqueda de ofertas a un helper
 *** DONE widget de consultas
-*** TODO widget de gestion de alojamientos
+*** DONE widget de gestion de alojamientos
 Debe mostrar botones para editar, borrar, crear habitaciones, añadir fotos y añadir ofertas
-*** TODO generar scaffold de Config
-Un objeto global de configuracion
-*** FOCUS definir fotos por defecto 
-*** FOCUS partial de oferta vinculada
-*** TODO [0/2] remozar vista detalle alojamiento
-**** TODO enviar el mapa a la barra en la vista show de alojamiento
-**** TODO crear partials para comentarios y ofertas vinculadas
+*** DONE generar scaffold de ConfigValue
+Una tabla de entradas de configuracion
+
+rails g scaffold ConfigValue key:string value:string
+*** DONE definir fotos por defecto 
+*** DONE partial de oferta vinculada
+*** DONE [2/2] remozar vista detalle alojamiento
+**** DONE enviar el mapa a la barra en la vista show de alojamiento
+**** DONE crear partials para comentarios y ofertas vinculadas
 ***** DONE crear mockup de ofertas vinculadas
 ***** DONE crear mockup de comentarios
 ***** FOCUS crear partial y "tarjeta" de oferta vinculada
 ****** DONE escribir HTML
 ****** TODO dar estilo
 Me tengo que replantear las cosas y clasificar bien los "widgets" que aparecen en las capturas, porque hay unas cuantas cosas que se repiten y debo aprovecharlas en lo posible
-*** TODO navegador de tipologías
-**** TODO corregir navegador de tipologias
+*** DONE navegador de tipologías
+**** DONE corregir navegador de tipologias
 Elemento de la barra lateral que muestra las categorías "toplevel" y al hacer click filtra la vista de indice de alojamientos
-*** TODO estilo de la vista pública de ofertas
-*** TODO layout público
+*** DONE estilo de la vista pública de ofertas
+*** DONE layout público
 Barras laterales, content_for, pie de página...
+*** TODO vista de detalle de habitacion
 *** TODO buscador de ofertas
 **** TODO añadir estilos
 **** TODO probar
