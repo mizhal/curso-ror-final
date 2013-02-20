@@ -34,7 +34,9 @@ class RoomType < ActiveRecord::Base
   ### METODOS
   ##################################################
   def main_photo cut
-    self.photos.first.image.url(cut) unless self.photos.empty?
+    return self.photos.first.image.url(cut) unless self.photos.empty?
+    
+    ConfigValue.default_image_for_model(:room_types, cut)
   end
 
   ### FIN: METODOS

@@ -1,7 +1,7 @@
-<article class="offer ">
+<article class="offer-card">
 	<div class="row">
 		<div class="image span2">
-			<%= image_tag offer.image(:thumbnail), :alt => offer.name %>
+			<%= image_tag offer.main_photo(:thumbnail), :alt => offer.name %>
 		</div>
 		<div class="data span5">
 			<h1><%= offer.name %></h1>

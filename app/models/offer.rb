@@ -44,10 +44,11 @@ class Offer < ActiveRecord::Base
   #####################################
   
   ### METODOS
-  ######################################
-  def image cut
+  ######################################  
+  def main_photo cut
     return self.photos.first.image.url(cut) unless self.photos.empty?
-    return nil
+    
+    ConfigValue.default_image_for_model(:offers, cut)
   end
   
   ### Fin: METODOS

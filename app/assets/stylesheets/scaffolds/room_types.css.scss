@@ -1,3 +1,19 @@
 // Place all the styles related to the RoomTypes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+article.room-type-card {
+  clear: both;
+  h1 {
+    font-size: 14pt;
+    margin-bottom: 5px;
+  }
+  img {
+    margin: 0 10px 5px 5px;
+    float: left;
+  }
+  h2 {
+    font-size: 10pt;
+    text-transform: none;
+  }
+}

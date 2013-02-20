@@ -14,12 +14,14 @@
       <%= f.text_field :value, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :photo, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.file_field :photo %>
-    </div>
-  </div>
+  <%= f.fields_for :photo_attributes do |p| %>
+	  <div class="control-group">
+	    <%= p.label :image, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= p.file_field :image %>
+	    </div>
+	  </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

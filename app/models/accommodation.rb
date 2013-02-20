@@ -130,7 +130,7 @@ class Accommodation < ActiveRecord::Base
   
   def main_photo cut
     return self.photos.first.image.url(cut) unless self.photos.empty?
-    return nil
+    return ConfigValue.default_image_for_model(:accommodations, cut)
   end
   
   def full_address
