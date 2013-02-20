@@ -37,11 +37,12 @@ class PhotosController < ApplicationController
   # GET /photos/new
   # GET /photos/new.json
   def new
-    @photo = Photo.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @photo }
+    if params[:image_owner_id].blank?
+      flash[:error] = t("controllers.photos.cannot_create_unbound_photo")
+      redirect_to :back
+    else
+      @photo = Photo.new :image_owner_id => params[:image_owner_id]
+      render :layout => "public_full"
     end
   end
 
