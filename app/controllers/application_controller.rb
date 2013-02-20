@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     User.find session[:user][:id] unless session[:user].blank?
   end
   
+  helper_method :current_user_id
   def current_user_id
     return session[:user][:id] unless session[:user].blank?
   end  

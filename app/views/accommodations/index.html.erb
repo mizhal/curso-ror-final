@@ -13,7 +13,9 @@
       <th><%= model_class.human_attribute_name(:featured) %></th>
       <th><%= model_class.human_attribute_name(:published) %></th>
       <th><%= model_class.human_attribute_name(:category) %></th>
+      <% if can? :manage, :all %>
       <th><%= model_class.human_attribute_name(:landlord) %></th>
+      <% end %>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -30,7 +32,9 @@
 			<%= true_false_icon accommodation.published %>
         </td>
         <td><%= print_full_category accommodation %></td>
-        <td><%= link_to accommodation.landlord.name, user_path(accommodation.landlord_id) %></td>
+        <% if can? :manage, :all %>
+        <td><%= link_to accommodation.landlord.full_name, user_path(accommodation.landlord_id) %></td>
+        <% end %>
         <td>
           <%= link_to( t('.edit', :default => t("helpers.links.edit")),
                       edit_accommodation_path(accommodation), :class => 'btn btn-mini'
@@ -86,6 +90,10 @@
             new_accommodation_path,
             :class => 'btn btn-primary'
     ) if can? :create, Accommodation
+%>
+
+<%= link_to t('.edit_your_profile'), user_path(current_user_id), 
+	:class => "bar-btn" 
 %>
 
 <%= content_for :bar do %>
