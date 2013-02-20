@@ -1,9 +1,8 @@
   <tr>
-	<td><%= image_tag category.icon.url(:icon) %></td>
+	<td><%= image_tag category.icon.url(:icon) if category.icon.file? %></td>
     <td><%= link_to category.name, category_path(category) %></td>
     <td><%= link_to category.parent.name, 
     	category_path(category.parent) unless category.is_toplevel? %></td>
-    <td><%=l category.created_at %></td>
     <td>
       <%= link_to t('.create_child'),
                   new_category_path(:parent_id => category.id), 

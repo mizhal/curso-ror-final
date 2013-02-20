@@ -31,15 +31,13 @@ class UsersController < ApplicationController
     @user = User.new
     @roles = Role.all
     
-    render :layout => 'public'
+    render :layout => "public_full" unless can? :manage, :all
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
     @roles = Role.all
-    
-    render :layout => 'public'
   end
 
   # POST /users

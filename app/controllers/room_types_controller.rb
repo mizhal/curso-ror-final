@@ -3,7 +3,7 @@ class RoomTypesController < ApplicationController
   load_and_authorize_resource :room_type, :through => :accommodation
   ## la autorizacion es sobre el objeto accommodation asociado, no sobre el objeto roomtype
   
-  layout 'public'
+  layout 'public_full'
   
   # GET /room_types
   # GET /room_types.json

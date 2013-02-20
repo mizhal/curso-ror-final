@@ -15,12 +15,51 @@ div.search-box {
   padding: 10px;
 }
 
-article.micro-offer-card{
+article.offer-card {
+  display: inline-block;
+  width: 100%;
+  background-color: #f3e8d4;
+  padding: 10px 0;
+  font-size: 9pt;
+  img {
+    float: left;
+    margin: 10px;
+    border: 3px solid #fff;
+    background-color: #fff;
+    width: 20%;
+  }  
+  div.data {
+    display:block;
+    float:left;
+    width: 30%;
+  }
+  div.price {
+    float: right;
+    border: 10px solid #fdfdfd;
+    margin: 0 10px;
+    padding: 10px 5px;
+    width: 30%;
+    text-align: center;
+    p.quantity{
+      font-size: 24pt;
+    }
+  }
+  h1{
+    font-size: 12pt;
+    line-height: 12pt;
+  }
+  p.accommodation {
+    font-size: 9pt;
+    a{color: #633827;}
+  }
+}
+
+article.micro-offer-card {
   display: inline-block;
   width: 100%;
   font-size: 8pt;
   line-height: 8pt;  
-  img{
+  img {
     float:left;
     margin: 0 5px 0 0;
   }
@@ -28,5 +67,6 @@ article.micro-offer-card{
     font-size: 8pt;
     line-height: 8pt;
     text-transform: uppercase;
+    
   }
 }

@@ -5,25 +5,31 @@
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :name, :class => 'text_field input-block-level' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :brief_description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :brief_description, :class => 'text_area' %>
+      <%= f.text_area :brief_description, 
+      	:rows => 2,
+      	:class => 'text_area input-block-level' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
+      <%= f.text_area :description, 
+      	:rows => 4,
+      	:class => 'text_area input-block-level' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :characteristics, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :characteristics, :class => 'text_area' %>
+      <%= f.text_area :characteristics, 
+      	:rows => 4,
+      	:class => 'text_area input-block-level' %>
     </div>
   </div>
 
@@ -31,7 +37,7 @@
   <div class="control-group">
     <%= f.label :accommodation, :class => 'control-label' %>
     <div class="controls">
-      <div class="uneditable-input"><%= @room_type.accommodation.name %></div>
+      <div class="uneditable-input  input-block-level"><%= @room_type.accommodation.name %></div>
     </div>
   </div>
 

@@ -9,6 +9,8 @@ class OffersController < ApplicationController
   def index
     @accommodation = Accommodation.find params[:accommodation_id]
     @offers = @accommodation.offers
+    
+    render :layout => "public_full"
   end
 
   # GET /offers/1

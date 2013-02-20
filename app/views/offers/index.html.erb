@@ -1,17 +1,14 @@
 <%- model_class = Offer -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
-  	(<%=link_to @accommodation.name, accommodation_path(@accommodation) %>)
-  </h1>
-</div>
+<% content_for :view_title do %>
+	<%=t '.title', :default => model_class.model_name.human.pluralize %>
+	  	(<%=link_to @accommodation.name, accommodation_path(@accommodation) %>)
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:summary) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,18 +16,19 @@
     <% @offers.each do |offer| %>
       <tr>
         <td><%= link_to offer.name, accommodation_offer_path(offer.accommodation, offer) %></td>
-        <td><%= offer.summary %></td>
-        <td><%= offer.description %></td>
+        <td><%= simple_format offer.summary %></td>
         <td><%= offer.price %></td>
-        <td><%=l offer.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to(t('.edit', :default => t("helpers.links.edit")),
                       edit_accommodation_offer_path(
                       	:accommodation_id => params[:accommodation_id], 
                       	:id => offer.id
                       ), 
-                      :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      :class => 'btn btn-mini'
+                    ) if can? :edit, offer 
+              %>
+          <%= link_to(
+          			t('.destroy', :default => t("helpers.links.destroy")),
                       accommodation_offer_path(
                       	:accommodation_id => params[:accommodation_id], 
                       	:id => offer.id
@@ -41,7 +39,8 @@
                       	:default => t("helpers.links.confirm", 
                       	:default => 'Are you sure?')) 
                       },
-                      :class => 'btn btn-mini btn-danger' 
+                      :class => 'btn btn-mini btn-danger'
+                    ) if can? :destroy, offer 
           %>
         </td>
       </tr>

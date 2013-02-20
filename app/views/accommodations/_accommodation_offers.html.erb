@@ -3,12 +3,12 @@
 		<%=t '.found_offers'%>
 	<% end %>
 	<div class="offers">
-		<% accommodation.offers.each{|offer|%>
+		<% accommodation.offers.each_with_index{|offer, index|%>
 			<%= render :partial => "offers/offer_in_accommodation_card",
 				:locals => {offer: offer} 
 			%>
 
-			<% if accommodation.offers.length > 1 %> 
+			<% if accommodation.offers.length != index + 1 %> 
 				<div class="black-border"></div> 
 			<%end%>
 		<% } %>

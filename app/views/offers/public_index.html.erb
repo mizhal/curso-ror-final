@@ -3,13 +3,9 @@
 <% end %>
 
 <section class="public-offers">
-	<div class="row">
 	<% @offers.each{ |offer| %>
-		<div class="span9">
-			<%= render :partial => "offer_card", :locals => {offer:offer} %>
-		</div>
+		<%= render :partial => "offer_card", :locals => {offer:offer} %>
 	<% } %>
-	</div>
 </section>
 
 <% content_for :bar do %>

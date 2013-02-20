@@ -1,17 +1,16 @@
 <article class="offer-card">
-	<div class="row">
-		<div class="image span2">
+		<div class="image">
 			<%= image_tag offer.main_photo(:thumbnail), :alt => offer.name %>
 		</div>
-		<div class="data span5">
-			<h1><%= offer.name %></h1>
+		<div class="data">
+			<h1><%= link_to offer.name, accommodation_offer_path(offer.accommodation.id, offer.id) %></h1>
 			<p class="summary"><%= simple_format offer.summary %></p>
 			<p class="accommodation">
 				<%= link_to offer.accommodation.name, accommodation_path(offer.accommodation_id) %>
 			</p>
 		</div>
 	
-		<div class="price span2">
+		<div class="price">
 			<p class="from"><%= t(".from") %></p>
 			<p class="quantity"><%= offer.price %>€</p>
 			<p class="vat"><%= t(".vat_included") %></p>
@@ -21,6 +20,4 @@
 				%>
 			</p>
 		</div>
-	
-	</div>
 </article>
