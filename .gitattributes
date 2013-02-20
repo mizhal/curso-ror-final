@@ -1,0 +1,5 @@
+.gitattributes export-ignore
+.gitignore export-ignore
+.gitkeep export-ignore
+diario.org export-ignore
+archive.tar.gz export-ignore
