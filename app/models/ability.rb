@@ -14,6 +14,7 @@ class Ability
       end
       can [:show, :update], User, :id => user.id
     end
+    
     can :create, User
     can [:show, :home, :public_index, :global_map], Accommodation
     can :show, [RoomType, Offer]

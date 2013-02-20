@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.' 
+      redirect_to login_path, notice: 'User was successfully created.' 
     else
       @roles = Role.all
       render action: "new", layout: 'public'
