@@ -1,6 +1,6 @@
 class ContactRequestsController < ApplicationController
   
-  layout 'public'
+  layout 'public_bar'
   
   # GET /contact_requests/new
   # GET /contact_requests/new.json
