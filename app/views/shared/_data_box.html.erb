@@ -1,6 +1,8 @@
+<% header ||= nil %>
 <div class="data-box">
 	<div class="head">
 		<%= content_for :databox_header %>
+		<%= header %>
 	</div>
 	<div class="content">
 		<%= yield %>
