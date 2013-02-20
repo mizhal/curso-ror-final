@@ -1,32 +1,22 @@
-/*
-  =require twitter-bootstrap-static/bootstrap
-
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
-
-
-
-@import "twitter/bootstrap/bootstrap";
-
 @import "twitter/bootstrap/reset";
 @import "twitter/bootstrap/variables";
 
 // overwrite variables here
 
-@import "./widgets/widgets";
+@import "widgets/colors";
+
+// prueba sobreescribiendo boton success
+@linkColor: #ff0000;
 @btnSuccessBackground: @chocolate;
 @btnSuccessBackgroundHighlight: @dark-chocolate;
 
-
 @import "twitter/bootstrap/mixins";
-
 @import "twitter/bootstrap/scaffolding";
-
 @import "twitter/bootstrap/type";
 @import "twitter/bootstrap/forms";
 @import "twitter/bootstrap/tables";
 @import "twitter/bootstrap/buttons";
+@import "twitter/bootstrap/button-groups";
+@import "twitter/bootstrap/bootstrap";
 
 // rest of your manifest

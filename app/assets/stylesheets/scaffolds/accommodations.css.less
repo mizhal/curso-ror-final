@@ -1,36 +1,4 @@
-// Place all the styles related to the Accommodations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-$grey: #d1cbbc;
-$header_brown: #c3956e; 
-$background_brown: #f0ead7;
-$dark_brown: #633827;
-
-$hazelnut: #f0ead7;
-$grana: #4f3327;
-
-/* Evitar distorsión en las barras de gmaps */
-#map label { 
-   width: auto; 
-   display:inline; 
-}
-#map img { 
-  max-width: none; 
-}
-
-// ajuste del ancho del mapa de gmaps
-// se usa un selector mas especifico para
-// sobreescribir el ancho por defecto
-// de 800px
-
-div#map, div.google-map div.map_container{
-  width: 100%;
-  border: 0;
-  padding: 0;
-  margin: 5px 0;
-  overflow: hidden;
-}
+@import "bootstrap_and_overrides";
 
 div.location-section div.gmaps-error-output {
   color: red;
@@ -60,7 +28,7 @@ article.accommodation {
 article.accommodation-detail {
   header{
     margin: 10px 0;
-    background-color: $hazelnut; 
+    background-color: @hazelnut; 
        
     div {
       display: inline-block;
@@ -69,7 +37,7 @@ article.accommodation-detail {
     
     div.city {
       border-right: 1px dotted #000;
-      color: $grana;
+      color: @grana;
     }
     span.parent-type{
       font-variant: small-caps;
@@ -91,7 +59,7 @@ article.accommodation-detail {
   }
   
   h2 {
-    color: $grana;
+    color: @grana;
     font-size: 14pt;
     text-transform: uppercase;
   }
@@ -105,24 +73,10 @@ article.accommodation-detail {
     }
 
   }
-  
-  
 }
 
 div.linea-abajo {
   border-bottom: 1px solid #000;
-}
-
-div.category-navigator {
-  background-color: $background_brown;
-  header {
-    text-align: center;
-    background-color: $header-brown;
-    color: white;
-  }
-  ul {
-    padding: 0px 20px 20px 20px;
-  }
 }
 
 article.accommodation-location{
@@ -132,3 +86,7 @@ article.accommodation-location{
   }
 }
 
+div.accommodation-manager-menu {
+  a {
+  }
+}

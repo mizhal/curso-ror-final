@@ -1,15 +1,5 @@
+@import "bootstrap_and_overrides";
 
-@import "twitter/bootstrap/bootstrap";
-
-/** COLORES */  
-
-@chocolate: #bd906a;
-@medium-chocolate: #7e4734;
-@dark-chocolate: #633827;
-@hazelnut: #f0ead7;
-
-@grana: #4f3327;
-  
 .bg-chocolate {
   background-color: @chocolate;
 }
@@ -156,4 +146,32 @@ div.send-request {
       } 
     }
   }
+}
+
+
+/***
+ *  Mapas
+ * 
+ ****/
+
+/* Evitar distorsión en las barras de gmaps */
+#map label { 
+   width: auto; 
+   display:inline; 
+}
+#map img { 
+  max-width: none; 
+}
+
+// ajuste del ancho del mapa de gmaps
+// se usa un selector mas especifico para
+// sobreescribir el ancho por defecto
+// de 800px
+
+div#map, div.google-map div.map_container{
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 5px 0;
+  overflow: hidden;
 }

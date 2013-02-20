@@ -2,6 +2,7 @@
   	<%=t '.management' %>
   <% end %>
 
+<div class="accommodation-manager-menu">
   <%= link_to(t('.edit', 
   	:default => t("helpers.links.edit")),
     edit_accommodation_path(@accommodation), 
@@ -24,3 +25,4 @@
               new_photo_path(:image_owner_id => @accommodation.id),
               :class => "btn"
       ) if can? :edit, @accommodation %>
+</div>
