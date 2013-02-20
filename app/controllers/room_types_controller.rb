@@ -22,11 +22,8 @@ class RoomTypesController < ApplicationController
   def show
     @room_type = RoomType.find(params[:id])
     @accommodation = Accommodation.find params[:accommodation_id]
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @room_type }
-    end
+    
+    render :layout => "public_bar"
   end
 
   # GET /room_types/new

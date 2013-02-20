@@ -33,10 +33,40 @@
 		<% end %>
 	<% end %>
 
-
+	<%= render :layout => "shared/data_box",
+		:locals => {header: t(".location")} do %>
+		<p>
+			<label><%= @accommodation.name %></label>
+		</p>
+		<p>
+			<label><%=t '.phone'%>:</label>
+			<span class="value"><%= @accommodation.phone %></span>
+		</p>
+		<p>
+			<label><%=t '.email'%>:</label>
+			<span class="value">
+				<%= link_to @accommodation.email,
+					"mailto://#{@accommodation.email}" %>
+			</span>
+		</p>
+		<p class="">
+			<label><%=t '.web'%>:</label>
+			<span class="value">
+				<%= link_to @accommodation.web, 
+					@accommodation.web %>
+			</span>
+		</p>
+		
+	<% end %>
+	
 	<div class="back">
-		<%= link_to t('.back_to_accommodation', :default => t("helpers.links.back")),
-			accommodation_room_types_path(@accommodation), :class => 'btn'  %>
+		<%= link_to t('.back_to_accommodation', :default => "Volver al alojamiento"),
+			accommodation_room_types_path(@accommodation), :class => 'bar-btn'  %>
 	</div>
+	
+	<%= render :partial => "shared/send_request" %>
+	<%= render :partial => "accommodations/accommodation_offers",
+		:layout => "shared/data_box",		
+		:locals => {accommodation: @accommodation} %>
 
 <% end %>
