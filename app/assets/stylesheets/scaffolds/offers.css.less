@@ -1,18 +1,53 @@
-// Place all the styles related to the Offers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap_and_overrides";
 
 article.offer {
-  div.image{
+  padding: 0 10px;
+  
+  h2 {
+    color: @grana;
+    font-size: 14pt;
+    text-transform: uppercase;
+  }
+  
+  section.summary {
+    padding: 10px;
+    background-color: #f8f9f9;
+    h2 {
+      font-size: 12pt;
+      text-transform: none;
+    }
+  }
+  
+  section.main-photo {
+    position: relative;
     text-align: center;
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+    }
+    padding: 5px;
+    background-color: #f7f0e6;
   }
-  div.price{
-    text-align: center;    
+  h2 {
+    font-size: 12pt;
+    line-height: 12pt;
   }
-}
-
-div.search-box {
-  padding: 10px;
+  div.photo-price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    float: left;
+    display: inline-block;
+    border: 10px solid #fdfdfd;
+    margin: 0 10px;
+    padding: 10px 5px;
+    width: 30%;
+    text-align: center;
+    background-color: #f2f0e3;
+    p.quantity{
+      font-size: 24pt;
+    }
+  }
 }
 
 article.offer-card {

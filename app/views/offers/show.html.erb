@@ -1,35 +1,89 @@
 <%- model_class = Offer -%>
 <% content_for :view_title do %>
-  <%=t '.title', :default => model_class.model_name.human %>
+  <%= @offer.name %>
 <% end %>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @offer.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:summary) %>:</strong></dt>
-  <dd><%= @offer.summary %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @offer.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @offer.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:accommodation_id) %>:</strong></dt>
-  <dd><%= link_to @offer.accommodation.name, accommodation_path(@offer.accommodation_id) %></dd>
-</dl>
+<article class="offer">
+	<section class="main-photo">
+		<div class="photo-price">
+			<p class="from"><%= t(".from") %></p>
+			<p class="quantity"><%= @offer.price %>€</p>
+			<p class="vat"><%= t(".vat_included") %></p>
+		</div>
+		<%= image_tag @offer.main_photo(:detail) %>
+	</section>
+	<section class="summary">
+		<%= simple_format @offer.summary %>
+	</section>
+	<section class="description">
+		<h2><%= t '.description' %></h2>
+		<%= simple_format @offer.description %>
+	</section>
+</article>
+
+<% content_for :bar do %>
+
+	<% if can? :update, @room_type %>
+		<% render :layout => "shared/data_box",
+				:locals => { header: t( ".management_menu") } do %>
+			  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			              edit_accommodation_offer_path(@offer.accommodation, @offer), 
+			              :class => 'btn' %>
+			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			              accommodation_offer_path(@offer.accommodation, @offer),
+			              :method => 'delete',
+			              :data => { 
+			              	:confirm => t('.confirm', 
+			              		:default => t("helpers.links.confirm", :default => 'Are you sure?')
+			              	) 
+			              },
+			              :class => 'btn btn-danger' %>
+
+
+		<% end %>
+	<% end %>
+
+	<%= render :layout => "shared/data_box",
+		:locals => {header: t(".location")} do %>
+		<p>
+			<label><%= @accommodation.name %></label>
+		</p>
+		<p>
+			<label><%=t '.phone'%>:</label>
+			<span class="value"><%= @accommodation.phone %></span>
+		</p>
+		<p>
+			<label><%=t '.email'%>:</label>
+			<span class="value">
+				<%= link_to @accommodation.email,
+					"mailto://#{@accommodation.email}" %>
+			</span>
+		</p>
+		<p class="">
+			<label><%=t '.web'%>:</label>
+			<span class="value">
+				<%= link_to @accommodation.web, 
+					@accommodation.web %>
+			</span>
+		</p>
+		
+	<% end %>
+	
+	<div class="back">
+		<%= link_to t('.back_to_accommodation', :default => "Volver al alojamiento"),
+			accommodation_path(params[:accommodation_id]), 
+			:class => 'bar-btn'  %>
+	</div>
+	
+	<%= render :partial => "shared/send_request" %>
+	<%= render :partial => "accommodations/accommodation_offers",
+		:layout => "shared/data_box",		
+		:locals => {accommodation: @accommodation} %>
+
+<% end %>
+
+
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              accommodation_offers_path(:accommodation_id => params[:accommodation_id]), 
-              :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_accommodation_offer_path(@offer.accommodation, @offer), 
-              :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              accommodation_offer_path(@offer.accommodation, @offer),
-              :method => 'delete',
-              :data => { 
-              	:confirm => t('.confirm', 
-              		:default => t("helpers.links.confirm", :default => 'Are you sure?')
-              	) 
-              },
-              :class => 'btn btn-danger' %>
+
 </div>

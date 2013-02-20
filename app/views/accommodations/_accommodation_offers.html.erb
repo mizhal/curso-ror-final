@@ -3,7 +3,7 @@
 		<%=t '.found_offers'%>
 	<% end %>
 	<div class="offers">
-		<% accommodation.offers.each_with_index{|offer, index|%>
+		<% Offer.from_user(accommodation.landlord_id).each_with_index{|offer, index|%>
 			<%= render :partial => "offers/offer_in_accommodation_card",
 				:locals => {offer: offer} 
 			%>
