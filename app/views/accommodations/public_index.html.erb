@@ -17,6 +17,8 @@
 	</div>
 </section>
 
+<%= paginate @accommodations %>
+
 <%= content_for :bar do %>
 	<%= accommodations_search_box public_index_accommodations_path %>
 	<%= category_navigator %>

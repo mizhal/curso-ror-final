@@ -9,12 +9,7 @@ class RoomTypesController < ApplicationController
   # GET /room_types.json
   def index
     @accommodation = Accommodation.find params[:accommodation_id]
-    @room_types = @accommodation.room_types
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @room_types }
-    end
+    @room_types = @accommodation.room_types.page(params[:page]).per(5)
   end
 
   # GET /room_types/1
@@ -31,11 +26,6 @@ class RoomTypesController < ApplicationController
   def new
     @accommodation = Accommodation.find params[:accommodation_id]
     @room_type = RoomType.new :accommodation_id => @accommodation.id
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @room_type }
-    end
   end
 
   # GET /room_types/1/edit

@@ -7,7 +7,9 @@ class ConfigValuesController < ApplicationController
   # GET /config_values
   # GET /config_values.json
   def index
-    @config_values = ConfigValue.all
+    @config_values = ConfigValue
+      .page(params[:page])
+      .per(10)
   end
 
   # GET /config_values/new

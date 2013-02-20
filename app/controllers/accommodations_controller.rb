@@ -8,12 +8,12 @@ class AccommodationsController < ApplicationController
   def index
     if current_role? :landlord
       @accommodations = Accommodation
-        .search_private(params, 10)
+        .search_private(params, 4)
         .with_landlord(current_user_id)
       render layout: 'public_full'
     elsif current_role? :admin
       @accommodations = Accommodation
-        .search_private(params, 10)
+        .search_private(params, 4)
         .with_landlord(params[:landlord_id]) ## solo admin puede buscar por landlord
       render layout: 'admin'
     end

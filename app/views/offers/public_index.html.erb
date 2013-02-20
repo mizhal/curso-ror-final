@@ -8,6 +8,8 @@
 	<% } %>
 </section>
 
+<%= paginate @offers %>
+
 <% content_for :bar do %>
 	<%= offers_search_box %>
 <% end %>

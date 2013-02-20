@@ -36,6 +36,8 @@
   </tbody>
 </table>
 
+<%= paginate @room_types %>
+
 <%= link_to( t('.new', :default => t("helpers.links.new")),
             new_accommodation_room_type_path,
             :class => 'btn btn-primary'

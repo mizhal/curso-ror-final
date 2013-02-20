@@ -80,6 +80,8 @@
   </tbody>
 </table>
 
+<%= paginate @accommodations %>
+
 <%= link_to( t('.new', :default => t("helpers.links.new")),
             new_accommodation_path,
             :class => 'btn btn-primary'
