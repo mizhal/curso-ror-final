@@ -1,10 +1,12 @@
+<p>Los campos marcados con asterisco son obligatorios</p>
+
 <%= render :partial => "shared/validation_errors", 
 	:locals => {target: @contact_request}%>
 <%= form_for :contact_request, 
 	:url => contact_requests_path do |f| %>  
   <div class="row">
   	<div class="span4">
-  		<%= f.label :name %>
+  		<%= f.label :name %>*
   		<%= f.text_field :name, :class => "input-block-level" %>	
 	</div>
 	<div class="span5">
@@ -19,14 +21,14 @@
   		<%= f.text_field :phone, :class => "input-block-level" %>	
 	</div>
 	<div class="span7">
-  		<%= f.label :email %>
+  		<%= f.label :email %>*
   		<%= f.text_field :email, :class => "input-block-level"  %>	
 	</div>  	
   </div>
   
   <div class="row">
   	<div class="span9">
-  		<%= f.label :comments %>
+  		<%= f.label :comments %>*
   		<%= f.text_area :comments, :rows => 5, :class => "input-block-level" %>
   	</div>
   </div>
