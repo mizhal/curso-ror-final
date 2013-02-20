@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
   end
   
   def subcategories
-    categories = Category.subcategories_of(params[:parent_id]).select("id, name")
+    categories = Category.subcategories_of(params[:parent_id]).select("id, name").order("name asc")
     render json: categories
   end
 end

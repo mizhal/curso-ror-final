@@ -61,7 +61,7 @@
 	
 	<div class="back">
 		<%= link_to t('.back_to_accommodation', :default => "Volver al alojamiento"),
-			accommodation_room_types_path(@accommodation), :class => 'bar-btn'  %>
+			accommodation_path(@accommodation), :class => 'bar-btn'  %>
 	</div>
 	
 	<%= render :partial => "shared/send_request" %>

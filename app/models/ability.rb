@@ -9,6 +9,7 @@ class Ability
         can :subcategories, Category
         can [:create, :update, :index, :destroy, :provinces], Accommodation, 
           :landlord_id => user.id
+        can :create, [Offer, RoomType]
         can :manage, [Offer, RoomType], :accommodation => {:landlord_id => user.id}
       end
       can [:show, :update], User, :id => user.id

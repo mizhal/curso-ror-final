@@ -25,11 +25,6 @@
               accommodation_room_types_path(accommodation),
               :class => "btn btn-mini btn-block"
       ) if can? :edit, accommodation %>
-
-  <%= link_to(t('.upload_photos'),
-              new_photo_path(:image_owner_id => accommodation.id),
-              :class => "btn btn-mini btn-block"
-      ) if can? :edit, accommodation %>
       
   <%= link_to(t('.new_offer'),
               new_accommodation_offer_path(accommodation),

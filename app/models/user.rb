@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     :surname
     
   has_many :accommodations, 
+    :foreign_key => :landlord_id,
     :dependent => :destroy
   belongs_to :role
   

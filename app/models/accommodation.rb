@@ -105,7 +105,7 @@ class Accommodation < ActiveRecord::Base
   #########################################################
   default_scope order("name asc")
   scope :published, where(:published => true)
-  scope :unpublished, unscoped.where(:published => false)
+  scope :unpublished, unscoped.where("published = false or published is null")
   scope :featured, where(:featured => true)
   scope :home_page, published.featured.order("created_at desc").limit(8)
   
@@ -196,11 +196,7 @@ class Accommodation < ActiveRecord::Base
     return { 
       "picture" => icon,
       "width" => 32, 
-      "height" => 32,
-      "marker_anchor" => [16, 32 + 12],
-      "shadow_picture" => "http://maps.google.com/mapfiles/ms/micons/purple.png",
-      "shadow_width" => 32, 
-      "shadow_height" => 32
+      "height" => 32
     }
   end
   

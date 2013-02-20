@@ -97,7 +97,13 @@ class AccommodationsController < ApplicationController
   end
   
   def public_index
-    @accommodations = Accommodation.search_public(params, 9)
+    if current_role? :admin
+      @accommodations = Accommodation
+        .search_public(params, 9)
+        .with_landlord(params[:landlord_id]) ## solo admin puede buscar por landlord
+    else
+      @accommodations = Accommodation.search_public(params, 9)
+    end
   end
   
   def home
