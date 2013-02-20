@@ -5,8 +5,9 @@ div.location-section div.gmaps-error-output {
 }
 
 article.accommodation {
-  padding: 5px;
+  padding: 20px;
   margin: 10px 5px;
+  background-color: @hazelnut;
   div.image {
     text-align: center;
     img {
@@ -14,13 +15,22 @@ article.accommodation {
     }
   }
   h1 {
-    font-size: 14pt;
+    font-size: 12pt;
+    line-height: 12pt;
   }
   p.category{
     font-size: 10pt;
+    a { color: #000; }
   }
   p.location{
     font-variant: small-caps;
+  }
+  aside {
+    a {
+      .btn;
+      .btn-mini;
+      .buttonBackground(@chocolate, @dark-chocolate);
+    }
   }
 }
 

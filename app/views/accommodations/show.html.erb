@@ -18,14 +18,9 @@
 			</span>
 		</div>
 	</header>
-	<section class="main-photo">
-		<%= image_tag @accommodation.main_photo(:detail) %>
-	</section>
-	<section class="photos">
-		<% @accommodation.photos.each{ |photo| %>
-			<%= image_tag photo.image.url(:thumbnail)%>
-		<% } unless @accommodation.photos.empty? %>
-	</section>
+	<%= render :partial => "shared/photos", 
+		:locals => {image_owner: @accommodation} 
+	%>
 	<section class="summary">
 		<h2><%= @accommodation.slogan %></h2>
 		<%= simple_format @accommodation.brief_description %>
@@ -33,6 +28,8 @@
 	<section class="description">
 		<h2><%= t '.description' %></h2>
 		<%= simple_format @accommodation.description %>
+	</section>
+	<section class="rooms">
 		<h2><%=t '.rooms'%></h2>
 		<%= simple_format @accommodation.rooms_description %>
 		<% @accommodation.room_types.each { |room_type| %>

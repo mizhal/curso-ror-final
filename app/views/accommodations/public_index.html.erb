@@ -5,14 +5,14 @@
 <section class="accommodations-public-index">
 	<div class="row">
 		<% @accommodations.each_with_index { |accommodation, index| %>
+			<% if index % 3 == 0 and index > 0 %>
+				<div class="span9 linea-abajo"></div>
+			<% end %>
 			<div class="span3">
 				<%= render :partial => "accommodation_card", 
 					:locals => {accommodation:accommodation}
 				%>
 			</div>
-			<% if index % 3 == 2 %>
-				<div class="span9 linea-abajo"></div>
-			<% end %>
 		<% } %>
 	</div>
 </section>

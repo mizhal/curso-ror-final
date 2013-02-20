@@ -1,11 +1,9 @@
 <% unless categories.empty? %>
+<% set_content_for :databox_header do %>
+	<%= t(".choose_your_type") %>
+<% end %>
 <div class="category-navigator">
 	<nav>
-		<header>
-			<h1 class="widget-header">
-				<%= t(".choose_your_type") %>
-			</h1>
-		</header>
 		<ul class="nav nav-stacked nav-pills">
 			<% categories.each{ |category|%>
 			<li>

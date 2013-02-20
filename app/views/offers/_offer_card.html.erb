@@ -16,7 +16,8 @@
 			<p class="vat"><%= t(".vat_included") %></p>
 			<p class="more"><%= 
 				link_to t(".more_info"), 
-					accommodation_offer_path(offer.accommodation_id, offer.id)
+					accommodation_offer_path(offer.accommodation_id, offer.id),
+					:class => "btn btn-mini"
 				%>
 			</p>
 		</div>

@@ -1,0 +1,8 @@
+	<section class="main-photo">
+		<%= image_tag image_owner.main_photo(:detail) %>
+	</section>
+	<section class="photos">
+		<% image_owner.photos.each{ |photo| %>
+			<%= image_tag photo.image.url(:thumbnail)%>
+		<% } unless image_owner.photos.empty? %>
+	</section>

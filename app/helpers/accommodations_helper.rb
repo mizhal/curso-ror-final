@@ -13,6 +13,7 @@ module AccommodationsHelper
   
   def category_navigator
     render :partial => "category_navigator",
+      :layout => "shared/data_box",
       :locals => {categories: Category.toplevel}
   end
   
