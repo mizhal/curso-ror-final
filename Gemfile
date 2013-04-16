@@ -19,17 +19,11 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   
-  ## DEPENDENCIAS DE BOOTSTRAP
-  gem "libv8", "3.11.8" 
-  gem "therubyracer", '0.11.0'
-  gem "less-rails"
+  ## Bootstrap  
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 gem 'jquery-rails'
-
-## Bootstrap
-gem "twitter-bootstrap-rails", 
-  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
